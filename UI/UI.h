@@ -125,7 +125,7 @@ public:
 
 		
 	// Draws a resistor
-	void DrawResistor(const GraphicsInfo &r_GfxInfo, bool selected = false) const;
+	void DrawResistor(const GraphicsInfo &r_GfxInfo, string my_label, bool selected = false) const;
 	void DrawLamp(const GraphicsInfo& r_GfxInfo, bool selected = false) const;
 	void DrawSwitch(const GraphicsInfo& r_GfxInfo, bool selected = false) const;
 	void DrawBattery(const GraphicsInfo& r_GfxInfo, bool selected = false) const;

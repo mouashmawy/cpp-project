@@ -14,11 +14,13 @@ private:
 	int x1, y1, x2, y2;	//two points of the line
 	int NumOfComp;
 	//Component* ListOfComp = new Component[MaxCompCount];
+	enum side { LEFT, RIGHT };
+
 public:
 	ActionConnect(ApplicationManager* pApp);
 	virtual ~ActionConnect(void);
 
-	Component* CompInPlace(int xx, int yy) ;
+	Component* CompInPlace(int xx, int yy, side &lr) ;
 
 	//Execute action (code depends on action type)
 	virtual void Execute();

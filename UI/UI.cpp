@@ -166,8 +166,8 @@ void UI::PrintMsgX(string msg, int xx, int yy) const
 {
 	
 	// Print the Message
-	pWind->SetFont(15, BOLD | ITALICIZED, BY_NAME, "Arial");
-	pWind->SetPen(MsgColor);
+	pWind->SetFont(18, BOLD | ITALICIZED, BY_NAME, "Arial");
+	pWind->SetPen(BLACK);
 	pWind->DrawString(xx, yy, msg);
 }
 
@@ -255,7 +255,7 @@ void UI::CreateSimulationToolBar()
 //								Components Drawing Functions							//
 //======================================================================================//
 
-void UI::DrawResistor(const GraphicsInfo& r_GfxInfo, bool selected) const
+void UI::DrawResistor(const GraphicsInfo& r_GfxInfo, string my_label, bool selected) const
 {
 	string ResImage;
 	if (selected)
@@ -273,38 +273,11 @@ void UI::DrawResistor(const GraphicsInfo& r_GfxInfo, bool selected) const
 	int xc = r_GfxInfo.PointsList[0].x;
 	int yc = r_GfxInfo.PointsList[0].y;
 
-	
-
 
 		pWind->DrawImage(ResImage, xc, yc, COMP_WIDTH, COMP_HEIGHT);
-		PrintMsgX("Resistor "/* + to_string(++num)*/, xc, yc - COMP_HEIGHT * 2 / 3);
-		cout << "fuck!!!!!!!!!!!!" << endl; return;
+		PrintMsgX("Resistor : " + my_label, xc, yc - COMP_HEIGHT * 2 / 3); 
 
 
-
-	/*
-
-	if (
-		yc >= 80 + COMP_HEIGHT / 2 &&
-		yc < 650 - 50 - COMP_HEIGHT / 2 
-
-		)
-
-	{
-		pWind->DrawImage(ResImage, xc, yc, COMP_WIDTH, COMP_HEIGHT);
-		PrintMsgX("Resistor ", xc, yc - COMP_HEIGHT * 2 / 3);
-
-	}
-	else { cout << "55555555555555555555555" << endl; return; }
-		*/
-
-		/*else {
-			string msggg = "Can't place here. Try Again!!!!!!!!";
-			PrintMsg(msggg);// for (int i = 0; i < 5; i++) {Sleep(100); ClearStatusBar(); Sleep(50); PrintMsg(msggg);}
-			cout << r_GfxInfo.PointsList[0].y << "555555555555555555555" << endl;
-			Sleep(1000); ClearStatusBar();
-			return;
-		}*/
 }
 //TODO: Add similar functions to draw all other components
 
@@ -363,8 +336,18 @@ void UI::DrawBuzzer(const GraphicsInfo& r_GfxInfo, bool selected) const
 void UI::DrawConnection(const GraphicsInfo &r_GfxInfo, bool selected) const
 {
 	pWind->SetPen(BLACK, 4);
-	pWind->DrawLine(r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, r_GfxInfo.PointsList[1].x, r_GfxInfo.PointsList[1].y);
-	//pWind->DrawLine(100, 100, 500, 500);
+
+
+	int x1 = r_GfxInfo.PointsList[0].x,
+		y1 = r_GfxInfo.PointsList[0].y,
+		x2 = r_GfxInfo.PointsList[1].x,
+		y2 = r_GfxInfo.PointsList[1].y,
+		mid = x1 + (x2 - x1) / 2;
+
+
+	pWind->DrawLine(x1,y1,mid,y1);
+	pWind->DrawLine(mid,y1,mid,y2);
+	pWind->DrawLine(mid,y2,x2,y2);
 	
 }
 
