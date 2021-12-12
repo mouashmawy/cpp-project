@@ -362,7 +362,7 @@ void UI::DrawBuzzer(const GraphicsInfo& r_GfxInfo, bool selected) const
 
 void UI::DrawConnection(const GraphicsInfo &r_GfxInfo, bool selected) const
 {
-	pWind->SetPen(BLACK, 5);
+	pWind->SetPen(BLACK, 4);
 	pWind->DrawLine(r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, r_GfxInfo.PointsList[1].x, r_GfxInfo.PointsList[1].y);
 	//pWind->DrawLine(100, 100, 500, 500);
 	
