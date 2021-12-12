@@ -53,26 +53,24 @@ void ActionAddRes::Execute()
 	bool conflict = isConflict(Cx, Cy, compWidth, compHeight);
 	if (conflict) {
 		
-		pUI->PrintMsg("Invalid Point!!!");
-		std::cout << "a777aaaaaaaaaa";
+		string msggg = "Invalid Point!!!";
+		pUI->PrintMsg(msggg,RED);
+
+		for (int i = 0; i < 5; i++) {Sleep(100); pUI->ClearStatusBar(); Sleep(50); pUI->PrintMsg(msggg,RED);}
+
 		pUI->GetPointClicked(Cx, Cy);
 		pUI->ClearStatusBar();
 
 		return;
 	}
 	//Print Action Message
-	std::cout << conflict <<"   ok\n";
 	pUI->PrintMsg("Enter a label for it");
 
 	//Get Center point of the area where the Comp should be drawn
-	string text = pUI->GetSrting();
-
+	string name = pUI->GetSrting();
 	//Clear Status Bar
 	pUI->ClearStatusBar();
 	
-
-
-
 	
 	GraphicsInfo * pGInfo= new GraphicsInfo(2); //Gfx info to be used to construct the Comp
 	
@@ -83,7 +81,7 @@ void ActionAddRes::Execute()
 	pGInfo->PointsList[1].x = Cx + compWidth/2;
 	pGInfo->PointsList[1].y = Cy + compHeight/2;
 	 
-	Resistor* pR = new Resistor(pGInfo);
+	Resistor* pR = new Resistor(pGInfo,name);
 	pManager->AddComponent(pR);
 }
 

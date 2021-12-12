@@ -118,14 +118,14 @@ public:
 
 
 
-	void PrintMsgX(string msg, int xx, int yy) const;
+
 
 	void ClearStatusBar() const;		//Clears the status bar
 	void ClearDrawingArea() const;	//Clears the drawing area
 
 		
 	// Draws a resistor
-	void DrawResistor(const GraphicsInfo &r_GfxInfo, bool selected = false) const;
+	void DrawResistor(const GraphicsInfo &r_GfxInfo, string my_label ,bool selected = false) const;
 	void DrawLamp(const GraphicsInfo& r_GfxInfo, bool selected = false) const;
 	void DrawSwitch(const GraphicsInfo& r_GfxInfo, bool selected = false) const;
 	void DrawBattery(const GraphicsInfo& r_GfxInfo, bool selected = false) const;
@@ -137,8 +137,8 @@ public:
 	// Draws Connection
 	void DrawConnection(const GraphicsInfo &r_GfxInfo, bool selected = false) const;
 	
-	void PrintMsg(string msgbool) const;	//Print a message on Status bar
-
+	void PrintMsg(string msgbool, color clr= BLUE) ;	//Print a message on Status bar
+	void PrintMsgX(string msg, int xx, int yy, color clr=BLACK) const;
 	~UI();
 };
 

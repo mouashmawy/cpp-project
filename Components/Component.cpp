@@ -5,6 +5,11 @@ Component::Component(GraphicsInfo *r_GfxInfo)
 	m_pGfxInfo = r_GfxInfo;	
 }
 
+string Component::getLabel()
+{
+	return label;
+}
+
 Component::Component()
 {
 	m_pGfxInfo = nullptr;

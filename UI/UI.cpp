@@ -145,7 +145,7 @@ void UI::CreateStatusBar() const
 	pWind->DrawLine(0, height-StatusBarHeight, width, height-StatusBarHeight);
 }
 //////////////////////////////////////////////////////////////////////////////////
-void UI::PrintMsg(string msg) const
+void UI::PrintMsg(string msg, color clr) 
 {
 	ClearStatusBar();	//Clear Status bar to print message on it
 	// Set the Message offset from the Status Bar
@@ -154,7 +154,7 @@ void UI::PrintMsg(string msg) const
 
 	// Print the Message
     pWind->SetFont(20, BOLD | ITALICIZED, BY_NAME, "Arial"); 
-	pWind->SetPen(MsgColor); 
+	pWind->SetPen(clr); 
 	pWind->DrawString(MsgX, height - MsgY, msg);
 }
 //////////////////////////////////////////////////////////////////////
@@ -162,12 +162,12 @@ void UI::PrintMsg(string msg) const
 //////////////////////////////////////////////////////////////////////
 
 
-void UI::PrintMsgX(string msg, int xx, int yy) const
+void UI::PrintMsgX(string msg, int xx, int yy,color clr) const
 {
 	
 	// Print the Message
-	pWind->SetFont(15, BOLD | ITALICIZED, BY_NAME, "Arial");
-	pWind->SetPen(MsgColor);
+	pWind->SetFont(17, BOLD | ITALICIZED, BY_NAME, "Arial");
+	pWind->SetPen(clr);
 	pWind->DrawString(xx, yy, msg);
 }
 
@@ -255,7 +255,7 @@ void UI::CreateSimulationToolBar()
 //								Components Drawing Functions							//
 //======================================================================================//
 
-void UI::DrawResistor(const GraphicsInfo& r_GfxInfo, bool selected) const
+void UI::DrawResistor(const GraphicsInfo& r_GfxInfo,string my_label, bool selected) const
 {
 	string ResImage;
 	if (selected)
@@ -264,47 +264,12 @@ void UI::DrawResistor(const GraphicsInfo& r_GfxInfo, bool selected) const
 		ResImage = "Images\\Comp\\Resistor.jpg";	//use image of the normal resistor
 
 	//Draw Resistor at Gfx_Info (1st corner)
-	//5555555555555555555555555555555555555555555555555 check the commented code
-
-	static int num=0;
-
-	cout << r_GfxInfo.PointsList[0].y << endl;
 
 	int xc = r_GfxInfo.PointsList[0].x;
 	int yc = r_GfxInfo.PointsList[0].y;
+	pWind->DrawImage(ResImage, xc, yc, COMP_WIDTH, COMP_HEIGHT);
+	PrintMsgX("Resistor : "+my_label , xc, yc - COMP_HEIGHT * 2 / 3);
 
-	
-
-
-		pWind->DrawImage(ResImage, xc, yc, COMP_WIDTH, COMP_HEIGHT);
-		PrintMsgX("Resistor "/* + to_string(++num)*/, xc, yc - COMP_HEIGHT * 2 / 3);
-		cout << "fuck!!!!!!!!!!!!" << endl; return;
-
-
-
-	/*
-
-	if (
-		yc >= 80 + COMP_HEIGHT / 2 &&
-		yc < 650 - 50 - COMP_HEIGHT / 2 
-
-		)
-
-	{
-		pWind->DrawImage(ResImage, xc, yc, COMP_WIDTH, COMP_HEIGHT);
-		PrintMsgX("Resistor ", xc, yc - COMP_HEIGHT * 2 / 3);
-
-	}
-	else { cout << "55555555555555555555555" << endl; return; }
-		*/
-
-		/*else {
-			string msggg = "Can't place here. Try Again!!!!!!!!";
-			PrintMsg(msggg);// for (int i = 0; i < 5; i++) {Sleep(100); ClearStatusBar(); Sleep(50); PrintMsg(msggg);}
-			cout << r_GfxInfo.PointsList[0].y << "555555555555555555555" << endl;
-			Sleep(1000); ClearStatusBar();
-			return;
-		}*/
 }
 //TODO: Add similar functions to draw all other components
 
