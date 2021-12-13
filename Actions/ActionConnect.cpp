@@ -80,34 +80,7 @@ void ActionConnect::Execute()
 
 
 
-	if (lr1 ==RIGHT && lr2==LEFT) {
-		pGInfo->PointsList[0].x = comp1->getC()->PointsList[1].x;
-		pGInfo->PointsList[0].y = comp1->getC()->PointsList[1].y - compHeight / 2;
-		pGInfo->PointsList[1].x = comp2->getC()->PointsList[0].x;
-		pGInfo->PointsList[1].y = comp2->getC()->PointsList[0].y /* + compHeight / 2*/;
-	}
-	else if (lr1 == LEFT && lr2 == RIGHT)
-	{
-		pGInfo->PointsList[0].x = comp2->getC()->PointsList[1].x;
-		pGInfo->PointsList[0].y = comp2->getC()->PointsList[1].y - compHeight / 2;
-		pGInfo->PointsList[1].x = comp1->getC()->PointsList[0].x;
-		pGInfo->PointsList[1].y = comp1->getC()->PointsList[0].y + compHeight / 2;
-	}
-	else if (lr1 == LEFT && lr2 == LEFT)
-	{
-		pGInfo->PointsList[0].x = comp1->getC()->PointsList[0].x;
-		pGInfo->PointsList[0].y = comp1->getC()->PointsList[0].y - compHeight / 2;
-		pGInfo->PointsList[1].x = comp2->getC()->PointsList[0].x;
-		pGInfo->PointsList[1].y = comp2->getC()->PointsList[0].y + compHeight / 2;
-	}
-	else {
-		pGInfo->PointsList[0].x = comp1->getC()->PointsList[1].x;
-		pGInfo->PointsList[0].y = comp1->getC()->PointsList[1].y - compHeight / 2;
-		pGInfo->PointsList[1].x = comp2->getC()->PointsList[1].x;
-		pGInfo->PointsList[1].y = comp2->getC()->PointsList[1].y + compHeight / 2;
-	}
 
-	
 												
 			
 	Connection* pConn = new Connection(pGInfo);

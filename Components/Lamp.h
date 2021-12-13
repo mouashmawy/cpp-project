@@ -3,9 +3,12 @@
 
 class Lamp:public Component
 {
-public:
-	Lamp(GraphicsInfo *r_GfxInfo);
-	virtual void Operate();	//Calculates the volt on both terminals
-	virtual void Draw(UI*, bool selected = false);	//Draws the Lamp
+	int Cx, Cy;
 
+
+public:
+	Lamp(GraphicsInfo* r_GfxInfo, string name);
+	virtual void Operate();	//Calculates the volt on both terminals
+	virtual void Draw(UI*, bool selected = false);	//Draws the resistor
+	GraphicsInfo* getC();
 };

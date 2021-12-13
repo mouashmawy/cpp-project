@@ -110,8 +110,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Actions\Action.cpp" />
     <ClCompile Include="Actions\ActionAddBattery.cpp" />
     <ClCompile Include="Actions\ActionAddBuzzer.cpp" />
+    <ClCompile Include="Actions\ActionAddFuse.cpp" />
+    <ClCompile Include="Actions\ActionAddGround.cpp" />
     <ClCompile Include="Actions\ActionAddLamp.cpp" />
     <ClCompile Include="Actions\ActionAddRes.cpp" />
     <ClCompile Include="Actions\ActionAddSwitch.cpp" />
@@ -157,6 +160,8 @@
     <ClCompile Include="Components\Buzzer.cpp" />
     <ClCompile Include="Components\Component.cpp" />
     <ClCompile Include="Components\Connection.cpp" />
+    <ClCompile Include="Components\Fuse.cpp" />
+    <ClCompile Include="Components\Ground.cpp" />
     <ClCompile Include="Components\Lamp.cpp" />
     <ClCompile Include="Components\Resistor.cpp" />
     <ClCompile Include="Components\Switch.cpp" />
@@ -167,6 +172,8 @@
     <ClInclude Include="Actions\Action.h" />
     <ClInclude Include="Actions\ActionAddBattery.h" />
     <ClInclude Include="Actions\ActionAddBuzzer.h" />
+    <ClInclude Include="Actions\ActionAddFuse.h" />
+    <ClInclude Include="Actions\ActionAddGround.h" />
     <ClInclude Include="Actions\ActionAddLamp.h" />
     <ClInclude Include="Actions\ActionAddRes.h" />
     <ClInclude Include="Actions\ActionAddSwitch.h" />
@@ -196,6 +203,8 @@
     <ClInclude Include="Components\Buzzer.h" />
     <ClInclude Include="Components\Component.h" />
     <ClInclude Include="Components\Connection.h" />
+    <ClInclude Include="Components\Fuse.h" />
+    <ClInclude Include="Components\Ground.h" />
     <ClInclude Include="Components\Lamp.h" />
     <ClInclude Include="Components\Resistor.h" />
     <ClInclude Include="Components\Switch.h" />

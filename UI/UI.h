@@ -46,6 +46,8 @@ class UI
 		ITM_BUZZER,
 		ITM_CONN,		//to draw connections
 		ITM_SELECT,
+		ITM_FUSE,
+		ITM_GROUND,
 		ITM_EXIT,		//Exit item
 		//TODO: Add more items names here
 	
@@ -65,11 +67,20 @@ class UI
 	
 	};
 
+	enum ConnectCases {
+
+		SameSide,
+		Interir,
+		Exterior
+
+
+	};
+
 
 
 	MODE AppMode;		//Application Mode (design or simulation)
 	
-	static const int	width = 1200, height = 700,	//Window width and height
+	static const int	width = 1200, height = 600,	//Window width and height
 						wx = 15 , wy = 15,			//Window starting coordinates
 						StatusBarHeight = 50,	//Status Bar Height
 						ToolBarHeight = 80,		//Tool Bar Height (distance from top of window to bottom line of toolbar)
@@ -130,6 +141,8 @@ public:
 	void DrawLamp(const GraphicsInfo& r_GfxInfo, bool selected = false) const;
 	void DrawSwitch(const GraphicsInfo& r_GfxInfo, bool selected = false) const;
 	void DrawBattery(const GraphicsInfo& r_GfxInfo, bool selected = false) const;
+	void DrawFuse(const GraphicsInfo& r_GfxInfo, bool selected = false) const;
+	void DrawGround(const GraphicsInfo& r_GfxInfo, bool selected = false) const;
 
 	void DrawBuzzer(const GraphicsInfo& r_GfxInfo, bool selected = false) const;
 
@@ -139,6 +152,8 @@ public:
 	void DrawConnection(const GraphicsInfo &r_GfxInfo, bool selected = false) const;
 	
 	void PrintMsg(string msgbool) const;	//Print a message on Status bar
+
+	void getSatusForConnect();
 
 	~UI();
 };

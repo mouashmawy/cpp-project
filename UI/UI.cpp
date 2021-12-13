@@ -112,6 +112,8 @@ ActionType UI::GetUserAction() const
 			case ITM_SWITCH: return ADD_SWITCH;
 			case ITM_BUZZER: return ADD_BUZZER;
 			case ITM_CONN:	return ADD_CONNECTION;
+			case ITM_FUSE: return ADD_FUSE;
+			case ITM_GROUND: return ADD_GROUND;
 			case ITM_SELECT: return SELECT;
 			case ITM_EXIT:	return EXIT;	
 			
@@ -232,6 +234,8 @@ void UI::CreateDesignToolBar()
 	MenuItemImages[ITM_SWITCH] = "images\\Menu\\Menu_Switch.jpg";
 	MenuItemImages[ITM_LAMP] = "images\\Menu\\Menu_Lamp.jpg";
 	MenuItemImages[ITM_BUZZER] = "images\\Menu\\Menu_Buzzer.jpg";
+	MenuItemImages[ITM_FUSE] = "images\\Menu\\Menu_Lamp.jpg";
+	MenuItemImages[ITM_GROUND] = "images\\Menu\\Menu_Lamp.jpg";
 	MenuItemImages[ITM_CONN] = "images\\Menu\\Menu_Conn.jpg";
 	MenuItemImages[ITM_EXIT] = "images\\Menu\\Menu_Exit.jpg";
 	MenuItemImages[ITM_SELECT] = "images\\Menu\\Menu_Select.jpg";
@@ -353,6 +357,33 @@ void UI::DrawBuzzer(const GraphicsInfo& r_GfxInfo, bool selected) const
 
 	//Draw Resistor at Gfx_Info (1st corner)
 	pWind->DrawImage(SwitchImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, COMP_WIDTH, COMP_HEIGHT);
+}
+
+
+
+void UI::DrawFuse(const GraphicsInfo& r_GfxInfo, bool selected) const
+{
+	string FuseImage;
+	if (selected)
+		FuseImage = "Images\\Comp\\Lamp_HI.jpg";	//use image of highlighted resistor
+	else
+		FuseImage = "Images\\Comp\\Lamp.jpg";	//use image of the normal resistor
+
+	//Draw Resistor at Gfx_Info (1st corner)
+	pWind->DrawImage(FuseImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, COMP_WIDTH, COMP_HEIGHT);
+}
+
+
+void UI::DrawGround(const GraphicsInfo& r_GfxInfo, bool selected) const
+{
+	string GroundImage;
+	if (selected)
+		GroundImage = "Images\\Comp\\Lamp_HI.jpg";	//use image of highlighted resistor
+	else
+		GroundImage = "Images\\Comp\\Lamp.jpg";	//use image of the normal resistor
+
+	//Draw Resistor at Gfx_Info (1st corner)
+	pWind->DrawImage(GroundImage, r_GfxInfo.PointsList[0].x, r_GfxInfo.PointsList[0].y, COMP_WIDTH, COMP_HEIGHT);
 }
 
 

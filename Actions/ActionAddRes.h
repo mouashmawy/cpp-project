@@ -14,7 +14,7 @@ public:
 	ActionAddRes(ApplicationManager *pApp);
 	virtual ~ActionAddRes(void);
 
-	bool isConflict(int,int,int,int) const;
+
 
 	//Execute action (code depends on action type)
 	virtual void Execute();

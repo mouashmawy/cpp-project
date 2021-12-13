@@ -1,16 +1,23 @@
 #include "Lamp.h"
+#include<iostream>
 
-Lamp::Lamp(GraphicsInfo *r_GfxInfo):Component(r_GfxInfo)
-{}
+Lamp::Lamp(GraphicsInfo *r_GfxInfo, string name) :Component(r_GfxInfo)
+{
+	label = name;
+}
 
 void Lamp::Draw(UI* pUI, bool selected)
 {
-	//Call output class and pass Lamp drawing info to it.
 
-	/////////////////555555555555555555555555555555555555555555555555555
-	// why I have to put true or false????
-	pUI->DrawLamp(*m_pGfxInfo, selected); //update to draw Lamp 
+	if (selected) cout << "selected" << endl;
+	//Call output class and pass resistor drawing info to it.
+	pUI->DrawResistor(*m_pGfxInfo, label, selected); //update to draw resistor
 
+}
+
+GraphicsInfo* Lamp::getC()
+{
+	return m_pGfxInfo;
 }
 
 void Lamp::Operate()

@@ -4,6 +4,8 @@
 #include "Actions\ActionAddBattery.h"
 #include "Actions\ActionAddSwitch.h"
 #include "Actions\ActionAddBuzzer.h"
+#include "Actions\ActionAddFuse.h"
+#include "Actions\ActionAddGround.h"
 #include "Actions\ActionConnect.h"
 #include "Actions\ActionSelect.h"
 
@@ -71,6 +73,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 			///////////////////555555555555555555555555555555555555555
 		case ADD_BUZZER:
+			pAct = new ActionAddBuzzer(this);
+			break;
+		case ADD_FUSE:
+			pAct = new ActionAddBuzzer(this);
+			break;
+		case ADD_GROUND:
 			pAct = new ActionAddBuzzer(this);
 			break;
 

@@ -12,6 +12,7 @@ protected:
 public:
 	Action(ApplicationManager *pApp) { pManager = pApp; }	//constructor
 	
+	virtual bool isConflict(int, int, int, int) const;
 
 	//Execute action (code depends on action type)
 	virtual void Execute()=0;

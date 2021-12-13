@@ -11,6 +11,8 @@ enum ActionType
 	ADD_LAMP,			//Add LAMP
 	ADD_BATTERY,
 	ADD_BUZZER,
+	ADD_FUSE,
+	ADD_GROUND,
 	
 	ADD_CONNECTION,		//Add Wire Connection
 
