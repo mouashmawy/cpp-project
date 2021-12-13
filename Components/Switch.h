@@ -6,7 +6,7 @@ class Switch :public Component
 public:
 	Switch (GraphicsInfo* r_GfxInfo);
 	virtual void Operate();	
-	virtual void Draw(UI*);	
+	virtual void Draw(UI*, bool selected = false);
 
 };
 

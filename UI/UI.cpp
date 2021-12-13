@@ -2,6 +2,7 @@
 #include "UI.h"
 #include <string>
 #include<windows.h>
+#include <cmath>
 UI::UI()
 {
 	AppMode = DESIGN;	//Design Mode is the startup mode
@@ -21,6 +22,7 @@ UI::UI()
 
 	CreateDesignToolBar();	//Create the desgin toolbar
 	CreateStatusBar();		//Create Status bar
+	CreateGrid();
 }
 
 
@@ -41,6 +43,11 @@ int UI::getCompHeight() const
 void UI::GetPointClicked(int &x, int &y)
 {
 	pWind->WaitMouseClick(x, y);	//Wait for mouse click
+	/*
+	x = round(x / 50) * 50;
+	y = round(y / 50) * 50;
+	*/
+
 }
 
 string UI::GetSrting()
@@ -105,18 +112,22 @@ ActionType UI::GetUserAction() const
 			case ITM_SWITCH: return ADD_SWITCH;
 			case ITM_BUZZER: return ADD_BUZZER;
 			case ITM_CONN:	return ADD_CONNECTION;
+			case ITM_SELECT: return SELECT;
 			case ITM_EXIT:	return EXIT;	
 			
 			default: return DSN_TOOL;	//A click on empty place in desgin toolbar
 			}
 		}
 	
+
+
+		/*
 		//[2] User clicks on the drawing area
 		if ( y >= ToolBarHeight && y < height - StatusBarHeight)
 		{
 			return SELECT;	//user want to select/unselect a statement in the flowchart
 		}
-		
+		*/
 		//[3] User clicks on the status bar
 		return STATUS_BAR;
 	}
@@ -143,6 +154,18 @@ void UI::CreateStatusBar() const
 {
 	pWind->SetPen(RED,3);
 	pWind->DrawLine(0, height-StatusBarHeight, width, height-StatusBarHeight);
+}
+void UI::CreateGrid()
+{
+	for (int i = 0; i <= width; i += 100) {
+		pWind->SetPen(RED, 1);
+		pWind->DrawLine(i, ToolBarHeight, i, height - StatusBarHeight);
+	}
+	for (int i = 0; i <= height; i += 100) {
+		pWind->SetPen(RED, 1);
+		pWind->DrawLine(0,ToolBarHeight+i,width, ToolBarHeight + i);
+	}
+
 }
 //////////////////////////////////////////////////////////////////////////////////
 void UI::PrintMsg(string msg) const
@@ -211,6 +234,7 @@ void UI::CreateDesignToolBar()
 	MenuItemImages[ITM_BUZZER] = "images\\Menu\\Menu_Buzzer.jpg";
 	MenuItemImages[ITM_CONN] = "images\\Menu\\Menu_Conn.jpg";
 	MenuItemImages[ITM_EXIT] = "images\\Menu\\Menu_Exit.jpg";
+	MenuItemImages[ITM_SELECT] = "images\\Menu\\Menu_Select.jpg";
 
 	//TODO: Prepare image for each menu item and add it to the list
 

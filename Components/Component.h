@@ -30,6 +30,8 @@ protected:
 
 	GraphicsInfo *m_pGfxInfo;	//The parameters required to draw a component
 
+	
+
 public:
 	Component(GraphicsInfo *r_GfxInfo);
 	//void setTerm1Volt(double v);		//sets the voltage at terminal1
@@ -38,9 +40,9 @@ public:
 	//double getTerm2Volt();				//returns the voltage at terminal2
 
 	virtual void Operate() = 0;	//Calculates the output voltage according to the inputs
-	virtual void Draw(UI* ) = 0;	//for each component to Draw itself
+	virtual void Draw(UI*,bool selected=false) =0;	//for each component to Draw itself
 	virtual GraphicsInfo* getC() ;
-	
+	string getLabel();
 	//virtual int GetOutPinStatus()=0;	//returns status of outputpin if LED, return -1
 	//virtual int GetInputPinStatus(int n)=0;	//returns status of Inputpin # n if SWITCH, return -1
 

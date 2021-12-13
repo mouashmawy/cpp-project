@@ -6,6 +6,6 @@ class Buzzer:public Component
 public:
 	Buzzer(GraphicsInfo *r_GfxInfo);
 	virtual void Operate();	//Calculates the volt on both terminals
-	virtual void Draw(UI*);	//Draws the Buzzer
+	virtual void Draw(UI*, bool selected = false);	//Draws the Buzzer
 
 };

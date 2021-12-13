@@ -150,6 +150,7 @@
     <ClCompile Include="Actions\ActionAddBuzzer.cpp" />
     <ClCompile Include="Components\Buzzer.cpp" />
     <ClCompile Include="Actions\ActionConnect.cpp" />
+    <ClCompile Include="Actions\ActionSelect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\Component.h">
@@ -238,6 +239,7 @@
     <ClInclude Include="Actions\ActionAddBuzzer.h" />
     <ClInclude Include="Components\Buzzer.h" />
     <ClInclude Include="Actions\ActionConnect.h" />
+    <ClInclude Include="Actions\ActionSelect.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="CMUgraphicsLib\Manual.txt">

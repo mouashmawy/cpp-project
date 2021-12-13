@@ -1,4 +1,5 @@
 #include "Resistor.h"
+#include <iostream>
 
 Resistor::Resistor(GraphicsInfo *r_GfxInfo, string name):Component(r_GfxInfo)
 {
@@ -6,10 +7,11 @@ Resistor::Resistor(GraphicsInfo *r_GfxInfo, string name):Component(r_GfxInfo)
 
 }
 
-void Resistor::Draw(UI* pUI)
+void Resistor::Draw(UI* pUI,bool selected)
 {
+	if (selected) cout << "selected" << endl;
 	//Call output class and pass resistor drawing info to it.
-	pUI->DrawResistor(*m_pGfxInfo,label); //update to draw resistor
+	pUI->DrawResistor(*m_pGfxInfo,label,selected); //update to draw resistor
 
 }
 

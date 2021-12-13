@@ -5,7 +5,7 @@
 #include "Actions\ActionAddSwitch.h"
 #include "Actions\ActionAddBuzzer.h"
 #include "Actions\ActionConnect.h"
-
+#include "Actions\ActionSelect.h"
 
 
 ApplicationManager::ApplicationManager()
@@ -74,10 +74,14 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct = new ActionAddBuzzer(this);
 			break;
 
+
 		case ADD_CONNECTION:
 			pAct = new ActionConnect(this);
 			break;
 	
+		case SELECT:
+			pAct = new ActionSelect(this);
+			break;
 
 		case EXIT:
 			///TODO: create ExitAction here

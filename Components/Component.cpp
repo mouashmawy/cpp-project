@@ -1,5 +1,10 @@
 #include "Component.h"
 
+string Component::getLabel()
+{
+	return label;
+}
+
 Component::Component(GraphicsInfo *r_GfxInfo)
 {
 	m_pGfxInfo = r_GfxInfo;	
@@ -18,6 +23,7 @@ GraphicsInfo* Component::getC()
 {
 	return m_pGfxInfo;
 }
+
 
 
 Component::~Component()

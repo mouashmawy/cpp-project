@@ -45,6 +45,7 @@ class UI
 		ITM_SWITCH,
 		ITM_BUZZER,
 		ITM_CONN,		//to draw connections
+		ITM_SELECT,
 		ITM_EXIT,		//Exit item
 		//TODO: Add more items names here
 	
@@ -68,15 +69,15 @@ class UI
 
 	MODE AppMode;		//Application Mode (design or simulation)
 	
-	static const int	width = 1200, height = 650,	//Window width and height
+	static const int	width = 1200, height = 700,	//Window width and height
 						wx = 15 , wy = 15,			//Window starting coordinates
 						StatusBarHeight = 50,	//Status Bar Height
 						ToolBarHeight = 80,		//Tool Bar Height (distance from top of window to bottom line of toolbar)
 						ToolItemWidth = 80,		//Width of each item in toolbar menu
 
 						//Arbitrary values, you can change as you wish
-						COMP_WIDTH = 120,		//Component Image width
-						COMP_HEIGHT = 40;		//Component Image height
+						COMP_WIDTH = 100,		//Component Image width
+						COMP_HEIGHT = 35;		//Component Image height
 
 	color DrawColor;		//Drawing color
 	color SelectColor;		//Highlighting color
@@ -113,7 +114,7 @@ public:
 	void CreateDesignToolBar();	//Tool bar of the design mode
 	void CreateSimulationToolBar();//Tool bar of the simulation mode
 	void CreateStatusBar() const;	//Create Status bar
-
+	void CreateGrid();
 
 
 

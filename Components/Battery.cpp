@@ -3,10 +3,10 @@
 Battery::Battery(GraphicsInfo* r_GfxInfo) :Component(r_GfxInfo)
 {}
 
-void Battery::Draw(UI* pUI)
+void Battery::Draw(UI* pUI, bool selected)
 {
 	//Call output class and pass Battery drawing info to it.
-	pUI->DrawBattery(*m_pGfxInfo); //update to draw Battery
+	pUI->DrawBattery(*m_pGfxInfo,selected); //update to draw Battery
 
 }
 
