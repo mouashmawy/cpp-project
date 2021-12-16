@@ -53,8 +53,24 @@ void UI::GetPointClicked(int &x, int &y)
 }
 
 
-void UI::GetPreviousClick(int& x, int& y) {
+void UI::Get(int& x, int& y)
+{
+	while (1)
+	{
+		pWind->GetMouseCoord(x, y);	//Wait for mouse click
+		cout << x << "  " << y << endl;
+		Sleep(100);
+	}
+	/*
+	x = round(x / 50) * 50;
+	y = round(y / 50) * 50;
+	*/
 
+}
+
+
+void UI::GetPreviousClick(int& x, int& y) {
+	cout << "get me";
 	//pWind->GetMouseClick(x, y);
 	pWind->GetMouseCoord(x, y);
 }
@@ -223,7 +239,7 @@ void UI::PrintMsgX(string msg, int xx, int yy) const
 {
 	
 	// Print the Message
-	pWind->SetFont(18, BOLD | ITALICIZED, BY_NAME, "Arial");
+	pWind->SetFont(15, BOLD | ITALICIZED, BY_NAME, "Arial");
 	pWind->SetPen(BLACK);
 	pWind->DrawString(xx, yy, msg);
 }
@@ -255,9 +271,21 @@ void UI::ClearLabel(int xx,int yy)const
 	int MsgY = StatusBarHeight - 10;
 
 	//Overwrite using bachground color to erase the message
-	pWind->SetPen(BkGrndColor);
-	pWind->SetBrush(BkGrndColor);
-	pWind->DrawRectangle(xx,yy-20 , getCompWidth(), 20);
+	pWind->SetPen(BkGrndColor,1000);
+	//pWind->SetBrush(BkGrndColor);
+	pWind->DrawRectangle(xx,yy-20 , xx+getCompWidth(), yy);
+	
+}
+
+void UI::ClearSth(int x1, int y1 , int x2, int y2)
+{
+
+
+	//Overwrite using bachground color to erase the message
+	pWind->SetPen(BkGrndColor, 1000);
+
+	pWind->DrawRectangle(x1, y1, x2,y2);
+	cout << "ahhhhhhh";
 }
 
 
@@ -347,6 +375,8 @@ void UI::CreateEditToolBar()
 
 
 
+
+
 //////////////////////////////////////////////////////////////////////////////////////////
 //Draws the menu (toolbar) in the simulation mode
 void UI::CreateSimulationToolBar()
@@ -393,8 +423,8 @@ void UI::DrawResistor(const GraphicsInfo& r_GfxInfo, string my_label, bool selec
 
 
 		pWind->DrawImage(ResImage, xc, yc, COMP_WIDTH, COMP_HEIGHT);
-		PrintMsgX("Resistor : " + my_label, xc, yc - COMP_HEIGHT * 2 / 3); 
-
+		PrintMsgX("RES: " + my_label, xc, yc - COMP_HEIGHT * 2 / 3); 
+		
 
 }
 //TODO: Add similar functions to draw all other components
@@ -530,6 +560,33 @@ void UI::DrawConnection(const GraphicsInfo &r_GfxInfo, bool selected) const
 	pWind->DrawLine(mid,y2,x2,y2);
 	
 }
+
+
+
+
+void UI::DrawSpam(const GraphicsInfo& r_GfxInfo) const
+{
+	string LampImage = "Images\\Comp\\Lamp.jpg";	//use image of the normal resistor
+
+	cout << r_GfxInfo.PointsList[0].y << endl;
+
+	int xc = r_GfxInfo.PointsList[0].x;
+	int yc = r_GfxInfo.PointsList[0].y;
+
+
+	pWind->DrawImage(LampImage, xc, yc, COMP_WIDTH, COMP_HEIGHT);
+	
+
+}
+
+
+
+
+
+
+
+
+
 
 
 UI::~UI()

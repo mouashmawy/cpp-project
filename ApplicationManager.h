@@ -11,13 +11,14 @@
 class ApplicationManager
 {
 public:
-	enum { MaxCompCount = 200, MaxConnCount = 200};	//Max no of Components	
+	enum { MaxCompCount = 200, MaxConnCount = 200 , MaxStaffCount = 200};	//Max no of Components	
 
 private:
 	int CompCount;		//Actual number of Components
 	int ConnCount;
 	Component* CompList[MaxCompCount];	//List of all Components (Array of pointers)
 	Connection* ConnList[MaxConnCount];
+
 
 	UI* pUI; //pointer to the UI
 

@@ -18,27 +18,62 @@ void ActionAddRes::Execute()
 	//Calculate the rectangle Corners
 	int compWidth = pUI->getCompWidth();
 	int compHeight = pUI->getCompHeight();
-
+	//pUI->Get();
 	//Print Action Message
 	pUI->PrintMsg("Adding a new resistor: Click anywhere to add");
 
-	//Get Center point of the area where the Comp should be drawn
-	pUI->GetPointClicked(Cx, Cy);
+	int i = 0;
+	while (0) { //you can ignore this now!!!!!!!!!!!!!!!!!!!!!!!
+		int Sx=0, Sy=0;
+		cout << "x1";
+		
 
-	//Clear Status Bar
+		pUI->GetPreviousClick(Sx, Sy);
+		GraphicsInfo* pGInfo = new GraphicsInfo(2);
+		cout <<endl<< Cx << " "<< Cy << endl;
+
+
+		int x1= Sx - compWidth / 2,
+			y1= Sy - compHeight / 2,
+			x2= Sx + compHeight / 2,
+			y2= Sy + compHeight / 2;
+
+
+		pGInfo->PointsList[0].x = x1;
+		pGInfo->PointsList[0].y = y1;
+		pGInfo->PointsList[1].x = x2;
+		pGInfo->PointsList[1].y = y2;
+
+
+		cout << pGInfo->PointsList[0].x << " " <<
+			pGInfo->PointsList[0].y << " " <<
+			pGInfo->PointsList[1].x << " " <<
+			pGInfo->PointsList[1].y << " " << endl;
+
+		if (! isConflict(Sx, Sy, compWidth, compHeight)) {
+			pUI->DrawSpam(*pGInfo);
+			Sleep(100);
+			pUI->ClearSth(x1,y1,x2,y2);
+		}
+	}
+	
+
+
+
+	
+	pUI->GetPointClicked(Cx, Cy);
 	pUI->ClearStatusBar();	
 	bool conflict = isConflict(Cx, Cy, compWidth, compHeight);
 	if (conflict) {
 		
 		pUI->PrintMsg("Invalid Point!!!");
-		std::cout << "a777aaaaaaaaaa";
+
 		pUI->GetPointClicked(Cx, Cy);
 		pUI->ClearStatusBar();
 
 		return;
 	}
 	//Print Action Message
-	std::cout << conflict <<"   ok\n";
 	pUI->PrintMsg("Enter a label for it");
 
 	//Get Center point of the area where the Comp should be drawn
@@ -47,8 +82,6 @@ void ActionAddRes::Execute()
 	//Clear Status Bar
 	pUI->ClearStatusBar();
 	
-
-
 
 	
 	GraphicsInfo * pGInfo= new GraphicsInfo(2); //Gfx info to be used to construct the Comp
@@ -62,7 +95,9 @@ void ActionAddRes::Execute()
 	 
 	Resistor* pR = new Resistor(pGInfo,text);
 	pManager->AddComponent(pR);
-}
+
+	
+	}
 
 void ActionAddRes::Undo()
 {}

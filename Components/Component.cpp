@@ -9,6 +9,16 @@ void Component::setLabel(string ll) {
 	label = ll;
 }
 
+double Component::getValue()
+{
+	return value;
+}
+
+void Component::setValue(double v)
+{
+	value = v;
+}
+
 
 
 Component::Component(GraphicsInfo *r_GfxInfo)

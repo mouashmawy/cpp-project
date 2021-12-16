@@ -3,6 +3,8 @@
 #include <iostream>
 using namespace std;
 
+
+
 ActionEditL::ActionEditL(ApplicationManager* pApp) :Action(pApp)
 {
 	this->pApp = pApp;
@@ -72,7 +74,8 @@ void ActionEditL::Execute()
 	//Clear Status Bar
 	pUI->ClearStatusBar();
 	
-	pUI->ClearLabel(compSel->getC()->PointsList[0].x, compSel->getC()->PointsList[0].x);
+	pUI->ClearLabel(compSel->getC()->PointsList[0].x,
+					compSel->getC()->PointsList[0].y);
 	compSel->setLabel(text);
 										
 			

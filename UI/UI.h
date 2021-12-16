@@ -133,6 +133,7 @@ public:
 	
 	// Input Functions  ---------------------------
 	void GetPointClicked(int &, int &);	//Get coordinate where user clicks
+	void Get(int& x, int& y);
 	void GetPreviousClick(int& x, int& y);
 	string GetSrting();		//Returns a string entered by the user
 
@@ -155,6 +156,7 @@ public:
 
 	void ClearStatusBar() const;
 	void ClearLabel(int xx, int yy) const;
+	void ClearSth(int x1, int y1, int x2, int y2) ;
 	//Clears the status bar
 	void ClearDrawingArea() const;	//Clears the drawing area
 
@@ -173,6 +175,8 @@ public:
 
 	// Draws Connection
 	void DrawConnection(const GraphicsInfo &r_GfxInfo, bool selected = false) const;
+
+	void DrawSpam(const GraphicsInfo& r_GfxInfo) const;
 	
 	void PrintMsg(string msgbool) const;	//Print a message on Status bar
 

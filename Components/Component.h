@@ -13,6 +13,7 @@ private:
 	string m_Label;
 protected:
 	string label;
+	double value;
 	//Each component has two ending terminals (term1, term2)
 	double term1_volt, term2_volt;	//voltage at terminals 1&2
 
@@ -43,7 +44,11 @@ public:
 	virtual void Draw(UI*,bool selected=false) =0;	//for each component to Draw itself
 	virtual GraphicsInfo* getC() ;
 	string getLabel();
-	void setLabel(string ll);
+	void setLabel(string ll="");
+	double getValue();
+	void setValue(double v=0);
+
+
 	virtual void Save(ofstream& file) = 0;
 	virtual void Load(ifstream& file) = 0;
 	string Component_type;

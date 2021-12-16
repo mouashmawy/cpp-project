@@ -19,3 +19,6 @@ bool Action::isConflict(int xx, int yy, int ww, int hh) const
 	}
 	return false;
 }
+
+
+

@@ -61,7 +61,7 @@ void ActionSelect::Execute()
 	pUI->GetPointClicked(x1, y1);
 
 	Component* compSel2 = CompInPlace(x1, y1);
-	if (compSel == nullptr) {
+	if (compSel2 == nullptr) {
 		compSel->Draw(pUI);
 		pUI->ClearStatusBar();
 		cout << "cleareeeeeeeed";

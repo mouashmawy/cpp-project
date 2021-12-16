@@ -9,6 +9,10 @@ class Connection
 	Component	*Cmpnt1, *Cmpnt2;
 	GraphicsInfo *pGfxInfo;	//The parameters required to draw a connection
 
+protected:
+	string ConnLabel;
+
+
 public:
 	Connection(GraphicsInfo *r_GfxInfo, Component *cmp1=nullptr, Component *cmp2=nullptr);
 
