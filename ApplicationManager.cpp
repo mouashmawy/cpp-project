@@ -1,4 +1,5 @@
 #include <fstream>
+#include <iostream>
 #include "ApplicationManager.h"
 #include "Actions\ActionAddRes.h"
 #include "Actions\ActionAddLamp.h"
@@ -27,6 +28,37 @@ ApplicationManager::ApplicationManager()
 	//Creates the UI Object & Initialize the UI
 	pUI = new UI;
 }
+/////////////////////////////////////////////////////////////////////
+bool ApplicationManager::isConflict(int xx, int yy, int ww, int hh) const
+{
+
+
+	
+	std::cout << pUI->gB().widthTD <<"xxxx"<< pUI->gB().EditBarWidth  << "xxx" << endl;
+	if (yy > pUI->gB().height - pUI->gB().StatusBarHeight - hh / 2 -1 ||
+		yy < pUI->gB().ToolBarHeight + hh ||
+		xx > pUI->gB().widthTD - pUI->gB().EditBarWidth - ww/2
+		
+		) return true;
+
+
+	for (int i = 0; i < CompCount; i++) {
+		if (
+			(xx >= CompList[i]->getC()->PointsList[0].x - ww / 2 &&
+				yy >= CompList[i]->getC()->PointsList[0].y - hh &&
+				xx <= CompList[i]->getC()->PointsList[1].x + ww / 2 &&
+				yy <= CompList[i]->getC()->PointsList[1].y + hh)
+			)	return true;
+
+	}
+
+	return false;
+}
+
+
+
+
+
 ////////////////////////////////////////////////////////////////////
 void ApplicationManager::AddComponent(Component* pComp)
 {

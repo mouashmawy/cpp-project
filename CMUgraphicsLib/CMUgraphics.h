@@ -191,6 +191,8 @@ class window {
     // if there is a mouse click event in the queue, otherwise
     // it will wait for one
 	clicktype WaitMouseClick(int &iX, int &iY);
+
+    clicktype DontWaitMouseClick(int& iX, int& iY);
  	  
     // Removes the next keyboard event from the queue
     // stuffs the key value into ucKey, and returns the

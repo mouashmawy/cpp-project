@@ -57,7 +57,7 @@ void ActionAddBuzzer::Execute()
 
 	//Clear Status Bar
 	pUI->ClearStatusBar();
-	bool conflict = isConflict(Cx, Cy, compWidth, compHeight);
+	bool conflict = pManager->isConflict(Cx, Cy, compWidth, compHeight);
 	if (conflict) {
 
 		pUI->PrintMsg("Invalid Point!!!");

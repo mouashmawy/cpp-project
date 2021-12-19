@@ -151,7 +151,6 @@
     <ClCompile Include="Components\Buzzer.cpp" />
     <ClCompile Include="Actions\ActionConnect.cpp" />
     <ClCompile Include="Actions\ActionSelect.cpp" />
-    <ClCompile Include="Actions\Action.cpp" />
     <ClCompile Include="Actions\ActionAddFuse.cpp" />
     <ClCompile Include="Actions\ActionAddGround.cpp" />
     <ClCompile Include="Components\Fuse.cpp" />

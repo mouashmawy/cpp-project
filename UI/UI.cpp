@@ -27,6 +27,11 @@ UI::UI()
 }
 
 
+
+
+
+
+
 int UI::getCompWidth() const
 {
 	return COMP_WIDTH;
@@ -44,6 +49,18 @@ int UI::getCompHeight() const
 void UI::GetPointClicked(int &x, int &y)
 {
 	pWind->WaitMouseClick(x, y);	//Wait for mouse click
+
+	/*
+	x = round(x / 50) * 50;
+	y = round(y / 50) * 50;
+	*/
+
+}
+
+
+void UI::GetPointClicked2(int& x, int& y)
+{
+	pWind->DontWaitMouseClick(x, y);	//Wait for mouse click
 
 	/*
 	x = round(x / 50) * 50;
@@ -217,6 +234,11 @@ void UI::CreateGrid()
 	}
 
 }
+UI::Basic UI::gB() 
+{
+	Basic n;
+	return n;
+}
 //////////////////////////////////////////////////////////////////////////////////
 void UI::PrintMsg(string msg) const
 {
@@ -351,13 +373,13 @@ void UI::CreateEditToolBar()
 	MenuItem[ITM_LOAD] = "images\\Menu\\Menu_Load.jpg";
 	
 
-	pWind->SetPen(RED,10000);
-	pWind->DrawRectangle(width - EditBarWidth - 14, ToolBarHeight, width, height - StatusBarHeight);
+	pWind->SetPen(RED,1000000);
+	pWind->DrawRectangle(widthTD - EditBarWidth , ToolBarHeight, widthTD, height - StatusBarHeight);
 	
 		//Draw menu item one image at a time
 	for (int i = 0; i < ITM_DSN_CNT2; i++) {
 		cout << 1<<endl;
-		int x1 = width - EditBarWidth-14,
+		int x1 = widthTD - EditBarWidth,
 			y1 = ToolBarHeight+ EditItemHeight*i;
 
 		pWind->DrawImage(MenuItem[i], x1, y1, EditBarWidth,EditItemHeight);
@@ -366,10 +388,6 @@ void UI::CreateEditToolBar()
 		pWind->DrawLine(x1,y1,x1,height-StatusBarHeight);
 		
 	}
-
-	//Draw a line under the toolbar
-	pWind->SetPen(RED, 3);
-	pWind->DrawLine(0, ToolBarHeight, width, ToolBarHeight);
 
 }
 
@@ -408,7 +426,7 @@ void UI::CreateSimulationToolBar()
 //								Components Drawing Functions							//
 //======================================================================================//
 
-void UI::DrawResistor(const GraphicsInfo& r_GfxInfo, string my_label, bool selected) const
+void UI::DrawResistor(const GraphicsInfo& r_GfxInfo, string my_label,string val, bool selected) const
 {
 	string ResImage;
 	if (selected)
@@ -423,7 +441,7 @@ void UI::DrawResistor(const GraphicsInfo& r_GfxInfo, string my_label, bool selec
 
 
 		pWind->DrawImage(ResImage, xc, yc, COMP_WIDTH, COMP_HEIGHT);
-		PrintMsgX("RES: " + my_label, xc, yc - COMP_HEIGHT * 2 / 3); 
+		PrintMsgX("RES: " + my_label + " : " + val, xc, yc - COMP_HEIGHT * 2 / 3);
 		
 
 }

@@ -110,7 +110,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Actions\Action.cpp" />
     <ClCompile Include="Actions\ActionAddBattery.cpp" />
     <ClCompile Include="Actions\ActionAddBuzzer.cpp" />
     <ClCompile Include="Actions\ActionAddFuse.cpp" />

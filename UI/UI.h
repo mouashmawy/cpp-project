@@ -95,7 +95,10 @@ class UI
 
 	MODE AppMode;		//Application Mode (design or simulation)
 	
-	static const int	width = 1200, height = 600,	//Window width and height
+
+
+	 static const int	width = 1200, height = 600,	//Window width and height
+						widthTD= width-14,
 						wx = 15 , wy = 15,			//Window starting coordinates
 						StatusBarHeight = 50,	//Status Bar Height
 						ToolBarHeight = 60,		//Tool Bar Height (distance from top of window to bottom line of toolbar)
@@ -108,6 +111,13 @@ class UI
 						//Arbitrary values, you can change as you wish
 						COMP_WIDTH = 90,		//Component Image width
 						COMP_HEIGHT = 30;		//Component Image height
+
+
+
+
+
+
+
 
 	color DrawColor;		//Drawing color
 	color SelectColor;		//Highlighting color
@@ -126,6 +136,31 @@ protected:
 
 public:
 	
+
+
+
+	struct Basic {
+
+		const int	width = UI::width,
+			widthTD = UI::width - 14,
+			height = UI::height,	//Window width and height
+			
+			wx = UI::wx, wy = UI::wy,			//Window starting coordinates
+			StatusBarHeight = UI::StatusBarHeight,	//Status Bar Height
+			ToolBarHeight = UI::ToolBarHeight,		//Tool Bar Height (distance from top of window to bottom line of toolbar)
+			ToolItemWidth = UI::ToolItemWidth,		//Width of each item in toolbar menu
+
+			EditBarWidth = UI::EditBarWidth,
+			EditItemHeight = UI::EditItemHeight,
+
+
+			//Arbitrary values, you can change as you wish
+			COMP_WIDTH = UI::COMP_WIDTH,		//Component Image width
+			COMP_HEIGHT = UI::COMP_HEIGHT;		//Component Image height
+	};
+
+  
+
 	UI();
 	int getCompWidth() const;	//returns Component width
 	int getCompHeight() const;	//returns Component height
@@ -133,6 +168,7 @@ public:
 	
 	// Input Functions  ---------------------------
 	void GetPointClicked(int &, int &);	//Get coordinate where user clicks
+	void GetPointClicked2(int& x, int& y);
 	void Get(int& x, int& y);
 	void GetPreviousClick(int& x, int& y);
 	string GetSrting();		//Returns a string entered by the user
@@ -149,6 +185,7 @@ public:
 	void CreateStatusBar() const;	//Create Status bar
 	void CreateGrid();
 
+	Basic gB();
 
 
 
@@ -162,13 +199,12 @@ public:
 
 		
 	// Draws a resistor
-	void DrawResistor(const GraphicsInfo &r_GfxInfo, string my_label, bool selected = false) const;
+	void DrawResistor(const GraphicsInfo &r_GfxInfo, string my_label, string val, bool selected = false) const;
 	void DrawLamp(const GraphicsInfo& r_GfxInfo, string my_label, bool selected = false) const;
 	void DrawSwitch(const GraphicsInfo& r_GfxInfo, string my_label, bool selected = false) const;
 	void DrawBattery(const GraphicsInfo& r_GfxInfo, string my_label, bool selected = false) const;
 	void DrawFuse(const GraphicsInfo& r_GfxInfo, string my_label, bool selected = false) const;
 	void DrawGround(const GraphicsInfo& r_GfxInfo, string my_label, bool selected = false) const;
-
 	void DrawBuzzer(const GraphicsInfo& r_GfxInfo, string my_label, bool selected = false) const;
 
 	///TODO: Make similar functions for drawing all other components, connections, .. etc
