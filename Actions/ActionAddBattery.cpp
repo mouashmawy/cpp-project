@@ -61,14 +61,14 @@ void ActionAddBat::Execute()
 	if (conflict) {
 
 		pUI->PrintMsg("Invalid Point!!!");
-		std::cout << "a777aaaaaaaaaa";
+
 		pUI->GetPointClicked(Cx, Cy);
 		pUI->ClearStatusBar();
 
 		return;
 	}
 	//Print Action Message
-	std::cout << conflict << "   ok\n";
+
 	pUI->PrintMsg("Enter a label for it");
 
 	//Get Center point of the area where the Comp should be drawn

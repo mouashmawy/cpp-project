@@ -12,6 +12,7 @@ struct Point
 {
 	int x,y;
 };
+enum side { LEFT, RIGHT };
 
 
 //A structure to contain drawing parameters for each component/connection
@@ -116,7 +117,7 @@ class UI
 
 
 
-
+	 side lr1, lr2; //left or right for the comps to make connections
 
 
 	color DrawColor;		//Drawing color
@@ -211,6 +212,8 @@ public:
 
 	// Draws Connection
 	void DrawConnection(const GraphicsInfo &r_GfxInfo, bool selected = false) const;
+
+	void setLRforconnect(int LR1, int LR2);
 
 	string SwitchImage(int type) const;
 

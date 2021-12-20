@@ -33,8 +33,6 @@ bool ApplicationManager::isConflict(int xx, int yy, int ww, int hh) const
 {
 
 
-	
-	std::cout << pUI->gB().widthTD <<"xxxx"<< pUI->gB().EditBarWidth  << "xxx" << endl;
 	if (yy > pUI->gB().height - pUI->gB().StatusBarHeight - hh / 2 -1 ||
 		yy < pUI->gB().ToolBarHeight + hh ||
 		xx > pUI->gB().widthTD - pUI->gB().EditBarWidth - ww/2

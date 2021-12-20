@@ -20,7 +20,7 @@ ActionEditL::~ActionEditL(void)
 
 Component* ActionEditL::CompInPlace(int xx, int yy)
 {
-	cout << "aaaaaaaaaaaaaaaaa";
+
 	UI* pUI = pManager->GetUI();
 	Component** ListOfComp = pManager->getCompList();
 	int CompCount = pManager->getCompCount();

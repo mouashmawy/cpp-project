@@ -76,7 +76,6 @@ void UI::Get(int& x, int& y)
 	while (1)
 	{
 		pWind->GetMouseCoord(x, y);	//Wait for mouse click
-		cout << x << "  " << y << endl;
 		Sleep(100);
 	}
 	/*
@@ -88,7 +87,7 @@ void UI::Get(int& x, int& y)
 
 
 void UI::GetPreviousClick(int& x, int& y) {
-	cout << "get me";
+
 	//pWind->GetMouseClick(x, y);
 	pWind->GetMouseCoord(x, y);
 }
@@ -376,7 +375,6 @@ void UI::CreateEditToolBar()
 	
 		//Draw menu item one image at a time
 	for (int i = 0; i < ITM_DSN_CNT2; i++) {
-		cout << 1<<endl;
 		int x1 = widthTD - EditBarWidth,
 			y1 = ToolBarHeight+ EditItemHeight*i;
 
@@ -434,7 +432,7 @@ void UI::DrawResistor(const GraphicsInfo& r_GfxInfo, string my_label,double val,
 	else
 		ResImage = "Images\\Comp\\Resistor.jpg";	//use image of the normal resistor
 
-	cout << r_GfxInfo.PointsList[0].y << endl;
+
 
 	int xc = r_GfxInfo.PointsList[0].x;
 	int yc = r_GfxInfo.PointsList[0].y;
@@ -456,7 +454,7 @@ void UI::DrawLamp(const GraphicsInfo& r_GfxInfo, string my_label, bool selected)
 	else
 		LampImage = "Images\\Comp\\Lamp.jpg";	//use image of the normal resistor
 
-	cout << r_GfxInfo.PointsList[0].y << endl;
+
 
 	int xc = r_GfxInfo.PointsList[0].x;
 	int yc = r_GfxInfo.PointsList[0].y;
@@ -564,20 +562,67 @@ void UI::DrawGround(const GraphicsInfo& r_GfxInfo, string my_label, bool selecte
 
 void UI::DrawConnection(const GraphicsInfo &r_GfxInfo, bool selected) const
 {
-	pWind->SetPen(BLACK, 4);
+	pWind->SetPen(BLACK, 3);
 
 
 	int x1 = r_GfxInfo.PointsList[0].x,
 		y1 = r_GfxInfo.PointsList[0].y,
 		x2 = r_GfxInfo.PointsList[1].x,
 		y2 = r_GfxInfo.PointsList[1].y,
-		mid = x1 + (x2 - x1) / 2;
+		midX = x1 + (x2 - x1) / 2;
 
 
-	pWind->DrawLine(x1,y1,mid,y1);
-	pWind->DrawLine(mid,y1,mid,y2);
-	pWind->DrawLine(mid,y2,x2,y2);
+	cout << "5555" << lr1 << "" << lr2 << endl;
+	if ((lr1 == 0 && lr2 == 1 && x1 > x2) || (lr1 == 1 && lr2 == 0 && x2 > x1))
+	//1
+	{
+		pWind->DrawLine(x1, y1, midX, y1);
+		pWind->DrawLine(midX, y1, midX, y2);
+		pWind->DrawLine(midX, y2, x2, y2);
+		cout << "conn1" << endl;
+	}
+	//2
+	else if(lr1 == 0 && lr2 == 0 && x1 > x2)
+	{
+		pWind->DrawLine(x1, y1, x2-10, y1);
+		pWind->DrawLine(x2-10, y1, x2 - 10, y2);
+		pWind->DrawLine(x2-10, y2, x2 , y2);
+		cout << "conn2" << endl;
+	}
+	//3
+	else if (lr1 == 0 && lr2 == 0 && x2 > x1)
+	{
+		pWind->DrawLine(x1, y1, x1 - 10, y1);
+		pWind->DrawLine(x1-10 , y1, x1 - 10, y2);
+		pWind->DrawLine(x1 - 10, y2, x2, y2);
+		cout << "conn3" << endl;
+	}
 	
+	//4
+	else if (lr1 == 1 && lr2 == 1 && x1 < x2)
+	{
+		pWind->DrawLine(x1, y1, x2 + 10, y1);
+		pWind->DrawLine(x2 + 10, y1, x2 + 10, y2);
+		pWind->DrawLine(x2 + 10, y2, x2, y2);
+		cout << "conn4" << endl;
+	}
+	//5
+	else if (lr1 == 1 && lr2 == 1 && x2 < x1)
+	{
+		pWind->DrawLine(x1, y1, x1 + 10, y1);
+		pWind->DrawLine(x1 + 10, y1, x1 + 10, y2);
+		pWind->DrawLine(x1 + 10, y2, x2, y2);
+		cout << "conn5" << endl;
+	}
+	
+	
+}
+
+
+void UI::setLRforconnect(int LR1 , int LR2 )
+{
+	lr1 = (LR1) ? RIGHT:LEFT;
+	lr2 = (LR2) ? RIGHT : LEFT;
 }
 
 

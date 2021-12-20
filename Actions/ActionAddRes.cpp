@@ -29,12 +29,12 @@ void ActionAddRes::Execute()
 	GraphicsInfo* pGInfo = new GraphicsInfo(2);
 	while (1) { //you can ignore this now!!!!!!!!!!!!!!!!!!!!!!!
 		int Sx=0, Sy=0;
-		cout << "x1";
+
 		
 
 		pUI->GetPreviousClick(Sx, Sy);
 
-		cout <<endl<< Cx << " "<< Cy << endl;
+
 
 
 		x1 = Sx - compWidth / 2;
