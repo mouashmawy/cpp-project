@@ -19,6 +19,11 @@ void Component::setValue(double v)
 	value = v;
 }
 
+string Component::getType()
+{
+	return Component_type;
+}
+
 
 
 Component::Component(GraphicsInfo *r_GfxInfo)

@@ -4,8 +4,8 @@
   ActionAddGround.cpp
   ActionAddLamp.cpp
   ActionAddRes.cpp
-D:\CIE202\cpp5\Actions\ActionAddRes.cpp(110,33): warning C4101: 'e': unreferenced local variable
-D:\CIE202\cpp5\Actions\ActionAddRes.cpp(111,29): warning C4101: 'e': unreferenced local variable
+D:\CIE202\cpp5\Actions\ActionAddRes.cpp(98,33): warning C4101: 'e': unreferenced local variable
+D:\CIE202\cpp5\Actions\ActionAddRes.cpp(99,29): warning C4101: 'e': unreferenced local variable
   ActionAddSwitch.cpp
   ActionConnect.cpp
   ActionEditL.cpp
@@ -16,15 +16,13 @@ D:\CIE202\cpp5\Actions\ActionAddRes.cpp(111,29): warning C4101: 'e': unreference
   Battery.cpp
   Buzzer.cpp
   Component.cpp
-  Connection.cpp
   Fuse.cpp
   Ground.cpp
   Lamp.cpp
+  Resistor.cpp
   Generating Code...
   Compiling...
-  Resistor.cpp
   Switch.cpp
-  UI.cpp
   main.cpp
   Generating Code...
   CIE202-Proj.vcxproj -> D:\CIE202\cpp5\x64\Debug\CIE202-Proj.exe

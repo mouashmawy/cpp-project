@@ -57,7 +57,9 @@ void ActionSelect::Execute()
 	}
 	compSel->Draw(pUI,true);
 	
-	pUI->PrintMsg("Label:::"+compSel->getLabel());
+	pUI->PrintMsg(compSel->getType()+"::      "+
+		"Label: "+compSel->getLabel()	+
+		"   ---   Value: " + to_string(compSel->getValue())  );
 	pUI->GetPointClicked(x1, y1);
 
 	Component* compSel2 = CompInPlace(x1, y1);

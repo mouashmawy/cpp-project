@@ -109,8 +109,8 @@ class UI
 
 
 						//Arbitrary values, you can change as you wish
-						COMP_WIDTH = 90,		//Component Image width
-						COMP_HEIGHT = 30;		//Component Image height
+						COMP_WIDTH = 100,		//Component Image width
+						COMP_HEIGHT = 34;		//Component Image height
 
 
 
@@ -199,7 +199,7 @@ public:
 
 		
 	// Draws a resistor
-	void DrawResistor(const GraphicsInfo &r_GfxInfo, string my_label, string val, bool selected = false) const;
+	void DrawResistor(const GraphicsInfo &r_GfxInfo, string my_label, double val, bool selected = false) ;
 	void DrawLamp(const GraphicsInfo& r_GfxInfo, string my_label, bool selected = false) const;
 	void DrawSwitch(const GraphicsInfo& r_GfxInfo, string my_label, bool selected = false) const;
 	void DrawBattery(const GraphicsInfo& r_GfxInfo, string my_label, bool selected = false) const;
@@ -212,11 +212,15 @@ public:
 	// Draws Connection
 	void DrawConnection(const GraphicsInfo &r_GfxInfo, bool selected = false) const;
 
-	void DrawSpam(const GraphicsInfo& r_GfxInfo) const;
+	string SwitchImage(int type) const;
+
+	void DrawSpam(const GraphicsInfo& r_GfxInfo, int type) const;
 	
 	void PrintMsg(string msgbool) const;	//Print a message on Status bar
 
 	void getSatusForConnect();
+
+	void DrawTemp(const GraphicsInfo& r_GfxInfo, int type) const;
 
 	~UI();
 };

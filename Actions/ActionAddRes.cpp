@@ -26,13 +26,14 @@ void ActionAddRes::Execute()
 	int i = 0;
 
 	int x1 = 0, y1 = 0, x2 = 0, y2 = 0;
+	GraphicsInfo* pGInfo = new GraphicsInfo(2);
 	while (1) { //you can ignore this now!!!!!!!!!!!!!!!!!!!!!!!
 		int Sx=0, Sy=0;
 		cout << "x1";
 		
 
 		pUI->GetPreviousClick(Sx, Sy);
-		GraphicsInfo* pGInfo = new GraphicsInfo(2);
+
 		cout <<endl<< Cx << " "<< Cy << endl;
 
 
@@ -48,14 +49,11 @@ void ActionAddRes::Execute()
 		pGInfo->PointsList[1].y = y2;
 
 
-		cout << pGInfo->PointsList[0].x << " " <<
-			pGInfo->PointsList[0].y << " " <<
-			pGInfo->PointsList[1].x << " " <<
-			pGInfo->PointsList[1].y << " " << endl;
 
 		if (! pManager->isConflict(Sx, Sy, compWidth, compHeight)) {
-			cout << "uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu";
-			pUI->DrawSpam(*pGInfo);
+			pUI->DrawSpam(*pGInfo, ITM_RES);
+
+			
 			Sleep(10);
 			pUI->ClearSth(x1,y1,x2,y2);
 		}
@@ -73,59 +71,39 @@ void ActionAddRes::Execute()
 		}
 
 	}
-	
-
-
-
-	
 	pUI->GetPreviousClick(Cx, Cy);
+	pGInfo->PointsList[0].x = Cx - compWidth / 2;
+	pGInfo->PointsList[0].y = Cy - compHeight / 2;
+	pGInfo->PointsList[1].x = Cx + compWidth / 2;
+	pGInfo->PointsList[1].y = Cy + compHeight / 2;
+	pUI->DrawTemp(*pGInfo,ITM_RES);
 	pUI->ClearStatusBar();	
 
 
-	//bool conflict = pManager->isConflict(Cx, Cy, compWidth, compHeight);
-	//if (conflict) {
-	//	
-	//	pUI->PrintMsg("Invalid Point!!!");
-
-	//	pUI->GetPointClicked(Cx, Cy);
-	//	pUI->ClearStatusBar();
-
-	//	return;
-	//}
-	// 
-
 	//Print Action Message
-	pUI->PrintMsg("Enter a label for it or just press enter");
+	pUI->PrintMsg("Enter a LABEL (max 5 chars) OR just press enter");
 	string text = pUI->GetSrting();
 	pUI->ClearStatusBar();
 	
-	pUI->PrintMsg("Enter a value for it or just press enter");
+	pUI->PrintMsg("Enter a VALUE (max 9999.9) OR just press enter");
 	string textV = pUI->GetSrting();
 
-	double V=0;
+	double V=9999.9;
 	try
 	{
 		V = stod(textV);
+		if (V <= 9999.9) V = V;
+		else V = 9999.9;
 	}
-	catch (invalid_argument const& e){}
+	catch (invalid_argument const& e) { V = 0; }
 	catch (out_of_range const& e){}
 
 
 
-
-
-
-
 	pUI->ClearStatusBar();
 	
-	GraphicsInfo * pGInfo= new GraphicsInfo(2); //Gfx info to be used to construct the Comp
-	
 
 
-	pGInfo->PointsList[0].x = Cx - compWidth/2;
-	pGInfo->PointsList[0].y = Cy - compHeight/2;
-	pGInfo->PointsList[1].x = Cx + compWidth/2;
-	pGInfo->PointsList[1].y = Cy + compHeight/2;
 	 
 	Resistor* pR = new Resistor(pGInfo,text,V);
 	pManager->AddComponent(pR);

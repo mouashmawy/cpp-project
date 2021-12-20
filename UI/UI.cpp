@@ -1,8 +1,9 @@
-#include <iostream>
+﻿#include <iostream>
 #include "UI.h"
 #include <string>
 #include<windows.h>
 #include <cmath>
+#include <cstdio>
 UI::UI()
 {
 	AppMode = DESIGN;	//Design Mode is the startup mode
@@ -261,7 +262,7 @@ void UI::PrintMsgX(string msg, int xx, int yy) const
 {
 	
 	// Print the Message
-	pWind->SetFont(15, BOLD | ITALICIZED, BY_NAME, "Arial");
+	pWind->SetFont(18, BOLD | ITALICIZED, BY_NAME, "Arial");
 	pWind->SetPen(BLACK);
 	pWind->DrawString(xx, yy, msg);
 }
@@ -288,9 +289,7 @@ void UI::ClearStatusBar()const
 
 void UI::ClearLabel(int xx,int yy)const
 {
-	// Set the Message offset from the Status Bar
-	int MsgX = 25;
-	int MsgY = StatusBarHeight - 10;
+
 
 	//Overwrite using bachground color to erase the message
 	pWind->SetPen(BkGrndColor,1000);
@@ -307,7 +306,6 @@ void UI::ClearSth(int x1, int y1 , int x2, int y2)
 	pWind->SetPen(BkGrndColor, 1000);
 
 	pWind->DrawRectangle(x1, y1, x2,y2);
-	cout << "ahhhhhhh";
 }
 
 
@@ -426,8 +424,10 @@ void UI::CreateSimulationToolBar()
 //								Components Drawing Functions							//
 //======================================================================================//
 
-void UI::DrawResistor(const GraphicsInfo& r_GfxInfo, string my_label,string val, bool selected) const
-{
+void UI::DrawResistor(const GraphicsInfo& r_GfxInfo, string my_label,double val, bool selected) 
+{	
+	char valS[10];
+	int x = sprintf_s(valS,"%5.1f",val);
 	string ResImage;
 	if (selected)
 		ResImage = "Images\\Comp\\Resistor_HI.jpg";	//use image of highlighted resistor
@@ -439,9 +439,10 @@ void UI::DrawResistor(const GraphicsInfo& r_GfxInfo, string my_label,string val,
 	int xc = r_GfxInfo.PointsList[0].x;
 	int yc = r_GfxInfo.PointsList[0].y;
 
+	my_label.resize(5);
 
 		pWind->DrawImage(ResImage, xc, yc, COMP_WIDTH, COMP_HEIGHT);
-		PrintMsgX("RES: " + my_label + " : " + val, xc, yc - COMP_HEIGHT * 2 / 3);
+		PrintMsgX(my_label + " : " + valS, xc, yc - COMP_HEIGHT * 2 / 3);
 		
 
 }
@@ -581,28 +582,70 @@ void UI::DrawConnection(const GraphicsInfo &r_GfxInfo, bool selected) const
 
 
 
-
-void UI::DrawSpam(const GraphicsInfo& r_GfxInfo) const
+string UI::SwitchImage(int type) const
 {
-	string LampImage = "Images\\Comp\\Lamp.jpg";	//use image of the normal resistor
+	string Image;
+	switch (type)
+	{
+	case (ITM_RES):
+		Image = "Images\\Comp\\Resistor.jpg";
+		break;
 
-	cout << r_GfxInfo.PointsList[0].y << endl;
+	case (ITM_BATTERY):
+		Image = "Images\\Comp\\Battery.jpg";
+		break;
+
+	case (ITM_BUZZER):
+		Image = "Images\\Comp\\Buzzer.jpg";
+		break;
+
+	case (ITM_LAMP):
+		Image = "Images\\Comp\\Lamp.jpg";
+		break;
+
+	case (ITM_FUSE):
+		Image = "Images\\Comp\\Fuse.jpg";
+		break;
+
+	case (ITM_GROUND):
+		Image = "Images\\Comp\\Ground.jpg";
+		break;
+
+	case (ITM_SWITCH):
+		Image = "Images\\Comp\\Switch.jpg";
+		break;
+
+	default:
+		Image = "Images\\Comp\\Resistor.jpg";
+		break;
+	}
+	return Image;
+}
+
+
+
+void UI::DrawSpam(const GraphicsInfo& r_GfxInfo, int type) const
+{
+	string Image = SwitchImage(type);
+	int xc = r_GfxInfo.PointsList[0].x;
+	int yc = r_GfxInfo.PointsList[0].y;
+	pWind->DrawImage(Image, xc, yc, COMP_WIDTH, COMP_HEIGHT);
+}
+
+
+
+void UI::DrawTemp(const GraphicsInfo& r_GfxInfo, int type) const
+{
+	string Image = SwitchImage(type);
 
 	int xc = r_GfxInfo.PointsList[0].x;
 	int yc = r_GfxInfo.PointsList[0].y;
 
 
-	pWind->DrawImage(LampImage, xc, yc, COMP_WIDTH, COMP_HEIGHT);
-	
+	pWind->DrawImage(Image, xc, yc, COMP_WIDTH, COMP_HEIGHT);
+
 
 }
-
-
-
-
-
-
-
 
 
 
@@ -611,3 +654,5 @@ UI::~UI()
 {
 	delete pWind;
 }
+
+

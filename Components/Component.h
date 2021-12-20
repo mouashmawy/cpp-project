@@ -34,6 +34,7 @@ protected:
 	
 
 public:
+	string Component_type;
 	Component(GraphicsInfo *r_GfxInfo);
 	//void setTerm1Volt(double v);		//sets the voltage at terminal1
 	//void setTerm2Volt(double v);		//sets the voltage at terminal2
@@ -47,11 +48,11 @@ public:
 	void setLabel(string ll="");
 	double getValue();
 	void setValue(double v=0);
-
+	string getType();
 
 	virtual void Save(ofstream& file) = 0;
 	virtual void Load(ifstream& file) = 0;
-	string Component_type;
+
 	//virtual int GetOutPinStatus()=0;	//returns status of outputpin if LED, return -1
 	//virtual int GetInputPinStatus(int n)=0;	//returns status of Inputpin # n if SWITCH, return -1
 

@@ -25,4 +25,26 @@ public:
 
 };
 
+
+enum DsgnMenuItem //The items of the design menu (you should add more items)
+{
+	//Note: Items are ordered here as they appear in the menu
+	//If you want to change the menu items order, just change the order here
+	ITM_RES,		//Resistor item in menu
+	ITM_LAMP,		//Lamp
+	ITM_BATTERY,
+	ITM_FUSE,
+	ITM_GROUND,
+	ITM_SWITCH,
+	ITM_BUZZER,
+	ITM_CONN,		//to draw connections
+
+	ITM_EXIT,		//Exit item
+	//TODO: Add more items names here
+
+	ITM_DSN_CNT		//no. of design menu items ==> This should be the last line in this enum
+
+};
+
+
 #endif
