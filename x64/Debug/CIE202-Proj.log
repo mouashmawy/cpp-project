@@ -1,7 +1,2 @@
-﻿  ActionAddBattery.cpp
-  ActionAddRes.cpp
-D:\CIE202\cpp5\Actions\ActionAddRes.cpp(98,33): warning C4101: 'e': unreferenced local variable
-D:\CIE202\cpp5\Actions\ActionAddRes.cpp(99,29): warning C4101: 'e': unreferenced local variable
-  UI.cpp
-  Generating Code...
+﻿  ActionConnect.cpp
   CIE202-Proj.vcxproj -> D:\CIE202\cpp5\x64\Debug\CIE202-Proj.exe

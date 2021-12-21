@@ -77,14 +77,25 @@ void ActionConnect::Execute()
 	int compHeight = pUI->getCompHeight();
 	//cout << "1:   " << lr1 << lr2<<endl;
 	pUI->setLRforconnect(lr1, lr2);
-	pGInfo->PointsList[0].x = x1;
-	pGInfo->PointsList[0].y = y1;
-	pGInfo->PointsList[1].x = x2;
-	pGInfo->PointsList[1].y = y2;
 
-
-
-
+	if (lr1 == LEFT) {
+		pGInfo->PointsList[0].x = comp1->getC()->PointsList[0].x;
+		pGInfo->PointsList[0].y = comp1->getC()->PointsList[0].y + compHeight/2;
+	}
+	else {
+		pGInfo->PointsList[0].x = comp1->getC()->PointsList[1].x;
+		pGInfo->PointsList[0].y = comp1->getC()->PointsList[1].y - compHeight / 2;
+	}
+	/// ///////////
+	if (lr2 == LEFT) {
+		pGInfo->PointsList[1].x = comp2->getC()->PointsList[0].x;
+		pGInfo->PointsList[1].y = comp2->getC()->PointsList[0].y + compHeight / 2;
+	}
+	else {
+		pGInfo->PointsList[1].x = comp2->getC()->PointsList[1].x;
+		pGInfo->PointsList[1].y = comp2->getC()->PointsList[1].y - compHeight / 2;
+	}
+	
 
 	if (
 
