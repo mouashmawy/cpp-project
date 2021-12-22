@@ -211,7 +211,7 @@ public:
 	///TODO: Make similar functions for drawing all other components, connections, .. etc
 
 	// Draws Connection
-	void DrawConnection(const GraphicsInfo &r_GfxInfo, bool selected = false) const;
+	void DrawConnection(const GraphicsInfo &r_GfxInfo, string text, bool selected = false) const;
 
 	void setLRforconnect(int LR1, int LR2);
 

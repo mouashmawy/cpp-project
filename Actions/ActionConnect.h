@@ -20,7 +20,7 @@ public:
 	ActionConnect(ApplicationManager* pApp);
 	virtual ~ActionConnect(void);
 
-	Component* CompInPlace(int xx, int yy, side &lr) ;
+	Component* WhatComponent(int xx, int yy, side &lr) ;
 
 	//Execute action (code depends on action type)
 	virtual void Execute();

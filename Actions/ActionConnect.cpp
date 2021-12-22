@@ -13,7 +13,7 @@ ActionConnect::~ActionConnect(void)
 }
 
 
-Component* ActionConnect::CompInPlace(int xx, int yy, side &lr) 
+Component* ActionConnect::WhatComponent(int xx, int yy, side &lr) 
 {
 	UI* pUI = pManager->GetUI();
 	Component** ListOfComp = pManager->getCompList();
@@ -56,7 +56,7 @@ void ActionConnect::Execute()
 	pUI->PrintMsg("Adding a new Connection: Click the first item to connect");
 	pUI->GetPointClicked(x1, y1);
 	pUI->ClearStatusBar();
-	Component* comp1 = CompInPlace(x1, y1, lr1);
+	Component* comp1 = WhatComponent(x1, y1, lr1);
 	if (comp1 == nullptr) {
 		pUI->PrintMsg("Invalid!! you have to choose an item");
 		pUI->ClearStatusBar();
@@ -66,7 +66,7 @@ void ActionConnect::Execute()
 	pUI->PrintMsg("Click the second item to connect");
 	pUI->GetPointClicked(x2, y2);
 	pUI->ClearStatusBar();
-	Component* comp2 = CompInPlace(x2, y2, lr2);
+	Component* comp2 = WhatComponent(x2, y2, lr2);
 	if (comp2 == nullptr) {
 		pUI->PrintMsg("Invalid!! you have to choose an item");
 		return;
@@ -104,9 +104,13 @@ void ActionConnect::Execute()
 		(lr1 == 0 && lr2 == 0 && x2 > x1)	||
 		(lr1 == 1 && lr2 == 1 && x1 < x2)	||
 		(lr1 == 1 && lr2 == 1 && x2 < x1)	) {
-		Connection* pConn = new Connection(pGInfo, comp1, comp2);
+
+		string text = pUI->GetSrting();
+
+		Connection* pConn = new Connection(pGInfo, text, comp1, comp2);
 		pManager->AddConnection(pConn);
 	}
+
 	else {
 		pUI->PrintMsg("Can't connect by these nodes...");
 		pUI->GetPointClicked(x1, x2);

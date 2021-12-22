@@ -14,7 +14,8 @@ protected:
 
 
 public:
-	Connection(GraphicsInfo *r_GfxInfo, Component *cmp1=nullptr, Component *cmp2=nullptr);
+
+	Connection(GraphicsInfo *r_GfxInfo, string text, Component *cmp1=nullptr, Component *cmp2=nullptr);
 
 	virtual void Draw(UI* );	//for connection to Draw itself
 	void Save(ofstream& file);

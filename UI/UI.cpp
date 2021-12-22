@@ -560,7 +560,7 @@ void UI::DrawGround(const GraphicsInfo& r_GfxInfo, string my_label, bool selecte
 
 
 
-void UI::DrawConnection(const GraphicsInfo &r_GfxInfo, bool selected) const
+void UI::DrawConnection(const GraphicsInfo &r_GfxInfo, string text, bool selected) const
 {
 	pWind->SetPen(BLACK, 3);
 
@@ -572,13 +572,13 @@ void UI::DrawConnection(const GraphicsInfo &r_GfxInfo, bool selected) const
 		midX = x1 + (x2 - x1) / 2;
 
 
-	cout << "5555" << lr1 << "" << lr2 << endl;
 	if ((lr1 == 0 && lr2 == 1 && x1 > x2) || (lr1 == 1 && lr2 == 0 && x2 > x1))
 	//1
 	{
 		pWind->DrawLine(x1, y1, midX, y1);
 		pWind->DrawLine(midX, y1, midX, y2);
 		pWind->DrawLine(midX, y2, x2, y2);
+		//PrintMsgX("Conn:" + text, x1, y2);
 		cout << "conn1" << endl;
 	}
 	//2

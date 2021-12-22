@@ -15,7 +15,7 @@ ActionSelect::~ActionSelect(void)
 
 Component* ActionSelect::CompInPlace(int xx, int yy) 
 {
-	cout << "aaaaaaaaaaaaaaaaa";
+
 	UI* pUI = pManager->GetUI();
 	Component** ListOfComp = pManager->getCompList();
 	int CompCount = pManager->getCompCount();
@@ -66,7 +66,7 @@ void ActionSelect::Execute()
 	if (compSel2 == nullptr) {
 		compSel->Draw(pUI);
 		pUI->ClearStatusBar();
-		cout << "cleareeeeeeeed";
+
 		return;
 	}
 	else ActionSelect::Execute();
