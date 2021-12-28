@@ -11,6 +11,7 @@
 #include "Actions\ActionConnect.h"
 #include "Actions\ActionSelect.h"
 #include "Actions\ActionEditL.h"
+#include "Actions\ActionEditV.h"
 #include "Actions\ActionSaveCircut.h"
 #include "Actions\ActionLoadCircut.h"
 
@@ -128,7 +129,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 
 		case EDIT_V:
-			pAct = new ActionSelect(this);
+			pAct = new ActionEditV(this);
 			break;
 
 		case SAVE:

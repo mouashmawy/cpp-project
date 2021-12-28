@@ -2,7 +2,7 @@
 #include<iostream>
 #include <fstream>
 
-Battery::Battery(GraphicsInfo* r_GfxInfo, string name) :Component(r_GfxInfo)
+Battery::Battery(GraphicsInfo* r_GfxInfo, string name, double val) :Component(r_GfxInfo)
 {
 	label = name;
 	Component_type = "BAT";

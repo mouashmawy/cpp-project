@@ -14,33 +14,6 @@ ActionAddBuzzer::~ActionAddBuzzer(void)
 void ActionAddBuzzer::Execute()
 {
 
-	//
-	//UI* pUI = pManager->GetUI();
-
-	//
-	//pUI->PrintMsg("Adding a new Buzzer: Click anywhere to add");
-
-	////Get Center point of the area where the Comp should be drawn
-	//pUI->GetPointClicked(Cx, Cy);
-
-	////Clear Status Bar
-	//pUI->ClearStatusBar();
-
-
-	//GraphicsInfo* pGInfo = new GraphicsInfo(2); //Gfx info to be used to construct the Comp
-
-	////Calculate the rectangle Corners
-	//int compWidth = pUI->getCompWidth();
-	//int compHeight = pUI->getCompHeight();
-
-	//pGInfo->PointsList[0].x = Cx - compWidth / 2;
-	//pGInfo->PointsList[0].y = Cy - compHeight / 2;
-	//pGInfo->PointsList[1].x = Cx + compWidth / 2;
-	//pGInfo->PointsList[1].y = Cy + compHeight / 2;
-
-	//Buzzer* pR = new Buzzer(pGInfo);
-	//pManager->AddComponent(pR);
-
 
 	//Get a Pointer to the user Interfaces
 	UI* pUI = pManager->GetUI();
@@ -51,44 +24,87 @@ void ActionAddBuzzer::Execute()
 
 	//Print Action Message
 	pUI->PrintMsg("Adding a new Buzzer: Click anywhere to add");
+	int i = 0;
 
-	//Get Center point of the area where the Comp should be drawn
-	pUI->GetPointClicked(Cx, Cy);
+	int x1 = 0, y1 = 0, x2 = 0, y2 = 0;
+	GraphicsInfo* pGInfo = new GraphicsInfo(2);
+	while (1) { //you can ignore this now!!!!!!!!!!!!!!!!!!!!!!!
+		int Sx = 0, Sy = 0;
 
-	//Clear Status Bar
-	pUI->ClearStatusBar();
-	bool conflict = pManager->isConflict(Cx, Cy, compWidth, compHeight);
-	if (conflict) {
 
-		pUI->PrintMsg("Invalid Point!!!");
-		std::cout << "a777aaaaaaaaaa";
-		pUI->GetPointClicked(Cx, Cy);
-		pUI->ClearStatusBar();
 
-		return;
+		pUI->GetPreviousClick(Sx, Sy);
+
+
+
+
+		x1 = Sx - compWidth / 2;
+		y1 = Sy - compHeight / 2;
+		x2 = Sx + compWidth / 2;
+		y2 = Sy + compHeight / 2;
+
+
+		pGInfo->PointsList[0].x = x1;
+		pGInfo->PointsList[0].y = y1;
+		pGInfo->PointsList[1].x = x2;
+		pGInfo->PointsList[1].y = y2;
+
+
+
+		if (!pManager->isConflict(Sx, Sy, compWidth, compHeight)) {
+			pUI->DrawSpam(*pGInfo, ITM_BUZZER);
+
+
+			Sleep(10);
+			pUI->ClearSth(x1, y1, x2, y2);
+		}
+		pUI->GetPointClicked2(Cx, Cy);
+
+
+		if (Cx != 0 || Cy != 0) { //means you clicked the mouse
+			if (pManager->isConflict(Sx, Sy, compWidth, compHeight)) {
+				pUI->ClearStatusBar();
+				pUI->PrintMsg("Invalid Point Choose another");
+				Cx = 0; Cy = 0;
+			}
+			else break;
+
+		}
+
 	}
-	//Print Action Message
-	std::cout << conflict << "   ok\n";
-	pUI->PrintMsg("Enter a label for it");
-
-	//Get Center point of the area where the Comp should be drawn
-	string text = pUI->GetSrting();
-
-	//Clear Status Bar
-	pUI->ClearStatusBar();
-
-
-
-
-
-	GraphicsInfo* pGInfo = new GraphicsInfo(2); //Gfx info to be used to construct the Comp
-
-
-
+	pUI->GetPreviousClick(Cx, Cy);
 	pGInfo->PointsList[0].x = Cx - compWidth / 2;
 	pGInfo->PointsList[0].y = Cy - compHeight / 2;
 	pGInfo->PointsList[1].x = Cx + compWidth / 2;
 	pGInfo->PointsList[1].y = Cy + compHeight / 2;
+	pUI->DrawTemp(*pGInfo, ITM_BUZZER);
+	pUI->ClearStatusBar();
+
+
+	//Print Action Message
+	pUI->PrintMsg("Enter a LABEL (max 5 chars) OR just press enter");
+	string text = pUI->GetSrting();
+	pUI->ClearStatusBar();
+
+	//pUI->PrintMsg("Enter a VALUE (max 9999.9) OR just press enter");
+	//string textV = pUI->GetSrting();
+
+	//double V = 9999.9;
+	//try
+	//{
+	//	V = stod(textV);
+	//	if (V <= 9999.9) V = V;
+	//	else V = 9999.9;
+	//}
+	//catch (invalid_argument const& e) { V = 0; }
+	//catch (out_of_range const& e) {}
+
+
+
+	pUI->ClearStatusBar();
+
+
+
 
 	Buzzer* pR = new Buzzer(pGInfo, text);
 	pManager->AddComponent(pR);

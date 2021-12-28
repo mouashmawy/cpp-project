@@ -110,6 +110,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Actions\Action.cpp" />
     <ClCompile Include="Actions\ActionAddBattery.cpp" />
     <ClCompile Include="Actions\ActionAddBuzzer.cpp" />
     <ClCompile Include="Actions\ActionAddFuse.cpp" />
@@ -119,6 +120,7 @@
     <ClCompile Include="Actions\ActionAddSwitch.cpp" />
     <ClCompile Include="Actions\ActionConnect.cpp" />
     <ClCompile Include="Actions\ActionEditL.cpp" />
+    <ClCompile Include="Actions\ActionEditV.cpp" />
     <ClCompile Include="Actions\ActionLoadCircut.cpp" />
     <ClCompile Include="Actions\ActionSaveCircut.cpp" />
     <ClCompile Include="Actions\ActionSelect.cpp" />
@@ -182,6 +184,7 @@
     <ClInclude Include="Actions\ActionConnect.h" />
     <ClInclude Include="Actions\ActionEditK.h" />
     <ClInclude Include="Actions\ActionEditL.h" />
+    <ClInclude Include="Actions\ActionEditV.h" />
     <ClInclude Include="Actions\ActionLoadCircut.h" />
     <ClInclude Include="Actions\ActionSaveCircut.h" />
     <ClInclude Include="Actions\ActionSelect.h" />

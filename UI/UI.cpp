@@ -175,9 +175,10 @@ ActionType UI::GetUserAction() const
 				case ITM_EDIT: return EDIT;*/
 			//case ITM_SELECT:	return SELECT;
 			case ITM_EDIT_L:	return EDIT_L;
+			case ITM_EDIT_V: return EDIT_V;
 			case ITM_SAVE: return SAVE;
 			case ITM_LOAD: return LOAD;
-			case ITM_EDIT_V: return EDIT_V;
+			
 			
 
 			}
@@ -525,9 +526,9 @@ void UI::DrawFuse(const GraphicsInfo& r_GfxInfo, string my_label, bool selected)
 {
 	string FuseImage;
 	if (selected)
-		FuseImage = "Images\\Comp\\Lamp_HI.jpg";	//use image of highlighted resistor
+		FuseImage = "Images\\Comp\\Fuse_HI.jpg";	//use image of highlighted resistor
 	else
-		FuseImage = "Images\\Comp\\Lamp.jpg";	//use image of the normal resistor
+		FuseImage = "Images\\Comp\\Fuse.jpg";	//use image of the normal resistor
 
 
 	int xc = r_GfxInfo.PointsList[0].x;
@@ -544,9 +545,9 @@ void UI::DrawGround(const GraphicsInfo& r_GfxInfo, string my_label, bool selecte
 {
 	string GroundImage;
 	if (selected)
-		GroundImage = "Images\\Comp\\Lamp_HI.jpg";	//use image of highlighted resistor
+		GroundImage = "Images\\Comp\\Gound_HI.jpg";	//use image of highlighted resistor
 	else
-		GroundImage = "Images\\Comp\\Lamp.jpg";	//use image of the normal resistor
+		GroundImage = "Images\\Comp\\Ground.jpg";	//use image of the normal resistor
 
 
 	int xc = r_GfxInfo.PointsList[0].x;

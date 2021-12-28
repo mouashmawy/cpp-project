@@ -23,6 +23,8 @@ public:
 	//To redo this action (code depends on action type)
 	virtual void Redo()=0;
 
+	bool isConflict(int xx, int yy, int ww, int hh) const;
+
 };
 
 
