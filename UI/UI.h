@@ -201,12 +201,12 @@ public:
 		
 	// Draws a resistor
 	void DrawResistor(const GraphicsInfo &r_GfxInfo, string my_label, double val, bool selected = false) ;
-	void DrawLamp(const GraphicsInfo& r_GfxInfo, string my_label, bool selected = false) const;
-	void DrawSwitch(const GraphicsInfo& r_GfxInfo, string my_label, bool selected = false) const;
-	void DrawBattery(const GraphicsInfo& r_GfxInfo, string my_label, bool selected = false) const;
-	void DrawFuse(const GraphicsInfo& r_GfxInfo, string my_label, bool selected = false) const;
-	void DrawGround(const GraphicsInfo& r_GfxInfo, string my_label, bool selected = false) const;
-	void DrawBuzzer(const GraphicsInfo& r_GfxInfo, string my_label, bool selected = false) const;
+	void DrawLamp(const GraphicsInfo &r_GfxInfo, string my_label, double val, bool selected = false) const;
+	void DrawSwitch(const GraphicsInfo &r_GfxInfo, string my_label, double val, bool selected = false) const;
+	void DrawBattery(const GraphicsInfo &r_GfxInfo, string my_label, double val, bool selected = false) const;
+	void DrawFuse(const GraphicsInfo &r_GfxInfo, string my_label, double val, bool selected = false) const;
+	void DrawGround(const GraphicsInfo &r_GfxInfo, string my_label, double val, bool selected = false) const;
+	void DrawBuzzer(const GraphicsInfo &r_GfxInfo, string my_label, double val, bool selected = false) const;
 
 	///TODO: Make similar functions for drawing all other components, connections, .. etc
 

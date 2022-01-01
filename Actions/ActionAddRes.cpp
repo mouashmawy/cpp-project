@@ -88,15 +88,17 @@ void ActionAddRes::Execute()
 	pUI->PrintMsg("Enter a VALUE (max 9999.9) OR just press enter");
 	string textV = pUI->GetSrting();
 
-	double V=9999.9;
+	double V;
 	try
 	{
 		V = stod(textV);
-		if (V <= 9999.9) V = V;
+		/*
+		if (V <= 9999.9);
 		else V = 9999.9;
+		*/
 	}
 	catch (invalid_argument const& e) { V = 0; }
-	catch (out_of_range const& e){}
+	catch (out_of_range const& e) { V = 9999.9; }
 
 
 

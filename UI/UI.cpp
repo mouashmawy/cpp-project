@@ -262,7 +262,7 @@ void UI::PrintMsgX(string msg, int xx, int yy) const
 {
 	
 	// Print the Message
-	pWind->SetFont(18, BOLD | ITALICIZED, BY_NAME, "Arial");
+	pWind->SetFont(16, BOLD | ITALICIZED, BY_NAME, "Arial");
 	pWind->SetPen(BLACK);
 	pWind->DrawString(xx, yy, msg);
 }
@@ -425,31 +425,36 @@ void UI::CreateSimulationToolBar()
 
 void UI::DrawResistor(const GraphicsInfo& r_GfxInfo, string my_label,double val, bool selected) 
 {	
-	char valS[10];
-	int x = sprintf_s(valS,"%5.1f",val);
+
 	string ResImage;
+	string valS = to_string(val);
+
 	if (selected)
 		ResImage = "Images\\Comp\\Resistor_HI.jpg";	//use image of highlighted resistor
 	else
 		ResImage = "Images\\Comp\\Resistor.jpg";	//use image of the normal resistor
 
 
-
 	int xc = r_GfxInfo.PointsList[0].x;
 	int yc = r_GfxInfo.PointsList[0].y;
-
-	my_label.resize(5);
-
-		pWind->DrawImage(ResImage, xc, yc, COMP_WIDTH, COMP_HEIGHT);
-		PrintMsgX(my_label + " : " + valS, xc, yc - COMP_HEIGHT * 2 / 3);
+	
+	if(my_label.length()>5)	my_label.resize(5);
+	if (valS.length() > 5)	valS.resize(6);
+	
+	pWind->DrawImage(ResImage, xc, yc, COMP_WIDTH, COMP_HEIGHT);
+	string toPrint = my_label + " : " + valS;
+	PrintMsgX(toPrint, xc, yc - COMP_HEIGHT * 2 / 3);
 		
 
 }
 //TODO: Add similar functions to draw all other components
 
-void UI::DrawLamp(const GraphicsInfo& r_GfxInfo, string my_label, bool selected) const
+void UI::DrawLamp(const GraphicsInfo& r_GfxInfo, string my_label,double val, bool selected) const
+
 {
 	string LampImage;
+	string valS = to_string(val);
+
 	if (selected)
 		LampImage = "Images\\Comp\\Lamp_HI.jpg";	//use image of highlighted resistor
 	else
@@ -462,13 +467,16 @@ void UI::DrawLamp(const GraphicsInfo& r_GfxInfo, string my_label, bool selected)
 
 
 	pWind->DrawImage(LampImage, xc, yc, COMP_WIDTH, COMP_HEIGHT);
-	PrintMsgX("Lamp : " + my_label, xc, yc - COMP_HEIGHT * 2 / 3);
+	string toPrint = my_label + " : " + valS;
+	PrintMsgX(toPrint, xc, yc - COMP_HEIGHT * 2 / 3);
 
 }
 
-void UI::DrawSwitch(const GraphicsInfo& r_GfxInfo, string my_label, bool selected) const
+void UI::DrawSwitch(const GraphicsInfo& r_GfxInfo, string my_label,double val, bool selected) const
 {
 	string SwitchImage;
+	string valS = to_string(val);
+
 	if (selected)
 		SwitchImage = "Images\\Comp\\Switch_HI.jpg";	//use image of highlighted resistor
 	else
@@ -480,14 +488,16 @@ void UI::DrawSwitch(const GraphicsInfo& r_GfxInfo, string my_label, bool selecte
 
 
 	pWind->DrawImage(SwitchImage, xc, yc, COMP_WIDTH, COMP_HEIGHT);
-	PrintMsgX("Switch : " + my_label, xc, yc - COMP_HEIGHT * 2 / 3);
-
+	string toPrint = my_label + " : " + valS;
+	PrintMsgX(toPrint, xc, yc - COMP_HEIGHT * 2 / 3);
 }
 
 
-void UI::DrawBattery(const GraphicsInfo& r_GfxInfo, string my_label, bool selected) const
+void UI::DrawBattery(const GraphicsInfo& r_GfxInfo, string my_label,double val, bool selected) const
 {
 	string BatteryImage;
+	string valS = to_string(val);
+
 	if (selected)
 		BatteryImage = "Images\\Comp\\Battery_HI.jpg";	//use image of highlighted resistor
 	else
@@ -498,14 +508,17 @@ void UI::DrawBattery(const GraphicsInfo& r_GfxInfo, string my_label, bool select
 
 
 	pWind->DrawImage(BatteryImage, xc, yc, COMP_WIDTH, COMP_HEIGHT);
-	PrintMsgX("Battery : " + my_label, xc, yc - COMP_HEIGHT * 2 / 3);
+	string toPrint = my_label + " : " + valS;
+	PrintMsgX(toPrint, xc, yc - COMP_HEIGHT * 2 / 3);
 
 }
 
 
-void UI::DrawBuzzer(const GraphicsInfo& r_GfxInfo, string my_label, bool selected) const
+void UI::DrawBuzzer(const GraphicsInfo& r_GfxInfo, string my_label,double val, bool selected) const
 {
 	string BuzzerImage;
+	string valS = to_string(val);
+
 	if (selected)
 		BuzzerImage = "Images\\Comp\\Buzzer_HI.jpg";	//use image of highlighted resistor
 	else
@@ -516,15 +529,18 @@ void UI::DrawBuzzer(const GraphicsInfo& r_GfxInfo, string my_label, bool selecte
 
 
 	pWind->DrawImage(BuzzerImage, xc, yc, COMP_WIDTH, COMP_HEIGHT);
-	PrintMsgX("Buzzer : " + my_label, xc, yc - COMP_HEIGHT * 2 / 3);
+	string toPrint = my_label + " : " + valS;
+	PrintMsgX(toPrint, xc, yc - COMP_HEIGHT * 2 / 3);
 
 }
 
 
 
-void UI::DrawFuse(const GraphicsInfo& r_GfxInfo, string my_label, bool selected) const
+void UI::DrawFuse(const GraphicsInfo& r_GfxInfo, string my_label,double val, bool selected) const
 {
 	string FuseImage;
+	string valS = to_string(val);
+
 	if (selected)
 		FuseImage = "Images\\Comp\\Fuse_HI.jpg";	//use image of highlighted resistor
 	else
@@ -536,14 +552,17 @@ void UI::DrawFuse(const GraphicsInfo& r_GfxInfo, string my_label, bool selected)
 
 
 	pWind->DrawImage(FuseImage, xc, yc, COMP_WIDTH, COMP_HEIGHT);
-	PrintMsgX("Fuse : " + my_label, xc, yc - COMP_HEIGHT * 2 / 3);
+	string toPrint = my_label + " : " + valS;
+	PrintMsgX(toPrint, xc, yc - COMP_HEIGHT * 2 / 3);
 
 }
 
 
-void UI::DrawGround(const GraphicsInfo& r_GfxInfo, string my_label, bool selected) const
+void UI::DrawGround(const GraphicsInfo& r_GfxInfo, string my_label,double val, bool selected) const
 {
 	string GroundImage;
+	string valS = to_string(val);
+
 	if (selected)
 		GroundImage = "Images\\Comp\\Gound_HI.jpg";	//use image of highlighted resistor
 	else
@@ -555,7 +574,8 @@ void UI::DrawGround(const GraphicsInfo& r_GfxInfo, string my_label, bool selecte
 
 
 	pWind->DrawImage(GroundImage, xc, yc, COMP_WIDTH, COMP_HEIGHT);
-	PrintMsgX("Ground : " + my_label, xc, yc - COMP_HEIGHT * 2 / 3);
+	string toPrint = my_label + " : " + valS;
+	PrintMsgX(toPrint, xc, yc - COMP_HEIGHT * 2 / 3);
 
 }
 
