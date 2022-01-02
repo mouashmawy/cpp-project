@@ -28,7 +28,6 @@ D:\CIE202\cpp5\Actions\ActionAddRes.cpp(101,29): warning C4101: 'e': unreference
   Lamp.cpp
   Resistor.cpp
   Switch.cpp
-  UI.cpp
   main.cpp
   Generating Code...
   CIE202-Proj.vcxproj -> D:\CIE202\cpp5\x64\Debug\CIE202-Proj.exe

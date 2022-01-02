@@ -59,6 +59,7 @@ void ActionConnect::Execute()
 	Component* comp1 = WhatComponent(x1, y1, lr1);
 	if (comp1 == nullptr) {
 		pUI->PrintMsg("Invalid!! you have to choose an item");
+		pUI->GetPointClicked(x1,y1);
 		pUI->ClearStatusBar();
 		return;
 	}
@@ -71,7 +72,7 @@ void ActionConnect::Execute()
 		pUI->PrintMsg("Invalid!! you have to choose an item");
 		return;
 	}
-
+	cout << 1;
 
 	int compWidth = pUI->getCompWidth();
 	int compHeight = pUI->getCompHeight();
@@ -95,7 +96,7 @@ void ActionConnect::Execute()
 		pGInfo->PointsList[1].x = comp2->getC()->PointsList[1].x;
 		pGInfo->PointsList[1].y = comp2->getC()->PointsList[1].y - compHeight / 2;
 	}
-	
+	cout << 2;
 
 	if (
 
@@ -104,11 +105,13 @@ void ActionConnect::Execute()
 		(lr1 == 0 && lr2 == 0 && x2 > x1)	||
 		(lr1 == 1 && lr2 == 1 && x1 < x2)	||
 		(lr1 == 1 && lr2 == 1 && x2 < x1)	) {
-
+		cout << 3;
 		string text = pUI->GetSrting();
-
-		Connection* pConn = new Connection(pGInfo, text, comp1, comp2);
+		
+		Connection* pConn = new Connection(pGInfo, "", comp1, comp2);
+		cout << 4;
 		pManager->AddConnection(pConn);
+		cout << 5;
 	}
 
 	else {
