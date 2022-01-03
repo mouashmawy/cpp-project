@@ -47,11 +47,12 @@ class UI
 		ITM_GROUND,
 		ITM_SWITCH,
 		ITM_BUZZER,
-		ITM_CONN,		//to draw connections
-		
-		ITM_EXIT,		//Exit item
-		//TODO: Add more items names here
+		ITM_CONN,		
+		ITM_SIMULATE,
+		ITM_EXIT,
 	
+
+
 		ITM_DSN_CNT		//no. of design menu items ==> This should be the last line in this enum
 	
 	};
@@ -62,6 +63,12 @@ class UI
 		ITM_EDIT_V,
 		ITM_SAVE,
 		ITM_LOAD,
+		ITM_COPY,
+		ITM_CUT,
+		ITM_PASTE,
+
+
+
 		ITM_DSN_CNT2
 
 

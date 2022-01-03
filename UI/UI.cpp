@@ -336,15 +336,18 @@ void UI::CreateDesignToolBar()
 	MenuItemImages[ITM_FUSE] = "images\\Menu\\Menu_Fuse.jpg";
 	MenuItemImages[ITM_GROUND] = "images\\Menu\\Menu_Ground.jpg";
 	MenuItemImages[ITM_CONN] = "images\\Menu\\Menu_Conn.jpg";
+	MenuItemImages[ITM_SIMULATE] = "images\\Menu\\Menu_Simulate.jpg";
 	MenuItemImages[ITM_EXIT] = "images\\Menu\\Menu_Exit.jpg";
 	
 	//TODO: Prepare image for each menu item and add it to the list
 
 	//Draw menu item one image at a time
 	for (int i = 0; i < ITM_DSN_CNT; i++) {
-
-		pWind->DrawImage(MenuItemImages[i], i * ToolItemWidth, 0, ToolItemWidth, ToolBarHeight);
-
+		static int j = 0; //because there is ITM_SIMULATE that taked 3 places so having j instead of i is better
+		
+		if (i == ITM_SIMULATE) { pWind->DrawImage(MenuItemImages[i], i * ToolItemWidth, 0, ToolItemWidth * 3, ToolBarHeight); j += 2; }
+		else pWind->DrawImage(MenuItemImages[i], j * ToolItemWidth, 0, ToolItemWidth, ToolBarHeight);
+		j++;
 	}
 
 	//Draw a line under the toolbar
@@ -365,10 +368,13 @@ void UI::CreateEditToolBar()
 	//First prepare List of images for each menu item
 	string MenuItem[ITM_DSN_CNT2];
 
-	MenuItem[ITM_EDIT_L] = "images\\Menu\\Menu_Edit_L.jpg";
+	MenuItem[ITM_EDIT_L] = "images\\Edit\\Menu_Edit_L.jpg";
 	MenuItem[ITM_EDIT_V] = "images\\Edit\\Menu_Edit_V.jpg";
-	MenuItem[ITM_SAVE] = "images\\Menu\\Menu_Save.jpg";
-	MenuItem[ITM_LOAD] = "images\\Menu\\Menu_Load.jpg";
+	MenuItem[ITM_SAVE] = "images\\Edit\\Menu_Save.jpg";
+	MenuItem[ITM_LOAD] = "images\\Edit\\Menu_Load.jpg";
+	MenuItem[ITM_COPY] = "images\\Edit\\copy.jpg";
+	MenuItem[ITM_CUT] = "images\\Edit\\cut.jpg";
+	MenuItem[ITM_PASTE] = "images\\Edit\\paste.jpg";
 	
 
 	pWind->SetPen(RED,1000000);
