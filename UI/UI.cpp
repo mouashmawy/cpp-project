@@ -363,6 +363,7 @@ void UI::CreateEditToolBar()
 {
 	AppMode = DESIGN;	//Design Mode
 
+
 	//You can draw the tool bar icons in any way you want.
 
 	//First prepare List of images for each menu item
@@ -376,6 +377,7 @@ void UI::CreateEditToolBar()
 	MenuItem[ITM_CUT] = "images\\Edit\\cut.jpg";
 	MenuItem[ITM_PASTE] = "images\\Edit\\paste.jpg";
 	
+
 
 	pWind->SetPen(RED,1000000);
 	pWind->DrawRectangle(widthTD - EditBarWidth , ToolBarHeight, widthTD, height - StatusBarHeight);

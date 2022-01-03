@@ -119,6 +119,7 @@
     <ClCompile Include="Actions\ActionAddRes.cpp" />
     <ClCompile Include="Actions\ActionAddSwitch.cpp" />
     <ClCompile Include="Actions\ActionConnect.cpp" />
+    <ClCompile Include="Actions\ActionCopyCutPaste.cpp" />
     <ClCompile Include="Actions\ActionEditL.cpp" />
     <ClCompile Include="Actions\ActionEditV.cpp" />
     <ClCompile Include="Actions\ActionLoadCircut.cpp" />
@@ -182,6 +183,7 @@
     <ClInclude Include="Actions\ActionAddRes.h" />
     <ClInclude Include="Actions\ActionAddSwitch.h" />
     <ClInclude Include="Actions\ActionConnect.h" />
+    <ClInclude Include="Actions\ActionCopyCutPaste.h" />
     <ClInclude Include="Actions\ActionEditK.h" />
     <ClInclude Include="Actions\ActionEditL.h" />
     <ClInclude Include="Actions\ActionEditV.h" />

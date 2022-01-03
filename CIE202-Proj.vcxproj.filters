@@ -160,6 +160,7 @@
     <ClCompile Include="Actions\ActionSaveCircut.cpp" />
     <ClCompile Include="Actions\Action.cpp" />
     <ClCompile Include="Actions\ActionEditV.cpp" />
+    <ClCompile Include="Actions\ActionCopyCutPaste.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\Component.h">
@@ -260,6 +261,7 @@
     <ClInclude Include="Actions\ActionLoadCircut.h" />
     <ClInclude Include="Actions\ActionSaveCircut.h" />
     <ClInclude Include="Actions\ActionEditV.h" />
+    <ClInclude Include="Actions\ActionCopyCutPaste.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="CMUgraphicsLib\Manual.txt">

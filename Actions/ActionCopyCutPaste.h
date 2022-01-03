@@ -5,7 +5,7 @@
 #include "..\ApplicationManager.h"
 
 //Class responsible for adding a new resistor action
-class ActionSelect : public Action
+class ActionCopyCutPaste : public Action
 {
 private:
 	ApplicationManager* pApp;
@@ -15,12 +15,18 @@ private:
 	int NumOfComp;
 	//Component* ListOfComp = new Component[MaxCompCount];
 
+protected:
+	static int cpd_value;
+	static string cpd_label;
+	static Component* p_cpd_comp;
+
+	 
+
 
 public:
-	ActionSelect(ApplicationManager* pApp);
-	virtual ~ActionSelect(void);
+	ActionCopyCutPaste(ApplicationManager* pApp);
+	virtual ~ActionCopyCutPaste(void);
 
-	Component* CompInPlace(int xx, int yy) ;
 
 	//Execute action (code depends on action type)
 	virtual void Execute();
