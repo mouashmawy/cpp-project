@@ -41,7 +41,10 @@ void Fuse::Load(ifstream &file)
 	cout << NAME_OF_COMPONENT;
 }
 
-void Fuse::Delete()
+void Fuse::Delete(UI* pUI, bool selected)
 {
+	if (selected) cout << "selected" << endl;
+	//Call output class and pass resistor drawing info to it.
+	//pUI->DrawFuse(*m_pGfxInfo, label, selected); //update to draw resistor
 
 }

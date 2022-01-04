@@ -42,7 +42,10 @@ void Module::Load(ifstream &file)
 	cout << NAME_OF_COMPONENT;
 }
 
-void Module::Delete()
+void Module::Delete(UI* pUI, bool selected)
 {
+	if (selected) cout << "selected" << endl;
+	//Call output class and pass resistor drawing info to it.
+	//pUI->DrawGround(*m_pGfxInfo, label, selected); //update to draw resistor
 
 }

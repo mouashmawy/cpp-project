@@ -434,7 +434,7 @@ void UI::CreateSimulationToolBar()
 //								Components Drawing Functions							//
 //======================================================================================//
 
-void UI::DrawResistor(const GraphicsInfo& r_GfxInfo, string my_label,double val, bool selected) 
+void UI::DrawResistor(const GraphicsInfo& r_GfxInfo, string my_label,double val, bool selected) const
 {	
 
 	string ResImage;
@@ -458,6 +458,7 @@ void UI::DrawResistor(const GraphicsInfo& r_GfxInfo, string my_label,double val,
 		
 
 }
+
 //TODO: Add similar functions to draw all other components
 
 void UI::DrawLamp(const GraphicsInfo& r_GfxInfo, string my_label,double val, bool selected) const
@@ -755,3 +756,14 @@ UI::~UI()
 }
 
 
+////////////////////////////////////////////////////////////////////////////////////////////
+//                                 Deleting Comps                                         //
+////////////////////////////////////////////////////////////////////////////////////////////
+void UI::DeleteResistor(const GraphicsInfo& r_GfxInfo, string my_label, double val, bool selected)const {};
+void UI::DeleteLamp(const GraphicsInfo& r_GfxInfo, string my_label, double val, bool selected) const {};
+void UI::DeleteSwitch(const GraphicsInfo& r_GfxInfo, string my_label, double val, bool selected ) const {};
+void UI::DeleteBattery(const GraphicsInfo& r_GfxInfo, string my_label, double val, bool selected ) const {};
+void UI::DeleteFuse(const GraphicsInfo& r_GfxInfo, string my_label, double val, bool selected ) const {};
+void UI::DeleteGround(const GraphicsInfo& r_GfxInfo, string my_label, double val, bool selected ) const {};
+void UI::DeleteModule(const GraphicsInfo& r_GfxInfo, string my_label, double val, bool selected) const {};
+void UI::DeleteBuzzer(const GraphicsInfo& r_GfxInfo, string my_label, double val, bool selected ) const {};

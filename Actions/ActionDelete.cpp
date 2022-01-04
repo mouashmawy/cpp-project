@@ -55,13 +55,8 @@ void ActionDelete::Execute()
 	if (compSel == nullptr) {
 		return;
 	}
-	compSel->Draw(pUI,true);
+	compSel->Delete(pUI,true);
 	
-	pUI->PrintMsg(compSel->getType()+"::      "+
-		"Label: "+compSel->getLabel()	+
-		"   ---   Value: " + to_string(compSel->getValue())  );
-	pUI->GetPointClicked(x1, y1);
-
 	Component* compSel2 = CompInPlace(x1, y1);
 	if (compSel2 == nullptr) {
 		compSel->Draw(pUI);

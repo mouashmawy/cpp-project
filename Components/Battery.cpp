@@ -42,7 +42,11 @@ void Battery::Load(ifstream &file)
 	cout << NAME_OF_COMPONENT;
 }
 
-void Battery::Delete()
+void Battery::Delete(UI* pUI, bool selected)
 {
+
+	//Call output class and pass resistor drawing info to it.
+	//pUI->DrawBattery(*m_pGfxInfo, label, selected); //update to draw resistor
+
 
 }
