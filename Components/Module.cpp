@@ -6,7 +6,7 @@ Module::Module(GraphicsInfo *r_GfxInfo, string name, double val):Component(r_Gfx
 {
 	label = name;
 	value = val;
-	Component_type = "RES";
+	Component_type = "MOD";
 }
 
 void Module::Draw(UI* pUI,bool selected)
@@ -31,7 +31,7 @@ void Module::Operate()
 void Module::Save(ofstream &file)
 {
 	GraphicsInfo* List = getC();
-	file << "RES" << "  " << label << "  " << "Value" << "  " << List->PointsList[0].x << "  " << List->PointsList[0].y << endl;
+	file << Component_type << "  " << label << "  " << value << "  " << List->PointsList[0].x << "  " << List->PointsList[0].y << endl;
 }
 
 void Module::Load(ifstream &file)

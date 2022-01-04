@@ -31,7 +31,7 @@ void Buzzer::Operate()
 void Buzzer::Save(ofstream &file)
 {
 	GraphicsInfo* List = getC();
-	file << "BUZ" << "  " << label << "  " << "Value" << "  " << List->PointsList[0].x << "  " << List->PointsList[0].y << endl;
+	file << Component_type << "  " << label << "  " << "No Value" << "  " << List->PointsList[0].x << "  " << List->PointsList[0].y << endl;
 }
 
 void Buzzer::Load(ifstream &file)

@@ -30,7 +30,7 @@ void Fuse::Operate()
 void Fuse::Save(ofstream &file)
 {
 	GraphicsInfo* List = getC();
-	file << "FUS" << "  " << label << "  " << "Value" << "  " << List->PointsList[0].x << "  " << List->PointsList[0].y << endl;
+	file << Component_type << "  " << label << "  " << "No Value" << "  " << List->PointsList[0].x << "  " << List->PointsList[0].y << endl;
 }
 
 void Fuse::Load(ifstream &file)

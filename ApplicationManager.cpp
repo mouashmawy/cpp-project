@@ -194,27 +194,29 @@ void ApplicationManager::LoadCircut(ifstream& file) {
 		CompList[i]->Load(file);
 
 		Action* pAct = nullptr;
-		if (CompList[i]->Component_type == "RES") pAct = new ActionAddRes(this);
+		if (CompList[i]->Component_type == "RES") CompList[i]->Draw(pUI);
 
-		else if (CompList[i]->Component_type == "LMP") pAct = new ActionAddLamp(this);
+		else if (CompList[i]->Component_type == "LMP") CompList[i]->Draw(pUI);
 
-		else if (CompList[i]->Component_type == "BAT") pAct = new ActionAddBat(this);
+		else if (CompList[i]->Component_type == "BAT") CompList[i]->Draw(pUI);
 
-		else if (CompList[i]->Component_type == "SWT") pAct = new ActionAddSwitch(this);
+		else if (CompList[i]->Component_type == "SWT") CompList[i]->Draw(pUI);
 
-		else if (CompList[i]->Component_type == "BUZ") pAct = new ActionAddBuzzer(this);
+		else if (CompList[i]->Component_type == "BUZ") CompList[i]->Draw(pUI);
 
-		else if (CompList[i]->Component_type == "FUS") pAct = new ActionAddFuse(this);
+		else if (CompList[i]->Component_type == "FUS") CompList[i]->Draw(pUI);
 
-		else if (CompList[i]->Component_type == "GND")pAct = new ActionAddGround(this);
+		else if (CompList[i]->Component_type == "GND")CompList[i]->Draw(pUI);
 
-		else if (CompList[i]->Component_type == "CON") pAct = new ActionConnect(this);
-
-		if (pAct)
-		{
-			pAct->Execute();
-			delete pAct;
-			pAct = nullptr;
-		}
+		else if (CompList[i]->Component_type == "CON") CompList[i]->Draw(pUI);
 	}
+}
+
+//////////////////////////////////////////////////////////////////////////////
+
+void ApplicationManager::DeleteComp() {
+	Action* pAct = nullptr;
+	pUI->GetUserAction();
+	
+
 }

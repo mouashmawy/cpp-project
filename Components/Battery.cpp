@@ -4,6 +4,7 @@
 
 Battery::Battery(GraphicsInfo* r_GfxInfo, string name, double val) :Component(r_GfxInfo)
 {
+	value = val;
 	label = name;
 	Component_type = "BAT";
 }
@@ -30,7 +31,7 @@ void Battery::Operate()
 void Battery::Save(ofstream &file)
 {
 	GraphicsInfo* List = getC();
-	file << "BUZ" << "  " << label << "  " << "Value" << "  " << List->PointsList[0].x << "  " << List->PointsList[0].y << endl;
+	file << Component_type << "  " << label << "  " << value << "  " << List->PointsList[0].x << "  " << List->PointsList[0].y << endl;
 }
 
 void Battery::Load(ifstream &file)

@@ -30,7 +30,7 @@ void Ground::Operate()
 void Ground::Save(ofstream &file)
 {
 	GraphicsInfo* List = getC();
-	file << "GND" << "  " << label << "  " << "Value" << "  " << List->PointsList[0].x << "  " << List->PointsList[0].y << endl;
+	file << Component_type << "  " << label << "  " << "No Value" << "  " << List->PointsList[0].x << "  " << List->PointsList[0].y << endl;
 }
 
 void Ground::Load(ifstream &file)

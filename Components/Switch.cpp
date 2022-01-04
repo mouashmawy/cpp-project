@@ -29,7 +29,7 @@ void Switch::Operate()
 void Switch::Save(ofstream &file)
 {
 	GraphicsInfo* List = getC();
-	file << "SWT" << "  " << label << "  " << "Value" << "  " << List->PointsList[0].x << "  " << List->PointsList[0].y << endl;
+	file << Component_type << "  " << label << "  " << "No Value" << "  " << List->PointsList[0].x << "  " << List->PointsList[0].y << endl;
 
 }
 

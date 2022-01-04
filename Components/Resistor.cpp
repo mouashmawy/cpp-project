@@ -6,7 +6,7 @@ Resistor::Resistor(GraphicsInfo *r_GfxInfo, string name, double val):Component(r
 {
 	label = name;
 	value = val;
-	Component_type = "MOD";
+	Component_type = "RES";
 }
 
 void Resistor::Draw(UI* pUI,bool selected)
@@ -31,7 +31,7 @@ void Resistor::Operate()
 void Resistor::Save(ofstream &file)
 {
 	GraphicsInfo* List = getC();
-	file << "MOD" << "  " << label << "  " << "Value" << "  " << List->PointsList[0].x << "  " << List->PointsList[0].y << endl;
+	file << Component_type << "  " << label << "  " << value << "  " << List->PointsList[0].x << "  " << List->PointsList[0].y << endl;
 }
 
 void Resistor::Load(ifstream &file)

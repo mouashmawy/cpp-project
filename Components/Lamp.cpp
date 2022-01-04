@@ -31,7 +31,7 @@ void Lamp::Operate()
 void Lamp::Save(ofstream &file)
 {
 	GraphicsInfo* List = getC();
-	file << "LMP" << "  " << label << "  " << "Value" << "  " << List->PointsList[0].x << "  " << List->PointsList[0].y << endl;
+	file << Component_type << "  " << label << "  " << value << "  " << List->PointsList[0].x << "  " << List->PointsList[0].y << endl;
 }
 
 void Lamp::Load(ifstream &file)
