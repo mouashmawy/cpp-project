@@ -336,6 +336,7 @@ void UI::CreateDesignToolBar()
 	MenuItemImages[ITM_FUSE] = "images\\Menu\\Menu_Fuse.jpg";
 	MenuItemImages[ITM_GROUND] = "images\\Menu\\Menu_Ground.jpg";
 	MenuItemImages[ITM_CONN] = "images\\Menu\\Menu_Conn.jpg";
+	MenuItemImages[ITM_MOD4] = "images\\Menu\\Module4.jpg";
 	MenuItemImages[ITM_SIMULATE] = "images\\Menu\\Menu_Simulate.jpg";
 	MenuItemImages[ITM_EXIT] = "images\\Menu\\Menu_Exit.jpg";
 	
@@ -376,6 +377,8 @@ void UI::CreateEditToolBar()
 	MenuItem[ITM_COPY] = "images\\Edit\\copy.jpg";
 	MenuItem[ITM_CUT] = "images\\Edit\\cut.jpg";
 	MenuItem[ITM_PASTE] = "images\\Edit\\paste.jpg";
+	MenuItem[ITM_UNDO] = "images\\Edit\\undo.jpg";
+	MenuItem[ITM_REDO] = "images\\Edit\\redo.jpg";
 	
 
 
@@ -567,6 +570,28 @@ void UI::DrawFuse(const GraphicsInfo& r_GfxInfo, string my_label,double val, boo
 
 
 void UI::DrawGround(const GraphicsInfo& r_GfxInfo, string my_label,double val, bool selected) const
+{
+	string GroundImage;
+	string valS = to_string(val);
+
+	if (selected)
+		GroundImage = "Images\\Comp\\Gound_HI.jpg";	//use image of highlighted resistor
+	else
+		GroundImage = "Images\\Comp\\Ground.jpg";	//use image of the normal resistor
+
+
+	int xc = r_GfxInfo.PointsList[0].x;
+	int yc = r_GfxInfo.PointsList[0].y;
+
+
+	pWind->DrawImage(GroundImage, xc, yc, COMP_WIDTH, COMP_HEIGHT);
+	string toPrint = my_label + " : " + valS;
+	PrintMsgX(toPrint, xc, yc - COMP_HEIGHT * 2 / 3);
+
+}
+
+
+void UI::DrawModule(const GraphicsInfo& r_GfxInfo, string my_label, double val, bool selected) const
 {
 	string GroundImage;
 	string valS = to_string(val);

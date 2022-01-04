@@ -47,6 +47,7 @@ class UI
 		ITM_GROUND,
 		ITM_SWITCH,
 		ITM_BUZZER,
+		ITM_MOD4,
 		ITM_CONN,		
 		ITM_SIMULATE,
 		ITM_EXIT,
@@ -66,7 +67,8 @@ class UI
 		ITM_COPY,
 		ITM_CUT,
 		ITM_PASTE,
-
+		ITM_UNDO,
+		ITM_REDO,
 
 
 		ITM_DSN_CNT2
@@ -213,6 +215,7 @@ public:
 	void DrawBattery(const GraphicsInfo &r_GfxInfo, string my_label, double val, bool selected = false) const;
 	void DrawFuse(const GraphicsInfo &r_GfxInfo, string my_label, double val, bool selected = false) const;
 	void DrawGround(const GraphicsInfo &r_GfxInfo, string my_label, double val, bool selected = false) const;
+	void DrawModule(const GraphicsInfo& r_GfxInfo, string my_label, double val, bool selected) const;
 	void DrawBuzzer(const GraphicsInfo &r_GfxInfo, string my_label, double val, bool selected = false) const;
 
 	///TODO: Make similar functions for drawing all other components, connections, .. etc

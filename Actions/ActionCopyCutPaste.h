@@ -28,6 +28,8 @@ public:
 	virtual ~ActionCopyCutPaste(void);
 
 
+	Component* CompInPlace(int xx, int yy);
+
 	//Execute action (code depends on action type)
 	virtual void Execute();
 

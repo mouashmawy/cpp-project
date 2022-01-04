@@ -15,6 +15,27 @@ ActionCopyCutPaste::~ActionCopyCutPaste(void)
 
 
 
+Component* ActionCopyCutPaste::CompInPlace(int xx, int yy)
+{
+
+	UI* pUI = pManager->GetUI();
+	Component** ListOfComp = pManager->getCompList();
+	int CompCount = pManager->getCompCount();
+
+
+	for (int i = 0; i < CompCount; i++) {
+		if (
+			xx >= ListOfComp[i]->getC()->PointsList[0].x &&
+			yy >= ListOfComp[i]->getC()->PointsList[0].y &&
+			xx <= ListOfComp[i]->getC()->PointsList[1].x &&
+			yy <= ListOfComp[i]->getC()->PointsList[1].y
+			)	return ListOfComp[i];
+
+
+	}
+	return nullptr;
+}
+
 void ActionCopyCutPaste::Execute()
 {
 

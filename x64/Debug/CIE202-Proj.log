@@ -1,81 +1,39 @@
 ﻿  Action.cpp
-D:\CIE202\cpp5\Actions\Action.h(26,11): error C2143: syntax error: missing ';' before '*'
-D:\CIE202\cpp5\Actions\Action.h(26,11): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-D:\CIE202\cpp5\Actions\Action.h(26,40): error C2238: unexpected token(s) preceding ';'
-D:\CIE202\cpp5\Actions\Action.cpp(35,20): error C2039: 'compInPlace': is not a member of 'Action'
-D:\CIE202\cpp5\Actions\Action.h(8): message : see declaration of 'Action'
-D:\CIE202\cpp5\Actions\Action.cpp(38,12): error C2065: 'pManager': undeclared identifier
-D:\CIE202\cpp5\Actions\Action.cpp(39,27): error C2065: 'pManager': undeclared identifier
-D:\CIE202\cpp5\Actions\Action.cpp(40,18): error C2065: 'pManager': undeclared identifier
   ActionAddBattery.cpp
-D:\CIE202\cpp5\Actions\action.h(26,11): error C2143: syntax error: missing ';' before '*'
-D:\CIE202\cpp5\Actions\action.h(26,11): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-D:\CIE202\cpp5\Actions\action.h(26,40): error C2238: unexpected token(s) preceding ';'
+D:\CIE202\cpp5\Actions\ActionAddBattery.cpp(100,33): warning C4101: 'e': unreferenced local variable
+D:\CIE202\cpp5\Actions\ActionAddBattery.cpp(101,29): warning C4101: 'e': unreferenced local variable
   ActionAddBuzzer.cpp
-D:\CIE202\cpp5\Actions\action.h(26,11): error C2143: syntax error: missing ';' before '*'
-D:\CIE202\cpp5\Actions\action.h(26,11): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-D:\CIE202\cpp5\Actions\action.h(26,40): error C2238: unexpected token(s) preceding ';'
   ActionAddFuse.cpp
-D:\CIE202\cpp5\Actions\action.h(26,11): error C2143: syntax error: missing ';' before '*'
-D:\CIE202\cpp5\Actions\action.h(26,11): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-D:\CIE202\cpp5\Actions\action.h(26,40): error C2238: unexpected token(s) preceding ';'
   ActionAddGround.cpp
-D:\CIE202\cpp5\Actions\action.h(26,11): error C2143: syntax error: missing ';' before '*'
-D:\CIE202\cpp5\Actions\action.h(26,11): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-D:\CIE202\cpp5\Actions\action.h(26,40): error C2238: unexpected token(s) preceding ';'
   ActionAddLamp.cpp
-D:\CIE202\cpp5\Actions\action.h(26,11): error C2143: syntax error: missing ';' before '*'
-D:\CIE202\cpp5\Actions\action.h(26,11): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-D:\CIE202\cpp5\Actions\action.h(26,40): error C2238: unexpected token(s) preceding ';'
+  ActionAddModule.cpp
+D:\CIE202\cpp5\Actions\ActionAddModule.cpp(100,33): warning C4101: 'e': unreferenced local variable
+D:\CIE202\cpp5\Actions\ActionAddModule.cpp(101,29): warning C4101: 'e': unreferenced local variable
   ActionAddRes.cpp
-D:\CIE202\cpp5\Actions\action.h(26,11): error C2143: syntax error: missing ';' before '*'
-D:\CIE202\cpp5\Actions\action.h(26,11): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-D:\CIE202\cpp5\Actions\action.h(26,40): error C2238: unexpected token(s) preceding ';'
+D:\CIE202\cpp5\Actions\ActionAddRes.cpp(100,33): warning C4101: 'e': unreferenced local variable
+D:\CIE202\cpp5\Actions\ActionAddRes.cpp(101,29): warning C4101: 'e': unreferenced local variable
   ActionAddSwitch.cpp
-D:\CIE202\cpp5\Actions\action.h(26,11): error C2143: syntax error: missing ';' before '*'
-D:\CIE202\cpp5\Actions\action.h(26,11): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-D:\CIE202\cpp5\Actions\action.h(26,40): error C2238: unexpected token(s) preceding ';'
   ActionConnect.cpp
-D:\CIE202\cpp5\Actions\action.h(26,11): error C2143: syntax error: missing ';' before '*'
-D:\CIE202\cpp5\Actions\action.h(26,11): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-D:\CIE202\cpp5\Actions\action.h(26,40): error C2238: unexpected token(s) preceding ';'
   ActionCopyCutPaste.cpp
-D:\CIE202\cpp5\Actions\action.h(26,11): error C2143: syntax error: missing ';' before '*'
-D:\CIE202\cpp5\Actions\action.h(26,11): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-D:\CIE202\cpp5\Actions\action.h(26,40): error C2238: unexpected token(s) preceding ';'
-D:\CIE202\cpp5\Actions\ActionCopyCutPaste.cpp(32,23): error C3861: 'CompInPlace': identifier not found
-D:\CIE202\cpp5\Actions\ActionCopyCutPaste.cpp(44,24): error C3861: 'CompInPlace': identifier not found
   ActionEditL.cpp
-D:\CIE202\cpp5\Actions\action.h(26,11): error C2143: syntax error: missing ';' before '*'
-D:\CIE202\cpp5\Actions\action.h(26,11): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-D:\CIE202\cpp5\Actions\action.h(26,40): error C2238: unexpected token(s) preceding ';'
-D:\CIE202\cpp5\Actions\ActionEditL.cpp(37,23): error C3861: 'CompInPlace': identifier not found
   ActionEditV.cpp
-D:\CIE202\cpp5\Actions\action.h(26,11): error C2143: syntax error: missing ';' before '*'
-D:\CIE202\cpp5\Actions\action.h(26,11): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-D:\CIE202\cpp5\Actions\action.h(26,40): error C2238: unexpected token(s) preceding ';'
-D:\CIE202\cpp5\Actions\ActionEditV.cpp(39,23): error C3861: 'CompInPlace': identifier not found
   ActionLoadCircut.cpp
-D:\CIE202\cpp5\Actions\action.h(26,11): error C2143: syntax error: missing ';' before '*'
-D:\CIE202\cpp5\Actions\action.h(26,11): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-D:\CIE202\cpp5\Actions\action.h(26,40): error C2238: unexpected token(s) preceding ';'
   ActionSaveCircut.cpp
-D:\CIE202\cpp5\Actions\action.h(26,11): error C2143: syntax error: missing ';' before '*'
-D:\CIE202\cpp5\Actions\action.h(26,11): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-D:\CIE202\cpp5\Actions\action.h(26,40): error C2238: unexpected token(s) preceding ';'
   ActionSelect.cpp
-D:\CIE202\cpp5\Actions\Action.h(26,11): error C2143: syntax error: missing ';' before '*'
-D:\CIE202\cpp5\Actions\Action.h(26,11): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-D:\CIE202\cpp5\Actions\Action.h(26,40): error C2238: unexpected token(s) preceding ';'
-D:\CIE202\cpp5\Actions\ActionSelect.cpp(32,23): error C3861: 'CompInPlace': identifier not found
-D:\CIE202\cpp5\Actions\ActionSelect.cpp(44,24): error C3861: 'CompInPlace': identifier not found
   ApplicationManager.cpp
-D:\CIE202\cpp5\Actions\Action.h(26,11): error C2143: syntax error: missing ';' before '*'
-D:\CIE202\cpp5\Actions\Action.h(26,11): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-D:\CIE202\cpp5\Actions\Action.h(26,40): error C2238: unexpected token(s) preceding ';'
+  Battery.cpp
+  Buzzer.cpp
+  Component.cpp
+  Generating Code...
+  Compiling...
+  Connection.cpp
+  Fuse.cpp
+  Ground.cpp
+  Lamp.cpp
+  Module.cpp
+  Resistor.cpp
+  Switch.cpp
   main.cpp
-D:\CIE202\cpp5\Actions\Action.h(26,11): error C2143: syntax error: missing ';' before '*'
-D:\CIE202\cpp5\Actions\Action.h(26,11): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-D:\CIE202\cpp5\Actions\Action.h(26,40): error C2238: unexpected token(s) preceding ';'
   UI.cpp
   Generating Code...
+  CIE202-Proj.vcxproj -> D:\CIE202\cpp5\x64\Debug\CIE202-Proj.exe

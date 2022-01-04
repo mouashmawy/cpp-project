@@ -1,0 +1,44 @@
+#include "Module.h"
+#include <iostream>
+#include <fstream>
+
+Module::Module(GraphicsInfo *r_GfxInfo, string name, double val):Component(r_GfxInfo)
+{
+	label = name;
+	value = val;
+	Component_type = "RES";
+}
+
+void Module::Draw(UI* pUI,bool selected)
+{
+	if (selected) cout << "selected" << endl;
+	//Call output class and pass Module drawing info to it.
+	pUI->DrawModule(*m_pGfxInfo,label,value, selected); //update to draw Module
+	
+}
+
+GraphicsInfo* Module::getC()
+{
+	return m_pGfxInfo;
+}
+
+void Module::Operate()
+{
+
+}
+
+
+void Module::Save(ofstream &file)
+{
+	GraphicsInfo* List = getC();
+	file << "RES" << "  " << label << "  " << "Value" << "  " << List->PointsList[0].x << "  " << List->PointsList[0].y << endl;
+}
+
+void Module::Load(ifstream &file)
+{
+	string NAME_OF_COMPONENT, LABEL, VALUE;
+	int ID, X, Y;
+	while (!file.eof()) {
+		file >> ID >> NAME_OF_COMPONENT >> LABEL >> VALUE >> X >> Y;
+	}
+}

@@ -161,6 +161,8 @@
     <ClCompile Include="Actions\Action.cpp" />
     <ClCompile Include="Actions\ActionEditV.cpp" />
     <ClCompile Include="Actions\ActionCopyCutPaste.cpp" />
+    <ClCompile Include="Components\Module.cpp" />
+    <ClCompile Include="Actions\ActionAddModule.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\Component.h">
@@ -262,6 +264,8 @@
     <ClInclude Include="Actions\ActionSaveCircut.h" />
     <ClInclude Include="Actions\ActionEditV.h" />
     <ClInclude Include="Actions\ActionCopyCutPaste.h" />
+    <ClInclude Include="Components\Module.h" />
+    <ClInclude Include="Actions\ActionAddModule.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="CMUgraphicsLib\Manual.txt">
