@@ -38,7 +38,7 @@ void Fuse::Load(ifstream &file)
 	char NAME_OF_COMPONENT, LABEL;
 	int ID, X, Y, Count, VALUE;
 	file >> Count >> ID >> NAME_OF_COMPONENT >> LABEL >> VALUE >> X >> Y;
-	cout << NAME_OF_COMPONENT;
+
 }
 
 void Fuse::Delete(UI* pUI, bool selected)

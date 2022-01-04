@@ -46,7 +46,7 @@ public:
 	void SaveCircut(ofstream& file);
 	void LoadCircut(ifstream& file);
 	///////////////////////////////////////
-	void DeleteComp();
+	void DeleteComponent(Component* pComp);
 	void multiDeleteComp();
 
 	//////////////////////////////////////

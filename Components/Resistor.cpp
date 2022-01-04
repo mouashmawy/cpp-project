@@ -39,7 +39,7 @@ void Resistor::Load(ifstream &file)
 	char NAME_OF_COMPONENT, LABEL;
 	int ID, X, Y, Count, VALUE;
 	file >> Count >> ID >> NAME_OF_COMPONENT >> LABEL >> VALUE >> X >> Y;
-	cout << NAME_OF_COMPONENT;
+	
 	
 }
 
@@ -48,5 +48,7 @@ void Resistor::Delete(UI* pUI, bool selected)
 	if (selected) cout << "selected" << endl;
 	//Call output class and pass resistor drawing info to it.
 	//pUI->DrawGround(*m_pGfxInfo, label, selected); //update to draw resistor
+
+
 
 }

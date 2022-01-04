@@ -77,6 +77,15 @@ int ApplicationManager::getCompCount() const
 {
 	return CompCount;
 }
+void ApplicationManager::DeleteComponent(Component* pComp)
+{
+	for (int i = 0; i < CompCount; i++) {
+		if (CompList[i] == pComp) {
+			CompList[i] = CompList[i + 1];
+		}
+		else CompList[i] = CompList[i];
+	}
+}
 ////////////////////////////////////////////////////////////////////
 
 ActionType ApplicationManager::GetUserAction()
@@ -220,10 +229,4 @@ void ApplicationManager::LoadCircut(ifstream& file) {
 
 //////////////////////////////////////////////////////////////////////////////
 
-void ApplicationManager::DeleteComp() {
-	Action* pAct = nullptr;
-	pUI->GetUserAction();
-	
-	
 
-}

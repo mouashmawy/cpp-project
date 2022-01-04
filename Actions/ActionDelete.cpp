@@ -38,7 +38,7 @@ Component* ActionDelete::CompInPlace(int xx, int yy)
 
 void ActionDelete::Execute()
 {
-
+/*
 	//Get a Pointer to the user Interfaces
 	UI* pUI = pManager->GetUI();
 	GraphicsInfo* pGInfo = new GraphicsInfo(2); //Gfx info to be used to construct the Comp
@@ -64,8 +64,11 @@ void ActionDelete::Execute()
 
 		return;
 	}
+	
 	else ActionDelete::Execute();
-										
+						*/
+	//Component* pR= ..........;
+	//pManager->DeleteComponent(pR);
 			
 }
 

@@ -39,7 +39,7 @@ void Buzzer::Load(ifstream &file)
 	char NAME_OF_COMPONENT, LABEL;
 	int ID, X, Y, Count, VALUE;
 	file >> Count >> ID >> NAME_OF_COMPONENT >> LABEL >> VALUE >> X >> Y;
-	cout << Count << ID;
+	
 }
 
 void Buzzer::Delete(UI* pUI, bool selected)
