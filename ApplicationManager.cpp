@@ -88,6 +88,9 @@ void ApplicationManager::DeleteComponent(Component* pComp)
 }
 ////////////////////////////////////////////////////////////////////
 
+
+
+///////////////////////////////////////////////////////////////////
 ActionType ApplicationManager::GetUserAction()
 {
 	//Call input to get what action is reuired from the user
@@ -230,3 +233,20 @@ void ApplicationManager::LoadCircut(ifstream& file) {
 //////////////////////////////////////////////////////////////////////////////
 
 
+void ApplicationManager::multiDeleteComp() {
+	ActionType ActType;
+	ApplicationManager AppManager;
+	do
+	{
+		//Read user action
+		ActType = AppManager.GetUserAction();
+
+		//Exexute the action
+		AppManager.ExecuteAction(DEL);
+
+		//Update the drawing window
+		AppManager.UpdateInterface();
+
+
+	} while (ActType != DEL);
+}

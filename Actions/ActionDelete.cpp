@@ -47,7 +47,7 @@ void ActionDelete::Execute()
 	//Print Action Message
 	//pUI->PrintMsg("selecting an item....");
 	pUI->GetPreviousClick(x1, y1);
-//	cout <<"xx"<< x1 << " " << y2 << endl;
+	//	cout <<"xx"<< x1 << " " << y2 << endl;
 	//pUI->ClearStatusBar();
 
 	Component* compSel = CompInPlace(x1, y1);
