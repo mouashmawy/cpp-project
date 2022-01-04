@@ -14,6 +14,7 @@
 #include "Actions\ActionEditV.h"
 #include "Actions\ActionSaveCircut.h"
 #include "Actions\ActionLoadCircut.h"
+#include "Actions\ActionDelete.h"
 
 ApplicationManager::ApplicationManager()
 {
@@ -140,6 +141,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct = new ActionLoadCircut(this);
 			break;
 
+		case DEL:
+			pAct = new ActionDelete(this);
+			break;
+
 		case EXIT:
 			///TODO: create ExitAction here
 			break;
@@ -192,6 +197,7 @@ void ApplicationManager::SaveCircut(ofstream& file) {
 void ApplicationManager::LoadCircut(ifstream& file) {
 	for (int i = 0; i < getCompCount(); i++) {
 		CompList[i]->Load(file);
+		
 
 		Action* pAct = nullptr;
 		if (CompList[i]->Component_type == "RES") CompList[i]->Draw(pUI);
@@ -217,6 +223,7 @@ void ApplicationManager::LoadCircut(ifstream& file) {
 void ApplicationManager::DeleteComp() {
 	Action* pAct = nullptr;
 	pUI->GetUserAction();
+	
 	
 
 }

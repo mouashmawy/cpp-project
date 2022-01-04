@@ -42,3 +42,8 @@ void Switch::Load(ifstream &file)
 	}
 }
 
+void Switch::Delete()
+{
+
+}
+

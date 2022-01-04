@@ -36,9 +36,14 @@ void Resistor::Save(ofstream &file)
 
 void Resistor::Load(ifstream &file)
 {
-	string NAME_OF_COMPONENT, LABEL, VALUE;
-	int ID, X, Y;
-	while (!file.eof()) {
-		file >> ID >> NAME_OF_COMPONENT >> LABEL >> VALUE >> X >> Y;
-	}
+	char NAME_OF_COMPONENT, LABEL;
+	int ID, X, Y, Count, VALUE;
+	file >> Count >> ID >> NAME_OF_COMPONENT >> LABEL >> VALUE >> X >> Y;
+	cout << NAME_OF_COMPONENT;
+	
+}
+
+void Resistor::Delete()
+{
+
 }

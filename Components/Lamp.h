@@ -13,5 +13,5 @@ public:
 	GraphicsInfo* getC();
 	void Save(ofstream& file);
 	void Load(ifstream& file);
-
+	void Delete();
 };
