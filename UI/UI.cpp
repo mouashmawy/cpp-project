@@ -20,10 +20,15 @@ UI::UI()
 
 
 	ChangeTitle("Logic Simulator Project");
+	
+	
+
 
 	CreateDesignToolBar();	//Create the desgin toolbar
 	CreateEditToolBar();
 	CreateStatusBar();		//Create Status bar
+
+	
 	//CreateGrid();
 }
 
@@ -157,9 +162,9 @@ ActionType UI::GetUserAction() const
 			case ITM_CONN:	return ADD_CONNECTION;
 			case ITM_FUSE: return ADD_FUSE;
 			case ITM_GROUND: return ADD_GROUND;
+			case ITM_MOD4: return ADD_MODULE;
+			case ITM_SIMULATE: return SIMULATE;
 			
-			//case ITM_SELECT: return SELECT;
-			//case ITM_EDIT: return EDIT;
 			case ITM_EXIT:	return EXIT;	
 			
 			default: return DSN_TOOL;	//A click on empty place in desgin toolbar
@@ -168,18 +173,20 @@ ActionType UI::GetUserAction() const
 		}
 		else if (y > ToolBarHeight && y > StatusBarHeight && x > width - ToolItemWidth - 7 && x < width)
 		{
-			int ClickedItemOrder = ((y-ToolBarHeight-2) / ToolBarHeight);
+			int ClickedItemOrder = ((y-ToolBarHeight-2) / EditItemHeight);
 			switch (ClickedItemOrder)
-			{/*
-				case ITM_SELECT: return SELECT;
-				case ITM_EDIT: return EDIT;*/
-			//case ITM_SELECT:	return SELECT;
+			{
 			case ITM_EDIT_L:	return EDIT_L;
 			case ITM_EDIT_V: return EDIT_V;
 			case ITM_SAVE: return SAVE;
 			case ITM_LOAD: return LOAD;
-			
-			
+			case ITM_COPY: return COPY;
+			case ITM_CUT: return CUT;
+			case ITM_PASTE: return PASTE;
+			case ITM_UNDO: return UNDO;
+			case ITM_REDO: return REDO;
+			case ITM_DEL: return DEL;
+			case ITM_MULTIDEL: return MULTIDEL;
 
 			}
 		}
@@ -460,17 +467,20 @@ void UI::DrawResistor(const GraphicsInfo& r_GfxInfo, string my_label,double val,
 }
 //TODO: Add similar functions to draw all other components
 
-void UI::DrawLamp(const GraphicsInfo& r_GfxInfo, string my_label,double val, bool selected) const
+void UI::DrawLamp(const GraphicsInfo& r_GfxInfo, string my_label,double val,bool Lighted, bool selected) const
 
 {
 	string LampImage;
 	string valS = to_string(val);
 
-	if (selected)
-		LampImage = "Images\\Comp\\Lamp_HI.jpg";	//use image of highlighted resistor
+	if (selected && Lighted)
+		LampImage = "Images\\Comp\\LampL_HI.jpg";	//use image of highlighted resistor
+	else if(Lighted)
+		LampImage = "Images\\Comp\\LampL.jpg";	//use image of the normal resistor
+	else if (selected)
+		LampImage = "Images\\Comp\\Lamp_HI.jpg";
 	else
-		LampImage = "Images\\Comp\\Lamp.jpg";	//use image of the normal resistor
-
+		LampImage = "Images\\Comp\\Lamp.jpg";
 
 
 	int xc = r_GfxInfo.PointsList[0].x;
@@ -483,16 +493,22 @@ void UI::DrawLamp(const GraphicsInfo& r_GfxInfo, string my_label,double val, boo
 
 }
 
-void UI::DrawSwitch(const GraphicsInfo& r_GfxInfo, string my_label,double val, bool selected) const
+void UI::DrawSwitch(const GraphicsInfo& r_GfxInfo, string my_label,double val, bool Closed, bool selected) const
 {
+
+	
+
 	string SwitchImage;
 	string valS = to_string(val);
 
-	if (selected)
-		SwitchImage = "Images\\Comp\\Switch_HI.jpg";	//use image of highlighted resistor
+	if (selected && Closed)
+		SwitchImage = "Images\\Comp\\SwitchC_HI.jpg";	//use image of highlighted resistor
+	else if(Closed)
+		SwitchImage = "Images\\Comp\\SwitchC.jpg";	//use image of the normal resistor
+	else if (selected)
+		SwitchImage = "Images\\Comp\\Switch_HI.jpg";
 	else
-		SwitchImage = "Images\\Comp\\Switch.jpg";	//use image of the normal resistor
-
+		SwitchImage = "Images\\Comp\\Switch.jpg";
 
 	int xc = r_GfxInfo.PointsList[0].x;
 	int yc = r_GfxInfo.PointsList[0].y;
@@ -597,9 +613,9 @@ void UI::DrawModule(const GraphicsInfo& r_GfxInfo, string my_label, double val, 
 	string valS = to_string(val);
 
 	if (selected)
-		GroundImage = "Images\\Comp\\Gound_HI.jpg";	//use image of highlighted resistor
+		GroundImage = "Images\\Comp\\Module.jpg";	//use image of highlighted resistor
 	else
-		GroundImage = "Images\\Comp\\Ground.jpg";	//use image of the normal resistor
+		GroundImage = "Images\\Comp\\Module_HI.jpg";	//use image of the normal resistor
 
 
 	int xc = r_GfxInfo.PointsList[0].x;

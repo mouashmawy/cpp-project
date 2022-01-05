@@ -64,11 +64,16 @@ class UI
 		ITM_EDIT_V,
 		ITM_SAVE,
 		ITM_LOAD,
+
 		ITM_COPY,
 		ITM_CUT,
 		ITM_PASTE,
+		
 		ITM_UNDO,
 		ITM_REDO,
+
+		ITM_DEL,
+		ITM_MULTIDEL
 
 
 		ITM_DSN_CNT2
@@ -115,7 +120,7 @@ class UI
 						ToolItemWidth = 60,		//Width of each item in toolbar menu
 
 						EditBarWidth = 50,
-						EditItemHeight=50,
+						EditItemHeight=44,
 
 
 						//Arbitrary values, you can change as you wish
@@ -197,7 +202,7 @@ public:
 
 	Basic gB();
 
-
+	
 
 	void PrintMsgX(string msg, int xx, int yy) const;
 
@@ -210,8 +215,8 @@ public:
 		
 	// Draws a resistor
 	void DrawResistor(const GraphicsInfo &r_GfxInfo, string my_label, double val, bool selected = false) ;
-	void DrawLamp(const GraphicsInfo &r_GfxInfo, string my_label, double val, bool selected = false) const;
-	void DrawSwitch(const GraphicsInfo &r_GfxInfo, string my_label, double val, bool selected = false) const;
+	void DrawLamp(const GraphicsInfo &r_GfxInfo, string my_label, double val, bool Lighted, bool selected = false) const;
+	void DrawSwitch(const GraphicsInfo &r_GfxInfo, string my_label, double val, bool Closed, bool selected = false) const;
 	void DrawBattery(const GraphicsInfo &r_GfxInfo, string my_label, double val, bool selected = false) const;
 	void DrawFuse(const GraphicsInfo &r_GfxInfo, string my_label, double val, bool selected = false) const;
 	void DrawGround(const GraphicsInfo &r_GfxInfo, string my_label, double val, bool selected = false) const;

@@ -4,6 +4,7 @@
 class Lamp:public Component
 {
 	int Cx, Cy;
+	bool state_Lighted;
 
 
 public:

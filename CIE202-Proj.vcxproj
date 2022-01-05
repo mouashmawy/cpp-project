@@ -120,10 +120,12 @@
     <ClCompile Include="Actions\ActionAddRes.cpp" />
     <ClCompile Include="Actions\ActionAddSwitch.cpp" />
     <ClCompile Include="Actions\ActionConnect.cpp" />
+    <ClCompile Include="Actions\ActionCopy.cpp" />
     <ClCompile Include="Actions\ActionCopyCutPaste.cpp" />
     <ClCompile Include="Actions\ActionEditL.cpp" />
     <ClCompile Include="Actions\ActionEditV.cpp" />
     <ClCompile Include="Actions\ActionLoadCircut.cpp" />
+    <ClCompile Include="Actions\ActionPaste.cpp" />
     <ClCompile Include="Actions\ActionSaveCircut.cpp" />
     <ClCompile Include="Actions\ActionSelect.cpp" />
     <ClCompile Include="ApplicationManager.cpp" />
@@ -186,11 +188,13 @@
     <ClInclude Include="Actions\ActionAddRes.h" />
     <ClInclude Include="Actions\ActionAddSwitch.h" />
     <ClInclude Include="Actions\ActionConnect.h" />
+    <ClInclude Include="Actions\ActionCopy.h" />
     <ClInclude Include="Actions\ActionCopyCutPaste.h" />
     <ClInclude Include="Actions\ActionEditK.h" />
     <ClInclude Include="Actions\ActionEditL.h" />
     <ClInclude Include="Actions\ActionEditV.h" />
     <ClInclude Include="Actions\ActionLoadCircut.h" />
+    <ClInclude Include="Actions\ActionPaste.h" />
     <ClInclude Include="Actions\ActionSaveCircut.h" />
     <ClInclude Include="Actions\ActionSelect.h" />
     <ClInclude Include="Actions\ActionEdit.h" />

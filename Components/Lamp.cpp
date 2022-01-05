@@ -13,7 +13,7 @@ void Lamp::Draw(UI* pUI, bool selected)
 
 	if (selected) cout << "selected" << endl;
 	//Call output class and pass resistor drawing info to it.
-	pUI->DrawLamp(*m_pGfxInfo, label, selected); //update to draw resistor
+	pUI->DrawLamp(*m_pGfxInfo, label, 5,selected,true); //update to draw resistor
 
 }
 

@@ -43,12 +43,7 @@ void ActionSelect::Execute()
 	UI* pUI = pManager->GetUI();
 	GraphicsInfo* pGInfo = new GraphicsInfo(2); //Gfx info to be used to construct the Comp
 
-	
-	//Print Action Message
-	//pUI->PrintMsg("selecting an item....");
 	pUI->GetPreviousClick(x1, y1);
-//	cout <<"xx"<< x1 << " " << y2 << endl;
-	//pUI->ClearStatusBar();
 
 	Component* compSel = CompInPlace(x1, y1);
 	
@@ -60,6 +55,9 @@ void ActionSelect::Execute()
 	pUI->PrintMsg(compSel->getType()+"::      "+
 		"Label: "+compSel->getLabel()	+
 		"   ---   Value: " + to_string(compSel->getValue())  );
+	
+	
+	
 	pUI->GetPointClicked(x1, y1);
 
 	Component* compSel2 = CompInPlace(x1, y1);

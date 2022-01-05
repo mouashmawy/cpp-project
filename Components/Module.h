@@ -4,7 +4,8 @@
 class Module:public Component
 {
 	int Cx, Cy;
-
+	double r1, r2, r3, r4, r5;
+	double Req;
 
 public:
 	Module(GraphicsInfo *r_GfxInfo,string name,double val=0);

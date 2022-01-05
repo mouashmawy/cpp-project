@@ -12,7 +12,7 @@ void Switch::Draw(UI* pUI, bool selected)
 {
 	if (selected) cout << "selected" << endl;
 	//Call output class and pass resistor drawing info to it.
-	pUI->DrawSwitch(*m_pGfxInfo, label, selected); //update to draw resistor
+	pUI->DrawSwitch(*m_pGfxInfo, label, selected,true); //update to draw resistor
 
 }
 
