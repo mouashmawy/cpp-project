@@ -12,6 +12,16 @@ ActionCopyCutPaste::~ActionCopyCutPaste(void)
 {
 }
 
+void ActionCopyCutPaste::setCpdComp(Component* c)
+{
+	p_cpd_comp = c;
+}
+
+Component* ActionCopyCutPaste::getCpdComp()
+{
+	return p_cpd_comp;
+}
+
 
 
 

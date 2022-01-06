@@ -27,6 +27,8 @@ public:
 	ActionCopyCutPaste(ApplicationManager* pApp);
 	virtual ~ActionCopyCutPaste(void);
 
+	void setCpdComp(Component* c);
+	Component* getCpdComp();
 
 	Component* CompInPlace(int xx, int yy);
 
