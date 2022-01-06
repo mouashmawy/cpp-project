@@ -1,5 +1,7 @@
 #include "Component.h"
 
+int Component::ID = 1;
+
 string Component::getLabel()
 {
 	return label;
@@ -23,7 +25,6 @@ string Component::getType()
 {
 	return Component_type;
 }
-
 
 
 Component::Component(GraphicsInfo *r_GfxInfo)

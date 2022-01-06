@@ -54,7 +54,9 @@ public:
 
 
 	void AddConnection(Connection* pConn);
-
+	///////////////////////////////////// 
+	int ApplicationManager::getCmptid(Component* comp);
+	////////////////////////////////////
 	Component** getCompList();
 
 	void setCpdComp(Component* c);

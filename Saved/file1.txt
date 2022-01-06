@@ -1,0 +1,7 @@
+3
+RES  1  hg  No Value  197  154
+BUZ  2  gd  No Value  417  147
+LMP  3  fhg  No Value  645  150
+2
+1  2
+2  3

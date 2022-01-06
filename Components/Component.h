@@ -17,7 +17,7 @@ protected:
 	//Each component has two ending terminals (term1, term2)
 	double term1_volt, term2_volt;	//voltage at terminals 1&2
 
-
+	static int ID;
 	int Cx, Cy;
 
 

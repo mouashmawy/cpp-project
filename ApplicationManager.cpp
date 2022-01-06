@@ -227,8 +227,13 @@ ApplicationManager::~ApplicationManager()
 void ApplicationManager::SaveCircut(ofstream& file) {
 
 	for (int i = 0; i < CompCount; i++) {
-		file << i + 1 << "  ";
 		CompList[i]->Save(file);
+	}
+	file << ConnCount << endl;
+	for (int i = 0; i < ConnCount; i++) {
+		int Cmpt1 = getCompOrder(ConnList[i]->getCmpt(1));
+		int Cmpt2 = getCompOrder(ConnList[i]->getCmpt(2));
+		ConnList[i]->Save(file, Cmpt1, Cmpt2);
 	}
 }
 
@@ -259,7 +264,16 @@ void ApplicationManager::LoadCircut(ifstream& file) {
 }
 
 //////////////////////////////////////////////////////////////////////////////
+/// Getting the ID of the compnents
 
+int ApplicationManager::getCmptid(Component* comp) {
+	for (int i = 0; i < CompCount; i++) {
+		if (comp == CompList[i])
+			return i +1;
+	}
+}
+
+/////////////////////////////////////////////////////////////////////////////
 
 void ApplicationManager::multiDeleteComp() {
 	ActionType ActType;
@@ -278,3 +292,4 @@ void ApplicationManager::multiDeleteComp() {
 
 	} while (ActType != DEL);
 }
+
