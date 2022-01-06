@@ -1,4 +1,15 @@
 #include "ActionPaste.h"
+
+#include "..\Components\Resistor.h"
+#include "..\Components\Lamp.h"
+#include "..\Components\Battery.h"
+#include "..\Components\Switch.h"
+#include "..\Components\Buzzer.h"
+#include "..\Components\Fuse.h"
+#include "..\Components\Ground.h"
+#include "..\Components\Module.h"
+
+
 #include "..\ApplicationManager.h"
 #include <iostream>
 using namespace std;
@@ -39,37 +50,43 @@ Component* ActionPaste::CompInPlace(int xx, int yy)
 void ActionPaste::Execute()
 {
 
-	//Get a Pointer to the user Interfaces
 	UI* pUI = pManager->GetUI();
 	GraphicsInfo* pGInfo = new GraphicsInfo(2); //Gfx info to be used to construct the Comp
 
+	int Sx = 0, Sy = 0;
 	
-	//Print Action Message
-	//pUI->PrintMsg("selecting an item....");
-	pUI->GetPreviousClick(x1, y1);
-//	cout <<"xx"<< x1 << " " << y2 << endl;
-	//pUI->ClearStatusBar();
 
-	Component* compSel = CompInPlace(x1, y1);
-	
-	if (compSel == nullptr) {
-		return;
-	}
-	compSel->Draw(pUI,true);
-	
-	pUI->PrintMsg(compSel->getType()+"::      "+
-		"Label: "+compSel->getLabel()	+
-		"   ---   Value: " + to_string(compSel->getValue())  );
-	pUI->GetPointClicked(x1, y1);
-
-	Component* compSel2 = CompInPlace(x1, y1);
-	if (compSel2 == nullptr) {
-		compSel->Draw(pUI);
+	pUI->PrintMsg("Press anywhere to paste the component");
+	pUI->GetPointClicked(Sx, Sy);
+	if (isConflict(Sx, Sy, pUI->getCompWidth(), pUI->getCompHeight())) {
+		pUI->PrintMsg("Press anywhere else to paste it");
+		pUI->GetPointClicked(x1, y1);
 		pUI->ClearStatusBar();
+		ActionPaste::Execute();
 
-		return;
 	}
-	else ActionPaste::Execute();
+	else {
+
+		int compWidth = pUI->getCompWidth();
+		int compHeight = pUI->getCompHeight();
+		x1 = Sx - compWidth / 2;
+		y1 = Sy - compHeight / 2;
+		x2 = Sx + compWidth / 2;
+		y2 = Sy + compHeight / 2;
+		pGInfo->PointsList[0].x = x1;
+		pGInfo->PointsList[0].y = y1;
+		pGInfo->PointsList[1].x = x2;
+		pGInfo->PointsList[1].y = y2;
+
+
+
+
+
+		Resistor* pR = new Resistor(pGInfo, "", 0);
+
+		pManager->AddComponent(pR);
+
+	}
 										
 			
 }
