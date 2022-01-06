@@ -1,23 +1,23 @@
-#include "ActionCopy.h"
+#include "ActionCut.h"
 #include "..\ApplicationManager.h"
 #include <iostream>
 using namespace std;
 
-ActionCopy::ActionCopy(ApplicationManager* pApp) :ActionCopyCutPaste(pApp)
+ActionCut::ActionCut(ApplicationManager* pApp) :ActionCopyCutPaste(pApp)
 {
 	this->pApp = pApp;
 }
 
 
 
-ActionCopy::~ActionCopy(void)
+ActionCut::~ActionCut(void)
 {
 }
 
 
 
 
-Component* ActionCopy::CompInPlace(int xx, int yy)
+Component* ActionCut::CompInPlace(int xx, int yy)
 {
 
 	UI* pUI = pManager->GetUI();
@@ -38,25 +38,28 @@ Component* ActionCopy::CompInPlace(int xx, int yy)
 	return nullptr;
 }
 
-void ActionCopy::Execute()
+
+void ActionCut::Execute()
 {
 	UI* pUI = pManager->GetUI();
 	GraphicsInfo* pGInfo = new GraphicsInfo(2); 	
-	pUI->PrintMsg("Press sth to copy");
+	pUI->PrintMsg("Press sth to cut");
 
 	pUI->GetPointClicked(x1, y1);
 	Component* compSel = CompInPlace(x1, y1);
 	
 	if (compSel == nullptr) {
-		pUI->PrintMsg("nothing to copy");
+		pUI->PrintMsg("nothing to cut");
 		pUI->GetPointClicked(x1, y1);
 		pUI->ClearStatusBar();
 		return;
 	}
 	compSel->Draw(pUI,true);
 	pManager->setCpdComp(compSel);
-	
-	pUI->PrintMsg(compSel->getType()+" "+compSel->getLabel() + " copied successfully");
+	/// <here we must make Delete section >
+	/// //////////////////////////////////
+	/// </from Ayyad>
+	pUI->PrintMsg("Comp "+compSel->getType() + " " + compSel->getLabel() + " cut successfully");
 	pUI->GetPointClicked(x1, y1);
 	pUI->ClearStatusBar();
 	compSel->Draw(pUI);
@@ -66,9 +69,9 @@ void ActionCopy::Execute()
 			
 }
 
-void ActionCopy::Undo()
+void ActionCut::Undo()
 {}
 
-void ActionCopy::Redo()
+void ActionCut::Redo()
 {}
 

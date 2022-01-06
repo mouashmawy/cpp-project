@@ -11,7 +11,6 @@ Module::Module(GraphicsInfo *r_GfxInfo, string name, double val):Component(r_Gfx
 
 void Module::Draw(UI* pUI,bool selected)
 {
-	if (selected) cout << "selected" << endl;
 	//Call output class and pass Module drawing info to it.
 	pUI->DrawModule(*m_pGfxInfo,label,value, selected); //update to draw Module
 	

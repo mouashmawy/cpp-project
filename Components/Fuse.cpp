@@ -10,7 +10,6 @@ Fuse::Fuse(GraphicsInfo* r_GfxInfo, string name) :Component(r_GfxInfo)
 
 void Fuse::Draw(UI* pUI, bool selected)
 {
-	if (selected) cout << "selected" << endl;
 	//Call output class and pass resistor drawing info to it.
 	pUI->DrawFuse(*m_pGfxInfo, label, selected); //update to draw resistor
 
@@ -43,7 +42,6 @@ void Fuse::Load(ifstream &file)
 
 void Fuse::Delete(UI* pUI, bool selected)
 {
-	if (selected) cout << "selected" << endl;
 	//Call output class and pass resistor drawing info to it.
 	//pUI->DrawFuse(*m_pGfxInfo, label, selected); //update to draw resistor
 

@@ -45,6 +45,11 @@ GraphicsInfo* Component::getC()
 	return m_pGfxInfo;
 }
 
+void Component::setC(GraphicsInfo* c)
+{
+	m_pGfxInfo = c;
+}
+
 
 
 Component::~Component()

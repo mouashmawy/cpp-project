@@ -54,15 +54,17 @@ void ActionPaste::Execute()
 	GraphicsInfo* pGInfo = new GraphicsInfo(2); //Gfx info to be used to construct the Comp
 
 	int Sx = 0, Sy = 0;
-	
+	int i = 0;
 
 	pUI->PrintMsg("Press anywhere to paste the component");
 	pUI->GetPointClicked(Sx, Sy);
 	if (isConflict(Sx, Sy, pUI->getCompWidth(), pUI->getCompHeight())) {
-		pUI->PrintMsg("Press anywhere else to paste it");
-		pUI->GetPointClicked(x1, y1);
+		pUI->PrintMsg("Wrong.. you pressed on another item");
+		pUI->GetPointClicked(Sx, Sy);
 		pUI->ClearStatusBar();
-		ActionPaste::Execute();
+		return;
+		cout << i++;
+		//ActionPaste::Execute();
 
 	}
 	else {
@@ -78,14 +80,16 @@ void ActionPaste::Execute()
 		pGInfo->PointsList[1].x = x2;
 		pGInfo->PointsList[1].y = y2;
 
+		
+		pManager->getCpdComp()->setC(pGInfo);
+		pManager->AddComponent(pManager->getCpdComp());
+		pManager->getCpdComp()->Draw(pUI, true);
 
-
-
-
-		Resistor* pR = new Resistor(pGInfo, "", 0);
-
-		pManager->AddComponent(pR);
-
+		pUI->PrintMsg("Comp " + pManager->getCpdComp()->getType() + " " + pManager->getCpdComp()->getLabel() + " pasted successfully");
+		pUI->GetPointClicked(x1, y1);
+		pUI->ClearStatusBar();
+		pManager->getCpdComp()->Draw(pUI);
+		
 	}
 										
 			

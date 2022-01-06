@@ -56,7 +56,7 @@ void ActionCopy::Execute()
 	compSel->Draw(pUI,true);
 	pManager->setCpdComp(compSel);
 	
-	pUI->PrintMsg(compSel->getType()+" "+compSel->getLabel() + " copied successfully");
+	pUI->PrintMsg("Comp " + compSel->getType()+" "+compSel->getLabel() + " copied successfully");
 	pUI->GetPointClicked(x1, y1);
 	pUI->ClearStatusBar();
 	compSel->Draw(pUI);
