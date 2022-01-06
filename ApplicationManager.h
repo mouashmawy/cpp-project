@@ -18,7 +18,7 @@ private:
 	int ConnCount;
 	Component* CompList[MaxCompCount];	//List of all Components (Array of pointers)
 	Connection* ConnList[MaxConnCount];
-
+	Component* pCpdComp;
 
 	UI* pUI; //pointer to the UI
 
@@ -57,7 +57,8 @@ public:
 
 	Component** getCompList();
 
-
+	void setCpdComp(Component* c);
+	Component* getCpdComp();
 
 
 	int getCompCount() const;

@@ -76,6 +76,14 @@ Component** ApplicationManager::getCompList()
 {
 	return CompList;
 }
+void ApplicationManager::setCpdComp(Component* c)
+{
+	pCpdComp = c;
+}
+Component* ApplicationManager::getCpdComp()
+{
+	return pCpdComp;
+}
 int ApplicationManager::getCompCount() const
 {
 	return CompCount;

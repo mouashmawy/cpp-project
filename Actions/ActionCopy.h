@@ -8,17 +8,7 @@ class ActionCopy : public ActionCopyCutPaste
 {
 private:
 	ApplicationManager* pApp;
-	//Parameters for rectangular area to be occupied by the comp
-	//int Cx, Cy;	//Center point of the comp
-	int x1, y1, x2, y2;	//two points of the line
-	int NumOfComp;
-	//Component* ListOfComp = new Component[MaxCompCount];
-
-protected:
-	static int cpd_value;
-	static string cpd_label;
-	static Component* p_cpd_comp;
-
+	int x1, y1, x2, y2;	
 	 
 
 

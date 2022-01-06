@@ -10,7 +10,6 @@ Ground::Ground(GraphicsInfo* r_GfxInfo , string name) :Component(r_GfxInfo)
 
 void Ground::Draw(UI* pUI, bool selected)
 {
-	if (selected) cout << "selected" << endl;
 	//Call output class and pass resistor drawing info to it.
 	pUI->DrawGround(*m_pGfxInfo, label, selected); //update to draw resistor
 
