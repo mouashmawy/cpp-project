@@ -17,7 +17,7 @@
 #include "Actions\ActionLoadCircut.h"
 #include "Actions\ActionCopy.h"
 #include "Actions\ActionPaste.h"
-
+#include "Actions\ActionDelete.h"
 
 ApplicationManager::ApplicationManager()
 {
@@ -80,8 +80,20 @@ int ApplicationManager::getCompCount() const
 {
 	return CompCount;
 }
+void ApplicationManager::DeleteComponent(Component* pComp)
+{
+	for (int i = 0; i < CompCount; i++) {
+		if (CompList[i] == pComp) {
+			CompList[i] = CompList[i + 1];
+		}
+		else CompList[i] = CompList[i];
+	}
+}
 ////////////////////////////////////////////////////////////////////
 
+
+
+///////////////////////////////////////////////////////////////////
 ActionType ApplicationManager::GetUserAction()
 {
 	//Call input to get what action is reuired from the user
@@ -160,6 +172,11 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 
 		
+		case DEL:
+			pAct = new ActionDelete(this);
+			break;
+
+
 		case EXIT:
 			///TODO: create ExitAction here
 			break;
@@ -212,29 +229,44 @@ void ApplicationManager::SaveCircut(ofstream& file) {
 void ApplicationManager::LoadCircut(ifstream& file) {
 	for (int i = 0; i < getCompCount(); i++) {
 		CompList[i]->Load(file);
+		
 
 		Action* pAct = nullptr;
-		if (CompList[i]->Component_type == "RES") pAct = new ActionAddRes(this);
+		if (CompList[i]->Component_type == "RES") CompList[i]->Draw(pUI);
 
-		else if (CompList[i]->Component_type == "LMP") pAct = new ActionAddLamp(this);
+		else if (CompList[i]->Component_type == "LMP") CompList[i]->Draw(pUI);
 
-		else if (CompList[i]->Component_type == "BAT") pAct = new ActionAddBat(this);
+		else if (CompList[i]->Component_type == "BAT") CompList[i]->Draw(pUI);
 
-		else if (CompList[i]->Component_type == "SWT") pAct = new ActionAddSwitch(this);
+		else if (CompList[i]->Component_type == "SWT") CompList[i]->Draw(pUI);
 
-		else if (CompList[i]->Component_type == "BUZ") pAct = new ActionAddBuzzer(this);
+		else if (CompList[i]->Component_type == "BUZ") CompList[i]->Draw(pUI);
 
-		else if (CompList[i]->Component_type == "FUS") pAct = new ActionAddFuse(this);
+		else if (CompList[i]->Component_type == "FUS") CompList[i]->Draw(pUI);
 
-		else if (CompList[i]->Component_type == "GND")pAct = new ActionAddGround(this);
+		else if (CompList[i]->Component_type == "GND")CompList[i]->Draw(pUI);
 
-		else if (CompList[i]->Component_type == "CON") pAct = new ActionConnect(this);
-
-		if (pAct)
-		{
-			pAct->Execute();
-			delete pAct;
-			pAct = nullptr;
-		}
+		else if (CompList[i]->Component_type == "CON") CompList[i]->Draw(pUI);
 	}
+}
+
+//////////////////////////////////////////////////////////////////////////////
+
+
+void ApplicationManager::multiDeleteComp() {
+	ActionType ActType;
+	ApplicationManager AppManager;
+	do
+	{
+		//Read user action
+		ActType = AppManager.GetUserAction();
+
+		//Exexute the action
+		AppManager.ExecuteAction(DEL);
+
+		//Update the drawing window
+		AppManager.UpdateInterface();
+
+
+	} while (ActType != DEL);
 }
