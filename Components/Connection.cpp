@@ -27,4 +27,7 @@ void Connection::Load(ifstream& file)
 
 }
 
+void Connection::Delete()
+{
 
+}

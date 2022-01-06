@@ -51,6 +51,7 @@ class UI
 		ITM_CONN,		
 		ITM_SIMULATE,
 		ITM_EXIT,
+		
 	
 
 
@@ -217,11 +218,22 @@ public:
 	void DrawResistor(const GraphicsInfo &r_GfxInfo, string my_label, double val, bool selected = false) ;
 	void DrawLamp(const GraphicsInfo &r_GfxInfo, string my_label, double val, bool Lighted, bool selected = false) const;
 	void DrawSwitch(const GraphicsInfo &r_GfxInfo, string my_label, double val, bool Closed, bool selected = false) const;
+
 	void DrawBattery(const GraphicsInfo &r_GfxInfo, string my_label, double val, bool selected = false) const;
 	void DrawFuse(const GraphicsInfo &r_GfxInfo, string my_label, double val, bool selected = false) const;
 	void DrawGround(const GraphicsInfo &r_GfxInfo, string my_label, double val, bool selected = false) const;
 	void DrawModule(const GraphicsInfo& r_GfxInfo, string my_label, double val, bool selected) const;
 	void DrawBuzzer(const GraphicsInfo &r_GfxInfo, string my_label, double val, bool selected = false) const;
+
+	//Delete Comp
+	void DeleteResistor(const GraphicsInfo& r_GfxInfo, string my_label, double val, bool selected = false)const;
+	void DeleteLamp(const GraphicsInfo& r_GfxInfo, string my_label, double val, bool selected = false) const;
+	void DeleteSwitch(const GraphicsInfo& r_GfxInfo, string my_label, double val, bool selected = false) const;
+	void DeleteBattery(const GraphicsInfo& r_GfxInfo, string my_label, double val, bool selected = false) const;
+	void DeleteFuse(const GraphicsInfo& r_GfxInfo, string my_label, double val, bool selected = false) const;
+	void DeleteGround(const GraphicsInfo& r_GfxInfo, string my_label, double val, bool selected = false) const;
+	void DeleteModule(const GraphicsInfo& r_GfxInfo, string my_label, double val, bool selected) const;
+	void DeleteBuzzer(const GraphicsInfo& r_GfxInfo, string my_label, double val, bool selected = false) const;
 
 	///TODO: Make similar functions for drawing all other components, connections, .. etc
 

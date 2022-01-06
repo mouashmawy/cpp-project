@@ -29,7 +29,7 @@ void Switch::Operate()
 void Switch::Save(ofstream &file)
 {
 	GraphicsInfo* List = getC();
-	file << "SWT" << "  " << label << "  " << "Value" << "  " << List->PointsList[0].x << "  " << List->PointsList[0].y << endl;
+	file << Component_type << "  " << label << "  " << "No Value" << "  " << List->PointsList[0].x << "  " << List->PointsList[0].y << endl;
 
 }
 
@@ -42,3 +42,10 @@ void Switch::Load(ifstream &file)
 	}
 }
 
+void Switch::Delete(UI* pUI, bool selected)
+{
+	if (selected) cout << "selected" << endl;
+	//Call output class and pass resistor drawing info to it.
+	//pUI->DrawGround(*m_pGfxInfo, label, selected); //update to draw resistor
+
+}

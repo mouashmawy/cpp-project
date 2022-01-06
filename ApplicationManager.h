@@ -44,6 +44,10 @@ public:
 	void SaveCircut(ofstream& file);
 	void LoadCircut(ifstream& file);
 	///////////////////////////////////////
+	void DeleteComponent(Component* pComp);
+	void multiDeleteComp();
+
+	//////////////////////////////////////
 
 	//Adds a new component to the list of components
 	void AddComponent(Component* pComp);

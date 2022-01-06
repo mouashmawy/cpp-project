@@ -13,5 +13,6 @@ public:
 	GraphicsInfo* getC();
 	void Save(ofstream& file);
 	void Load(ifstream& file);
+	virtual void Delete(UI*, bool selected = false);
 };
 

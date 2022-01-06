@@ -20,7 +20,7 @@ public:
 	virtual void Draw(UI* );	//for connection to Draw itself
 	void Save(ofstream& file);
 	void Load(ifstream& file);
-	
+	void Delete();
 
 };
 
