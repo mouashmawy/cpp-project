@@ -231,8 +231,8 @@ void ApplicationManager::SaveCircut(ofstream& file) {
 	}
 	file << ConnCount << endl;
 	for (int i = 0; i < ConnCount; i++) {
-		int Cmpt1 = getCompOrder(ConnList[i]->getCmpt(1));
-		int Cmpt2 = getCompOrder(ConnList[i]->getCmpt(2));
+		int Cmpt1 = getCmptid(ConnList[i]->getCmpt(1));
+		int Cmpt2 = getCmptid(ConnList[i]->getCmpt(2));
 		ConnList[i]->Save(file, Cmpt1, Cmpt2);
 	}
 }
