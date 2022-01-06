@@ -4,7 +4,7 @@
 //This header file contains some defenitions to be used all over the application
 
 //All possible actions
-enum ActionType 
+enum ActionType
 {
 	ADD_RESISTOR,		//Add a resistor
 	ADD_SWITCH,			//Add Switch
@@ -13,8 +13,10 @@ enum ActionType
 	ADD_BUZZER,
 	ADD_FUSE,
 	ADD_GROUND,
-	
+	ADD_MODULE,
 	ADD_CONNECTION,		//Add Wire Connection
+	SIMULATE,
+
 
 	ADD_Label,			//Add Label to a Component, a Connection
 	EDIT_L,			//Edit Label of a Component, a Connection
@@ -24,10 +26,16 @@ enum ActionType
 	SELECT,		//Select a Component, a Connection
 	EDIT_V,
 	DEL,		//Delete a Component, a Connection
+	MULTIDEL,
 	MOVE,		//Move a Component, a Connection
 
 	SAVE,		//Save the whole Circuit to a file
 	LOAD,		//Load a Circuit from a file
+
+	COPY,
+	CUT,
+	PASTE,
+
 
 	UNDO,		//Undo the last Action preformed
 	REDO,		//Redo the last Action canceled

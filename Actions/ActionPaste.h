@@ -1,11 +1,10 @@
 #pragma once
 
-#include "action.h"
-#include "..\Components\connection.h"
+#include "ActionCopyCutPaste.h"
 #include "..\ApplicationManager.h"
 
 //Class responsible for adding a new resistor action
-class ActionCopyCutPaste : public Action
+class ActionPaste : public ActionCopyCutPaste
 {
 private:
 	ApplicationManager* pApp;
@@ -18,14 +17,14 @@ private:
 protected:
 	static int cpd_value;
 	static string cpd_label;
-	Component* p_cpd_comp;
+	static Component* p_cpd_comp;
 
 	 
 
 
 public:
-	ActionCopyCutPaste(ApplicationManager* pApp);
-	virtual ~ActionCopyCutPaste(void);
+	ActionPaste(ApplicationManager* pApp);
+	virtual ~ActionPaste(void);
 
 
 	Component* CompInPlace(int xx, int yy);

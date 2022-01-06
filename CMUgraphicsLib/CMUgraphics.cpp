@@ -58,6 +58,12 @@ static LRESULT CALLBACK WindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lP
 
 	  case WM_KEYDOWN:
 	    switch(wParam) {
+		case VK_CONTROL:
+			if (wipInput != NULL) {
+				wipInput->SetKeyInfo(hwnd, CTRL, 1);
+			}
+			break;
+
 		  case VK_END:
             if(wipInput != NULL) {
                 wipInput->SetKeyInfo(hwnd, ARROW, 1);

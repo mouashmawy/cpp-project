@@ -5,7 +5,7 @@
 class Switch :public Component
 {
 	int Cx, Cy;
-
+	bool state_Closed;
 
 public:
 	Switch(GraphicsInfo* r_GfxInfo, string name);

@@ -1,4 +1,0 @@
-	MenuItem[ITM_EDIT_L] = "images\\Edit\\Menu_Edit_L";
-	MenuItem[ITM_EDIT_V] = "images\\Edit\\Menu_Edit_V";
-	MenuItem[ITM_SAVE] = "images\\Edit\\Menu_Save.jpg";
-	MenuItem[ITM_LOAD] = "images\\Edit\\Menu_Load.jpg";

@@ -163,6 +163,8 @@
     <ClCompile Include="Actions\ActionCopyCutPaste.cpp" />
     <ClCompile Include="Components\Module.cpp" />
     <ClCompile Include="Actions\ActionAddModule.cpp" />
+    <ClCompile Include="Actions\ActionCopy.cpp" />
+    <ClCompile Include="Actions\ActionPaste.cpp" />
     <ClCompile Include="Actions\ActionDelete.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -267,6 +269,8 @@
     <ClInclude Include="Actions\ActionCopyCutPaste.h" />
     <ClInclude Include="Components\Module.h" />
     <ClInclude Include="Actions\ActionAddModule.h" />
+    <ClInclude Include="Actions\ActionCopy.h" />
+    <ClInclude Include="Actions\ActionPaste.h" />
     <ClInclude Include="Actions\ActionDelete.h" />
   </ItemGroup>
   <ItemGroup>

@@ -8,12 +8,15 @@
 #include "Actions\ActionAddBuzzer.h"
 #include "Actions\ActionAddFuse.h"
 #include "Actions\ActionAddGround.h"
+#include "Actions\ActionAddModule.h"
 #include "Actions\ActionConnect.h"
 #include "Actions\ActionSelect.h"
 #include "Actions\ActionEditL.h"
 #include "Actions\ActionEditV.h"
 #include "Actions\ActionSaveCircut.h"
 #include "Actions\ActionLoadCircut.h"
+#include "Actions\ActionCopy.h"
+#include "Actions\ActionPaste.h"
 #include "Actions\ActionDelete.h"
 
 ApplicationManager::ApplicationManager()
@@ -128,6 +131,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case ADD_GROUND:
 			pAct = new ActionAddGround(this);
 			break;
+		case ADD_MODULE:
+			pAct = new ActionAddModule(this);
+			break;
 
 		case ADD_CONNECTION:
 			pAct = new ActionConnect(this);
@@ -153,9 +159,23 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct = new ActionLoadCircut(this);
 			break;
 
+		case COPY:
+			pAct = new ActionCopy(this);
+			break;
+
+		case CUT:
+			pAct = new ActionCopy(this);
+			break;
+
+		case PASTE:
+			pAct = new ActionPaste(this);
+			break;
+
+		
 		case DEL:
 			pAct = new ActionDelete(this);
 			break;
+
 
 		case EXIT:
 			///TODO: create ExitAction here
