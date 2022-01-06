@@ -18,7 +18,7 @@ private:
 protected:
 	static int cpd_value;
 	static string cpd_label;
-	static Component* p_cpd_comp;
+	Component* p_cpd_comp;
 
 	 
 

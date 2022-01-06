@@ -40,38 +40,28 @@ Component* ActionCopy::CompInPlace(int xx, int yy)
 
 void ActionCopy::Execute()
 {
-
-	//Get a Pointer to the user Interfaces
 	UI* pUI = pManager->GetUI();
-	GraphicsInfo* pGInfo = new GraphicsInfo(2); //Gfx info to be used to construct the Comp
+	GraphicsInfo* pGInfo = new GraphicsInfo(2); 	
+	pUI->PrintMsg("Press sth to copy");
 
-	
-	//Print Action Message
-	//pUI->PrintMsg("selecting an item....");
-	pUI->GetPreviousClick(x1, y1);
-//	cout <<"xx"<< x1 << " " << y2 << endl;
-	//pUI->ClearStatusBar();
-
+	pUI->GetPointClicked(x1, y1);
 	Component* compSel = CompInPlace(x1, y1);
 	
 	if (compSel == nullptr) {
+		pUI->PrintMsg("nothing to copy");
+		pUI->GetPointClicked(x1, y1);
+		pUI->ClearStatusBar();
 		return;
 	}
 	compSel->Draw(pUI,true);
+	p_cpd_comp = compSel;
 	
-	pUI->PrintMsg(compSel->getType()+"::      "+
-		"Label: "+compSel->getLabel()	+
-		"   ---   Value: " + to_string(compSel->getValue())  );
+	pUI->PrintMsg(compSel->getType()+compSel->getLabel()+"copied successfully");
 	pUI->GetPointClicked(x1, y1);
+	pUI->ClearStatusBar();
+	compSel->Draw(pUI);
 
-	Component* compSel2 = CompInPlace(x1, y1);
-	if (compSel2 == nullptr) {
-		compSel->Draw(pUI);
-		pUI->ClearStatusBar();
 
-		return;
-	}
-	else ActionCopy::Execute();
 										
 			
 }

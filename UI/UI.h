@@ -73,7 +73,7 @@ class UI
 		ITM_REDO,
 
 		ITM_DEL,
-		ITM_MULTIDEL
+		ITM_MULTIDEL,
 
 
 		ITM_DSN_CNT2
@@ -236,7 +236,7 @@ public:
 	
 	void PrintMsg(string msgbool) const;	//Print a message on Status bar
 
-	void getSatusForConnect();
+	
 
 	void DrawTemp(const GraphicsInfo& r_GfxInfo, int type) const;
 

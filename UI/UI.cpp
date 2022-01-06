@@ -386,6 +386,8 @@ void UI::CreateEditToolBar()
 	MenuItem[ITM_PASTE] = "images\\Edit\\paste.jpg";
 	MenuItem[ITM_UNDO] = "images\\Edit\\undo.jpg";
 	MenuItem[ITM_REDO] = "images\\Edit\\redo.jpg";
+	MenuItem[ITM_DEL] = "images\\Edit\\undo.jpg";
+	MenuItem[ITM_MULTIDEL] = "images\\Edit\\redo.jpg";
 	
 
 
