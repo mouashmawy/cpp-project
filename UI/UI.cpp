@@ -386,8 +386,8 @@ void UI::CreateEditToolBar()
 	MenuItem[ITM_PASTE] = "images\\Edit\\paste.jpg";
 	MenuItem[ITM_UNDO] = "images\\Edit\\undo.jpg";
 	MenuItem[ITM_REDO] = "images\\Edit\\redo.jpg";
-	MenuItem[ITM_DEL] = "images\\Edit\\undo.jpg";
-	MenuItem[ITM_MULTIDEL] = "images\\Edit\\redo.jpg";
+	MenuItem[ITM_DEL] = "images\\Edit\\Delete.jpg";
+	MenuItem[ITM_MULTIDEL] = "images\\Edit\\Multi_Delete.jpg";
 	
 
 
@@ -443,7 +443,7 @@ void UI::CreateSimulationToolBar()
 //								Components Drawing Functions							//
 //======================================================================================//
 
-void UI::DrawResistor(const GraphicsInfo& r_GfxInfo, string my_label,double val, bool selected) 
+void UI::DrawResistor(const GraphicsInfo& r_GfxInfo, string my_label,double val, bool selected) const
 {	
 
 	string ResImage;
@@ -467,6 +467,7 @@ void UI::DrawResistor(const GraphicsInfo& r_GfxInfo, string my_label,double val,
 		
 
 }
+
 //TODO: Add similar functions to draw all other components
 
 void UI::DrawLamp(const GraphicsInfo& r_GfxInfo, string my_label,double val,bool Lighted, bool selected) const
@@ -773,3 +774,14 @@ UI::~UI()
 }
 
 
+////////////////////////////////////////////////////////////////////////////////////////////
+//                                 Deleting Comps                                         //
+////////////////////////////////////////////////////////////////////////////////////////////
+void UI::DeleteResistor(const GraphicsInfo& r_GfxInfo, string my_label, double val, bool selected)const {};
+void UI::DeleteLamp(const GraphicsInfo& r_GfxInfo, string my_label, double val, bool selected) const {};
+void UI::DeleteSwitch(const GraphicsInfo& r_GfxInfo, string my_label, double val, bool selected ) const {};
+void UI::DeleteBattery(const GraphicsInfo& r_GfxInfo, string my_label, double val, bool selected ) const {};
+void UI::DeleteFuse(const GraphicsInfo& r_GfxInfo, string my_label, double val, bool selected ) const {};
+void UI::DeleteGround(const GraphicsInfo& r_GfxInfo, string my_label, double val, bool selected ) const {};
+void UI::DeleteModule(const GraphicsInfo& r_GfxInfo, string my_label, double val, bool selected) const {};
+void UI::DeleteBuzzer(const GraphicsInfo& r_GfxInfo, string my_label, double val, bool selected ) const {};

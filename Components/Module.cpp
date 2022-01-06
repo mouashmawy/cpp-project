@@ -6,12 +6,11 @@ Module::Module(GraphicsInfo *r_GfxInfo, string name, double val):Component(r_Gfx
 {
 	label = name;
 	value = val;
-	Component_type = "RES";
+	Component_type = "MOD";
 }
 
 void Module::Draw(UI* pUI,bool selected)
 {
-	if (selected) cout << "selected" << endl;
 	//Call output class and pass Module drawing info to it.
 	pUI->DrawModule(*m_pGfxInfo,label,value, selected); //update to draw Module
 	
@@ -31,14 +30,21 @@ void Module::Operate()
 void Module::Save(ofstream &file)
 {
 	GraphicsInfo* List = getC();
-	file << "RES" << "  " << label << "  " << "Value" << "  " << List->PointsList[0].x << "  " << List->PointsList[0].y << endl;
+	file << Component_type << "  " << label << "  " << value << "  " << List->PointsList[0].x << "  " << List->PointsList[0].y << endl;
 }
 
 void Module::Load(ifstream &file)
 {
-	string NAME_OF_COMPONENT, LABEL, VALUE;
-	int ID, X, Y;
-	while (!file.eof()) {
-		file >> ID >> NAME_OF_COMPONENT >> LABEL >> VALUE >> X >> Y;
-	}
+	char NAME_OF_COMPONENT, LABEL;
+	int ID, X, Y, Count, VALUE;
+	file >> Count >> ID >> NAME_OF_COMPONENT >> LABEL >> VALUE >> X >> Y;
+	
+}
+
+void Module::Delete(UI* pUI, bool selected)
+{
+	if (selected) cout << "selected" << endl;
+	//Call output class and pass resistor drawing info to it.
+	//pUI->DrawGround(*m_pGfxInfo, label, selected); //update to draw resistor
+
 }

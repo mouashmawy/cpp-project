@@ -1,4 +1,15 @@
 #include "ActionPaste.h"
+
+#include "..\Components\Resistor.h"
+#include "..\Components\Lamp.h"
+#include "..\Components\Battery.h"
+#include "..\Components\Switch.h"
+#include "..\Components\Buzzer.h"
+#include "..\Components\Fuse.h"
+#include "..\Components\Ground.h"
+#include "..\Components\Module.h"
+
+
 #include "..\ApplicationManager.h"
 #include <iostream>
 using namespace std;
@@ -39,37 +50,47 @@ Component* ActionPaste::CompInPlace(int xx, int yy)
 void ActionPaste::Execute()
 {
 
-	//Get a Pointer to the user Interfaces
 	UI* pUI = pManager->GetUI();
 	GraphicsInfo* pGInfo = new GraphicsInfo(2); //Gfx info to be used to construct the Comp
 
-	
-	//Print Action Message
-	//pUI->PrintMsg("selecting an item....");
-	pUI->GetPreviousClick(x1, y1);
-//	cout <<"xx"<< x1 << " " << y2 << endl;
-	//pUI->ClearStatusBar();
+	int Sx = 0, Sy = 0;
+	int i = 0;
 
-	Component* compSel = CompInPlace(x1, y1);
-	
-	if (compSel == nullptr) {
-		return;
-	}
-	compSel->Draw(pUI,true);
-	
-	pUI->PrintMsg(compSel->getType()+"::      "+
-		"Label: "+compSel->getLabel()	+
-		"   ---   Value: " + to_string(compSel->getValue())  );
-	pUI->GetPointClicked(x1, y1);
-
-	Component* compSel2 = CompInPlace(x1, y1);
-	if (compSel2 == nullptr) {
-		compSel->Draw(pUI);
+	pUI->PrintMsg("Press anywhere to paste the component");
+	pUI->GetPointClicked(Sx, Sy);
+	if (isConflict(Sx, Sy, pUI->getCompWidth(), pUI->getCompHeight())) {
+		pUI->PrintMsg("Wrong.. you pressed on another item");
+		pUI->GetPointClicked(Sx, Sy);
 		pUI->ClearStatusBar();
-
 		return;
+		cout << i++;
+		//ActionPaste::Execute();
+
 	}
-	else ActionPaste::Execute();
+	else {
+
+		int compWidth = pUI->getCompWidth();
+		int compHeight = pUI->getCompHeight();
+		x1 = Sx - compWidth / 2;
+		y1 = Sy - compHeight / 2;
+		x2 = Sx + compWidth / 2;
+		y2 = Sy + compHeight / 2;
+		pGInfo->PointsList[0].x = x1;
+		pGInfo->PointsList[0].y = y1;
+		pGInfo->PointsList[1].x = x2;
+		pGInfo->PointsList[1].y = y2;
+
+		
+		pManager->getCpdComp()->setC(pGInfo);
+		pManager->AddComponent(pManager->getCpdComp());
+		pManager->getCpdComp()->Draw(pUI, true);
+
+		pUI->PrintMsg("Comp " + pManager->getCpdComp()->getType() + " " + pManager->getCpdComp()->getLabel() + " pasted successfully");
+		pUI->GetPointClicked(x1, y1);
+		pUI->ClearStatusBar();
+		pManager->getCpdComp()->Draw(pUI);
+		
+	}
 										
 			
 }

@@ -27,7 +27,6 @@ void ActionLoadCircut::Execute()
 	pUI->PrintMsg("Loading...");
 	ifstream Load("file1.txt");
 
-
 	pManager->LoadCircut(Load);
 	pUI->PrintMsg("Loaded");
 }

@@ -44,6 +44,7 @@ public:
 	virtual void Operate() = 0;	//Calculates the output voltage according to the inputs
 	virtual void Draw(UI*,bool selected=false) =0;	//for each component to Draw itself
 	virtual GraphicsInfo* getC() ;
+	virtual void setC(GraphicsInfo* c);
 	string getLabel();
 	void setLabel(string ll="");
 	double getValue();
@@ -53,6 +54,12 @@ public:
 	virtual void Save(ofstream& file) = 0;
 	virtual void Load(ifstream& file) = 0;
 
+
+
+
+
+	virtual void Delete(UI* pUI, bool selected) = 0;
+	
 	//virtual int GetOutPinStatus()=0;	//returns status of outputpin if LED, return -1
 	//virtual int GetInputPinStatus(int n)=0;	//returns status of Inputpin # n if SWITCH, return -1
 

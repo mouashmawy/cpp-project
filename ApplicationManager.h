@@ -18,7 +18,7 @@ private:
 	int ConnCount;
 	Component* CompList[MaxCompCount];	//List of all Components (Array of pointers)
 	Connection* ConnList[MaxConnCount];
-
+	Component* pCpdComp;
 
 	UI* pUI; //pointer to the UI
 
@@ -44,6 +44,10 @@ public:
 	void SaveCircut(ofstream& file);
 	void LoadCircut(ifstream& file);
 	///////////////////////////////////////
+	void DeleteComponent(Component* pComp);
+	void multiDeleteComp();
+
+	//////////////////////////////////////
 
 	//Adds a new component to the list of components
 	void AddComponent(Component* pComp);
@@ -53,7 +57,8 @@ public:
 
 	Component** getCompList();
 
-
+	void setCpdComp(Component* c);
+	Component* getCpdComp();
 
 
 	int getCompCount() const;
