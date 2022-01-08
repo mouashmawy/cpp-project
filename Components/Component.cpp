@@ -1,5 +1,7 @@
 #include "Component.h"
 
+int Component::ID = 1;
+
 string Component::getLabel()
 {
 	return label;
@@ -24,6 +26,19 @@ string Component::getType()
 	return Component_type;
 }
 
+bool Component::CheckSelection()
+{
+	return Selected;
+}
+
+void Component::Select() {
+	if (Selected == false) Selected = true;
+	else Selected = false;
+}
+void Component::DeleteGraphic()
+{
+	delete m_pGfxInfo;
+}
 
 
 Component::Component(GraphicsInfo *r_GfxInfo)

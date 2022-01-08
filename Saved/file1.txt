@@ -1,0 +1,7 @@
+RES  1  »Ì·  44  169  236
+FUS  2  ·»«  No Value  561  246
+BAT  3  «»·«  No Value  357  236
+Connections
+2
+1  3
+3  2

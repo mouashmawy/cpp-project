@@ -31,8 +31,9 @@ void Battery::Operate()
 void Battery::Save(ofstream &file)
 {
 	GraphicsInfo* List = getC();
-	file << Component_type << "  " << label << "  " << value << "  " << List->PointsList[0].x << "  " << List->PointsList[0].y << endl;
-}
+	file << Component_type << "  " << ID << "  " << label << "  " << "No Value" << "  " << List->PointsList[0].x << "  " << List->PointsList[0].y << endl;
+	ID++;
+	}
 
 void Battery::Load(ifstream &file)
 {
@@ -41,11 +42,7 @@ void Battery::Load(ifstream &file)
 	file >> Count >> ID >> NAME_OF_COMPONENT >> LABEL >> VALUE >> X >> Y;
 }
 
-void Battery::Delete(UI* pUI, bool selected)
+void Battery::Delete()
 {
-
-	//Call output class and pass resistor drawing info to it.
-	//pUI->DrawBattery(*m_pGfxInfo, label, selected); //update to draw resistor
-
-
+	delete m_pGfxInfo;
 }

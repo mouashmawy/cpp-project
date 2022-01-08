@@ -30,7 +30,6 @@ void ActionSaveCircut::Execute()
 	pUI->PrintMsg("Saving...");
 	ofstream Save;
 	Save.open("Saved\\file1.txt");
-	Save << pManager->getCompCount() << endl;
  	pManager->SaveCircut(Save);
 	pUI->PrintMsg("Saved");
 }

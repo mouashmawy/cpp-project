@@ -51,7 +51,7 @@ void ActionSelect::Execute()
 		return;
 	}
 	compSel->Draw(pUI,true);
-	
+	compSel->Select();
 	pUI->PrintMsg(compSel->getType()+"::      "+
 		"Label: "+compSel->getLabel()	+
 		"   ---   Value: " + to_string(compSel->getValue())  );

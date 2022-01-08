@@ -29,7 +29,8 @@ void Fuse::Operate()
 void Fuse::Save(ofstream &file)
 {
 	GraphicsInfo* List = getC();
-	file << Component_type << "  " << label << "  " << "No Value" << "  " << List->PointsList[0].x << "  " << List->PointsList[0].y << endl;
+	file << Component_type << "  " << ID << "  " << label << "  " << "No Value" << "  " << List->PointsList[0].x << "  " << List->PointsList[0].y << endl;
+	ID++;
 }
 
 void Fuse::Load(ifstream &file)
@@ -40,9 +41,8 @@ void Fuse::Load(ifstream &file)
 
 }
 
-void Fuse::Delete(UI* pUI, bool selected)
+void Fuse::Delete()
 {
-	//Call output class and pass resistor drawing info to it.
-	//pUI->DrawFuse(*m_pGfxInfo, label, selected); //update to draw resistor
+	delete m_pGfxInfo;
 
 }

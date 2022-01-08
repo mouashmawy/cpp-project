@@ -45,6 +45,7 @@ public:
 	void LoadCircut(ifstream& file);
 	///////////////////////////////////////
 	void DeleteComponent(Component* pComp);
+	void DeleteAll();
 	void multiDeleteComp();
 
 	//////////////////////////////////////
@@ -54,7 +55,9 @@ public:
 
 
 	void AddConnection(Connection* pConn);
-
+	///////////////////////////////////// 
+	int ApplicationManager::getCmptid(Component* comp);
+	////////////////////////////////////
 	Component** getCompList();
 
 	void setCpdComp(Component* c);

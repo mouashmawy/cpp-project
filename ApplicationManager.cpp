@@ -91,10 +91,16 @@ int ApplicationManager::getCompCount() const
 void ApplicationManager::DeleteComponent(Component* pComp)
 {
 	for (int i = 0; i < CompCount; i++) {
-		if (CompList[i] == pComp) {
-			CompList[i] = CompList[i + 1];
+		if (CompList[i] == pComp )
+		{
+			if (CompList[i]->CheckSelection()){
+				CompList[i]->DeleteGraphic();
+				delete CompList[i];
+				CompList[i] = nullptr;
+			}
 		}
-		else CompList[i] = CompList[i];
+		
+
 	}
 }
 ////////////////////////////////////////////////////////////////////
@@ -227,8 +233,13 @@ ApplicationManager::~ApplicationManager()
 void ApplicationManager::SaveCircut(ofstream& file) {
 
 	for (int i = 0; i < CompCount; i++) {
-		file << i + 1 << "  ";
 		CompList[i]->Save(file);
+	}
+	file <<"Connections"<<endl << ConnCount << endl;
+	for (int i = 0; i < ConnCount; i++) {
+		int Cmpt1 = getCmptid(ConnList[i]->getCmpt(1));
+		int Cmpt2 = getCmptid(ConnList[i]->getCmpt(2));
+		ConnList[i]->Save(file, Cmpt1, Cmpt2);
 	}
 }
 
@@ -259,8 +270,24 @@ void ApplicationManager::LoadCircut(ifstream& file) {
 }
 
 //////////////////////////////////////////////////////////////////////////////
+/// Getting the ID of the compnents
 
+int ApplicationManager::getCmptid(Component* comp) {
+	for (int i = 0; i < CompCount; i++) {
+		if (comp == CompList[i])
+			return i +1;
+	}
+}
 
+/////////////////////////////////////////////////////////////////////////////
+
+void ApplicationManager::DeleteAll() {
+	for (int i = 0; i < CompCount; i++) {
+		DeleteComponent(CompList[i]);
+	}
+}
+
+////////////////////////////////////////////////////////////////////////////
 void ApplicationManager::multiDeleteComp() {
 	ActionType ActType;
 	ApplicationManager AppManager;
@@ -278,3 +305,4 @@ void ApplicationManager::multiDeleteComp() {
 
 	} while (ActType != DEL);
 }
+

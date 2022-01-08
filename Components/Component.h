@@ -17,7 +17,7 @@ protected:
 	//Each component has two ending terminals (term1, term2)
 	double term1_volt, term2_volt;	//voltage at terminals 1&2
 
-
+	static int ID;
 	int Cx, Cy;
 
 
@@ -41,6 +41,8 @@ public:
 	//double getTerm1Volt();				//returns the voltage at terminal1
 	//double getTerm2Volt();				//returns the voltage at terminal2
 
+
+	bool Selected ;
 	virtual void Operate() = 0;	//Calculates the output voltage according to the inputs
 	virtual void Draw(UI*,bool selected=false) =0;	//for each component to Draw itself
 	virtual GraphicsInfo* getC() ;
@@ -50,15 +52,16 @@ public:
 	double getValue();
 	void setValue(double v=0);
 	string getType();
+	bool CheckSelection();
 
 	virtual void Save(ofstream& file) = 0;
 	virtual void Load(ifstream& file) = 0;
 
+	void DeleteGraphic();
+	void Select();
 
 
-
-
-	virtual void Delete(UI* pUI, bool selected) = 0;
+	virtual void Delete() = 0;
 	
 	//virtual int GetOutPinStatus()=0;	//returns status of outputpin if LED, return -1
 	//virtual int GetInputPinStatus(int n)=0;	//returns status of Inputpin # n if SWITCH, return -1

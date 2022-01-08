@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iostream>
 
+
 Connection::Connection(GraphicsInfo *r_GfxInfo, string text,Component *cmp1, Component *cmp2)
 {
 	cout << 6;
@@ -17,9 +18,19 @@ void Connection::Draw(UI* pUI)
 	pUI->DrawConnection(*pGfxInfo, ConnLabel);
 }
 
-void Connection::Save(ofstream& file)
+Component* Connection::getCmpt(int order) {
+	if (order == 1) {
+		return Cmpnt1;
+	}
+	else if (order == 2) {
+		return Cmpnt2;
+	}
+	else return nullptr;
+}
+
+void Connection::Save(ofstream& file, int Cmpt1, int Cmpt2)
 {
-	file << Cmpnt1 << "  " << Cmpnt2 << endl;
+	file << Cmpt1 << "  " << Cmpt2 << endl;
 }
 
 void Connection::Load(ifstream& file)
