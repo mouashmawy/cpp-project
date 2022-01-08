@@ -30,7 +30,8 @@ void Lamp::Operate()
 void Lamp::Save(ofstream &file)
 {
 	GraphicsInfo* List = getC();
-	file << Component_type << "  " << label << "  " << value << "  " << List->PointsList[0].x << "  " << List->PointsList[0].y << endl;
+	file << Component_type << "  " << ID << "  " << label << "  " << "No Value" << "  " << List->PointsList[0].x << "  " << List->PointsList[0].y << endl;
+	ID++;
 }
 
 void Lamp::Load(ifstream &file)
@@ -41,10 +42,8 @@ void Lamp::Load(ifstream &file)
 
 }
 
-void Lamp::Delete(UI* pUI, bool selected)
+void Lamp::Delete()
 {
-	if (selected) cout << "selected" << endl;
-	//Call output class and pass resistor drawing info to it.
-	//pUI->DrawGround(*m_pGfxInfo, label, selected); //update to draw resistor
+	delete m_pGfxInfo;
 
 }
