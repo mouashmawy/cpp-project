@@ -45,6 +45,7 @@ public:
 	void LoadCircut(ifstream& file);
 	///////////////////////////////////////
 	void DeleteComponent(Component* pComp);
+	void DeleteAll();
 	void multiDeleteComp();
 
 	//////////////////////////////////////

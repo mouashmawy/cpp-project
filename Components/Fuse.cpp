@@ -41,9 +41,8 @@ void Fuse::Load(ifstream &file)
 
 }
 
-void Fuse::Delete(UI* pUI, bool selected)
+void Fuse::Delete()
 {
-	//Call output class and pass resistor drawing info to it.
-	//pUI->DrawFuse(*m_pGfxInfo, label, selected); //update to draw resistor
+	delete m_pGfxInfo;
 
 }

@@ -1,7 +1,7 @@
-3
-RES  1  hg  No Value  197  154
-BUZ  2  gd  No Value  417  147
-LMP  3  fhg  No Value  645  150
+RES  1  »Ì·  44  169  236
+FUS  2  ·»«  No Value  561  246
+BAT  3  «»·«  No Value  357  236
+Connections
 2
-1  2
-2  3
+1  3
+3  2

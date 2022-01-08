@@ -42,7 +42,7 @@ void Buzzer::Load(ifstream &file)
 	
 }
 
-void Buzzer::Delete(UI* pUI, bool selected)
+void Buzzer::Delete()
 {
-
+	delete m_pGfxInfo;
 }
