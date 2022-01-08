@@ -67,6 +67,15 @@ void ActionSelect::Execute()
 
 		return;
 	}
+	else if(x1>1100)
+	{//checking if it is in edit bar
+
+		ActionType ActType;
+		ActType = pManager->GetUserAction();
+		pManager->ExecuteAction(ActType);
+		pManager->UpdateInterface();
+	}
+	
 	else ActionSelect::Execute();
 										
 			
