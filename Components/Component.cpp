@@ -32,8 +32,7 @@ bool Component::CheckSelection()
 }
 
 void Component::Select() {
-	if (Selected == false) Selected = true;
-	else Selected = false;
+	Selected = true;
 }
 
 

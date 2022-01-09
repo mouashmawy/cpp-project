@@ -64,7 +64,7 @@ void ActionSelect::Execute()
 	if (compSel2 == nullptr & x1 < 1100) {
 		compSel->Draw(pUI);
 		pUI->ClearStatusBar();
-
+		
 		return;
 	}
 	else if(x1>1100)

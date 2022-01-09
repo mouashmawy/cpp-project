@@ -13,19 +13,14 @@ ActionDelete::~ActionDelete(void)
 }
 
 
-Component* ActionDelete::CompInPlace(int xx, int yy)
-{
-
-	return nullptr;
-}
-
-
 
 void ActionDelete::Execute()
-{
+{	
+	
 	UI* pUI = pManager->GetUI();
 	pManager->DeleteAll();
 	pUI->PrintMsg("Deleted");
+	
 }
 
 void ActionDelete::Undo()
