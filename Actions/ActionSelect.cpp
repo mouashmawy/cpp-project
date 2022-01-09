@@ -61,7 +61,7 @@ void ActionSelect::Execute()
 	pUI->GetPointClicked(x1, y1);
 
 	Component* compSel2 = CompInPlace(x1, y1);
-	if (compSel2 == nullptr) {
+	if (compSel2 == nullptr & x1 < 1100) {
 		compSel->Draw(pUI);
 		pUI->ClearStatusBar();
 
@@ -69,7 +69,7 @@ void ActionSelect::Execute()
 	}
 	else if(x1>1100)
 	{//checking if it is in edit bar
-
+		pUI->PrintMsg("click another time");
 		ActionType ActType;
 		ActType = pManager->GetUserAction();
 		pManager->ExecuteAction(ActType);
