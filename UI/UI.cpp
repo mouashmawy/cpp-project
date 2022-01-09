@@ -4,6 +4,16 @@
 #include<windows.h>
 #include <cmath>
 #include <cstdio>
+
+
+#include <chrono>
+#include <iostream>
+using std::cout; using std::endl;
+using std::chrono::duration_cast;
+using std::chrono::milliseconds;
+using std::chrono::system_clock;
+
+
 UI::UI()
 {
 	AppMode = DESIGN;	//Design Mode is the startup mode
@@ -137,7 +147,8 @@ string UI::GetSrting()
 
 //This function reads the position where the user clicks to determine the desired action
 ActionType UI::GetUserAction() const
-{	
+{
+	float time;
 	int x,y;
 	pWind->WaitMouseClick(x, y);	//Get the coordinates of the user click
 
@@ -191,9 +202,40 @@ ActionType UI::GetUserAction() const
 			}
 		}
 		else {
+			long long startTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+			long long endTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+			cout << " ";
+			cout << GetDoubleClickTime()<<endl;
+			while (endTime - startTime > 400) {
+				//GetPointClicked2(x,y)
+
+
+
+			}
+
+
+
+
 			return SELECT;
 		}
 	
+
+
+
+			long long startTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+			/// <summary>
+			/// 
+			/// </summary>
+			/// <returns></returns>
+			
+
+
+
+
+
+
+
+
 
 
 		/*

@@ -35,7 +35,6 @@ Component* ActionSelect::CompInPlace(int xx, int yy)
 }
 
 
-
 void ActionSelect::Execute()
 {
 
