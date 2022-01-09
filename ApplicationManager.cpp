@@ -93,16 +93,15 @@ void ApplicationManager::DeleteComponent(Component* pComp)
 	for (int i = 0; i < CompCount; i++) {
 		if (CompList[i] == pComp )
 		{
-			if (CompList[i]->CheckSelection()){
-				CompList[i]->DeleteGraphic();
-				delete CompList[i];
-				CompList[i] = nullptr;
+				CompList[i]->Delete();
+				CompList[i] = CompList[i + 1];
+				CompCount--;
 			}
 		}
 		
 
 	}
-}
+
 ////////////////////////////////////////////////////////////////////
 
 
@@ -283,8 +282,10 @@ int ApplicationManager::getCmptid(Component* comp) {
 
 void ApplicationManager::DeleteAll() {
 	for (int i = 0; i < CompCount; i++) {
-		DeleteComponent(CompList[i]);
+		if (CompList[i]->CheckSelection())
+			DeleteComponent(CompList[i]);
 	}
+
 }
 
 ////////////////////////////////////////////////////////////////////////////

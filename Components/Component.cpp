@@ -37,13 +37,6 @@ void Component::Select() {
 }
 
 
-
-void Component::DeleteGraphic()
-{
-	delete m_pGfxInfo;
-}
-
-
 Component::Component(GraphicsInfo *r_GfxInfo)
 {
 	m_pGfxInfo = r_GfxInfo;	
