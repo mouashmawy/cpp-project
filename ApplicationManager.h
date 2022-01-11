@@ -27,7 +27,7 @@ private:
 public:	
 	ApplicationManager(); //constructor
 
-	bool isConflict(int xx, int yy, int ww, int hh) const;
+	bool isConflict(int xx, int yy, int ww, int hh, Component* c=nullptr) const;
 
 	//Reads the required action from the user and returns the corresponding action type
 	ActionType GetUserAction();

@@ -35,9 +35,8 @@ ApplicationManager::ApplicationManager()
 	pUI = new UI;
 }
 /////////////////////////////////////////////////////////////////////
-bool ApplicationManager::isConflict(int xx, int yy, int ww, int hh) const
+bool ApplicationManager::isConflict(int xx, int yy, int ww, int hh, Component* c) const
 {
-
 
 	if (yy > pUI->gB().height - pUI->gB().StatusBarHeight - hh / 2 -1 ||
 		yy < pUI->gB().ToolBarHeight + hh ||
@@ -52,7 +51,12 @@ bool ApplicationManager::isConflict(int xx, int yy, int ww, int hh) const
 				yy >= CompList[i]->getC()->PointsList[0].y - hh &&
 				xx <= CompList[i]->getC()->PointsList[1].x + ww / 2 &&
 				yy <= CompList[i]->getC()->PointsList[1].y + hh)
-			)	return true;
+
+			) {
+			if (CompList[i] == c) return false;
+			else return true;
+		}
+			
 
 	}
 
