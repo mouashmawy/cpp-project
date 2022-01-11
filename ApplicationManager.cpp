@@ -11,6 +11,7 @@
 #include "Actions\ActionAddModule.h"
 #include "Actions\ActionConnect.h"
 #include "Actions\ActionSelect.h"
+#include "Actions\ActionMove.h"
 #include "Actions\ActionEditL.h"
 #include "Actions\ActionEditV.h"
 #include "Actions\ActionSaveCircut.h"
@@ -155,6 +156,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	
 		case SELECT:
 			pAct = new ActionSelect(this);
+			break;
+
+		case MOVE:
+			pAct = new ActionMove(this);
 			break;
 
 		case EDIT_L:

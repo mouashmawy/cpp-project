@@ -127,6 +127,7 @@
     <ClCompile Include="Actions\ActionEditL.cpp" />
     <ClCompile Include="Actions\ActionEditV.cpp" />
     <ClCompile Include="Actions\ActionLoadCircut.cpp" />
+    <ClCompile Include="Actions\ActionMove.cpp" />
     <ClCompile Include="Actions\ActionPaste.cpp" />
     <ClCompile Include="Actions\ActionSaveCircut.cpp" />
     <ClCompile Include="Actions\ActionSelect.cpp" />
@@ -198,6 +199,7 @@
     <ClInclude Include="Actions\ActionEditL.h" />
     <ClInclude Include="Actions\ActionEditV.h" />
     <ClInclude Include="Actions\ActionLoadCircut.h" />
+    <ClInclude Include="Actions\ActionMove.h" />
     <ClInclude Include="Actions\ActionPaste.h" />
     <ClInclude Include="Actions\ActionSaveCircut.h" />
     <ClInclude Include="Actions\ActionSelect.h" />
