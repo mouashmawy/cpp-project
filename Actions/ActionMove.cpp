@@ -55,7 +55,7 @@ void ActionMove::Execute()
 	int compHeight = pUI->getCompHeight();
 
 
-	int Cx, Cy;
+	int Cx=0, Cy=0;
 
 	while (1) { //you can ignore this now!!!!!!!!!!!!!!!!!!!!!!!
 		int Sx = 0, Sy = 0;
@@ -89,7 +89,7 @@ void ActionMove::Execute()
 
 
 		if (Cx != 0 || Cy != 0) { //means you clicked the mouse
-			if (pManager->isConflict(Sx, Sy, compWidth, compHeight)) {
+			if ( pManager->isConflict(Sx, Sy, compWidth, compHeight, compSel)) {
 				pUI->ClearStatusBar();
 				pUI->PrintMsg("Invalid Point Choose another");
 				Cx = 0; Cy = 0;
