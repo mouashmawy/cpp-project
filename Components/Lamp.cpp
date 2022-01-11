@@ -34,12 +34,9 @@ void Lamp::Save(ofstream &file)
 	ID++;
 }
 
-void Lamp::Load(ifstream &file)
+void Lamp::Load(int ID)
 {
-	char NAME_OF_COMPONENT, LABEL;
-	int ID, X, Y, Count, VALUE;
-	file >> Count >> ID >> NAME_OF_COMPONENT >> LABEL >> VALUE >> X >> Y;
-
+	this->ID = ID;
 }
 
 void Lamp::Delete()

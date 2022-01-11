@@ -19,6 +19,7 @@
 #include "Actions\ActionPaste.h"
 #include "Actions\ActionDelete.h"
 
+
 ApplicationManager::ApplicationManager()
 {
 	CompCount = 0;
@@ -93,7 +94,9 @@ void ApplicationManager::DeleteComponent(Component* pComp)
 	for (int i = 0; i < CompCount; i++) {
 		if (CompList[i] == pComp)
 		{
-			for (int j = i; j < CompCount - 1; j++) CompList[j] = CompList[j + 1];
+			for (int j = i; j < CompCount - 1; j++) {
+				CompList[j] = CompList[j + 1]; 
+			}
 			CompCount--;
 		}
 	}
@@ -244,13 +247,38 @@ void ApplicationManager::SaveCircut(ofstream& file) {
 /////////////////////////////////////////////////////////////////
 
 void ApplicationManager::LoadCircut(ifstream& file) {
-	for (int i = 0; i < getCompCount(); i++) {
-		CompList[i]->Load(file);
-		
+	int componentCount, ID;
+	double value, x, y;
+	string component_type, label;
+	file >> componentCount;
+	for (int i = 0; i < componentCount; i++) {
+		file >> component_type >> ID >> label >> value >> x >> y;
+		GraphicsInfo* pG = new GraphicsInfo(2);
+		pG->PointsList[0].x = x;
+		pG->PointsList[0].y = y;
+		pG->PointsList[1].x = x + pUI->getCompWidth();
+		pG->PointsList[1].y = y + pUI->getCompHeight();
 
-		Action* pAct = nullptr;
-		if (CompList[i]->Component_type == "RES") CompList[i]->Draw(pUI);
-
+		if (component_type == "RES")
+		{
+			Resistor* pR = new Resistor(pG , label , value);
+			AddComponent(pR);
+		}
+		if (component_type == "LMP")
+		{
+			Lamp* pL = new Lamp(pG, label);
+			AddComponent(pL);
+		}
+		if (component_type == "swt")
+		{
+			Switch* pS = new Switch(pG, label);
+			AddComponent(pS);
+		}
+		if (component_type == "GND")
+		{
+			Ground* pB = new Ground(pG, label);
+			AddComponent(pB);
+		}
 		else if (CompList[i]->Component_type == "LMP") CompList[i]->Draw(pUI);
 
 		else if (CompList[i]->Component_type == "BAT") CompList[i]->Draw(pUI);
@@ -290,24 +318,5 @@ void ApplicationManager::DeleteAll() {
 		}
 	}
 
-}
-
-////////////////////////////////////////////////////////////////////////////
-void ApplicationManager::multiDeleteComp() {
-	ActionType ActType;
-	ApplicationManager AppManager;
-	do
-	{
-		//Read user action
-		ActType = AppManager.GetUserAction();
-
-		//Exexute the action
-		AppManager.ExecuteAction(DEL);
-
-		//Update the drawing window
-		AppManager.UpdateInterface();
-
-
-	} while (ActType != DEL);
 }
 

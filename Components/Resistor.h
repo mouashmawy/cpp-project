@@ -11,9 +11,9 @@ public:
 	virtual void Operate();	//Calculates the volt on both terminals
 	virtual void Draw(UI*,bool selected=false);	//Draws the resistor
 	GraphicsInfo* getC();
-	void Save(ofstream& file);
-	void Load(ifstream& file);
-	void Delete();
+	virtual void Save(ofstream& file);
+	virtual void Load(int ID);
+	virtual void Delete();
 
 
 };

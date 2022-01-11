@@ -32,13 +32,9 @@ void Switch::Save(ofstream &file)
 	ID++;
 }
 
-void Switch::Load(ifstream &file)
+void Switch::Load(int ID)
 {
-	string NAME_OF_COMPONENT, LABEL, VALUE;
-	int ID, X, Y;
-	while (!file.eof()) {
-		file >> ID >> NAME_OF_COMPONENT >> LABEL >> VALUE >> X >> Y;
-	}
+	this->ID = ID;
 }
 
 void Switch::Delete()

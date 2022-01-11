@@ -34,12 +34,9 @@ void Module::Save(ofstream &file)
 	ID++;
 	}
 
-void Module::Load(ifstream &file)
+void Module::Load(int ID)
 {
-	char NAME_OF_COMPONENT, LABEL;
-	int ID, X, Y, Count, VALUE;
-	file >> Count >> ID >> NAME_OF_COMPONENT >> LABEL >> VALUE >> X >> Y;
-	
+	this->ID = ID;
 }
 
 void Module::Delete()

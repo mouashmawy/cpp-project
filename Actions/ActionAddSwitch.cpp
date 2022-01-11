@@ -1,6 +1,6 @@
 #include "ActionAddSwitch.h"
 #include "..\ApplicationManager.h"
-#include "../Components/Switch.h"
+#include "..\Components\Switch.h"
 #include<iostream>
 
 ActionAddSwitch::ActionAddSwitch(ApplicationManager* pApp) : Action(pApp)

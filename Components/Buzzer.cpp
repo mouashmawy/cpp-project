@@ -34,12 +34,9 @@ void Buzzer::Save(ofstream &file)
 	ID++;
 }
 
-void Buzzer::Load(ifstream &file)
+void Buzzer::Load(int ID)
 {
-	char NAME_OF_COMPONENT, LABEL;
-	int ID, X, Y, Count, VALUE;
-	file >> Count >> ID >> NAME_OF_COMPONENT >> LABEL >> VALUE >> X >> Y;
-	
+	this->ID = ID;
 }
 
 void Buzzer::Delete()

@@ -33,12 +33,9 @@ void Fuse::Save(ofstream &file)
 	ID++;
 }
 
-void Fuse::Load(ifstream &file)
+void Fuse::Load(int ID)
 {
-	char NAME_OF_COMPONENT, LABEL;
-	int ID, X, Y, Count, VALUE;
-	file >> Count >> ID >> NAME_OF_COMPONENT >> LABEL >> VALUE >> X >> Y;
-
+	this->ID = ID;
 }
 
 void Fuse::Delete()
