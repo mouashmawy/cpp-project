@@ -4,10 +4,8 @@
 #include<windows.h>
 #include <cmath>
 #include <cstdio>
-
-
 #include <chrono>
-#include <iostream>
+
 using std::cout; using std::endl;
 using std::chrono::duration_cast;
 using std::chrono::milliseconds;
@@ -252,6 +250,13 @@ ActionType UI::GetUserAction() const
 	}
 	else	//Application is in Simulation mode
 	{
+		
+		
+		
+		
+		
+		
+		
 		return SIM_MODE;	//This should be changed after creating the compelete simulation bar 
 	}
 
@@ -332,11 +337,8 @@ void UI::ClearStatusBar()const
 	pWind->SetBrush(BkGrndColor);
 	pWind->DrawRectangle(MsgX, height - MsgY, width, height);
 }
-//////////////////////////////////////////////////////////////////////////////////////////
-// 
-// 
-// 
-// 
+
+
 
 void UI::ClearLabel(int xx,int yy)const
 {
