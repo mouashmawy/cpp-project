@@ -92,18 +92,16 @@ int ApplicationManager::getCompCount() const
 void ApplicationManager::DeleteComponent(Component* pComp)
 {
 	for (int i = 0; i < CompCount; i++) {
-		if (CompList[i] == pComp )
+		if (CompList[i] == pComp)
 		{
-			if (CompList[i]->CheckSelection()){
-				CompList[i]->DeleteGraphic();
-				delete CompList[i];
-				CompList[i] = nullptr;
-			}
+			for (int j = i; j < CompCount - 1; j++) CompList[j] = CompList[j + 1];
+			CompCount--;
 		}
-		
-
 	}
+	pUI->ClearDrawingArea();
+	UpdateInterface();
 }
+
 ////////////////////////////////////////////////////////////////////
 
 
@@ -287,9 +285,16 @@ int ApplicationManager::getCmptid(Component* comp) {
 /////////////////////////////////////////////////////////////////////////////
 
 void ApplicationManager::DeleteAll() {
-	for (int i = 0; i < CompCount; i++) {
-		DeleteComponent(CompList[i]);
+	
+	for (int i = 0; i <= CompCount; i++) {
+		cout << "count:" << CompCount << endl;
+		cout << "enter: "<<CompList[i]->CheckSelection()<<endl;
+		if (CompList[i]->CheckSelection()){
+			cout << "Ayyad: " << i<< endl;
+			DeleteComponent(CompList[i]);
+		}
 	}
+
 }
 
 ////////////////////////////////////////////////////////////////////////////

@@ -32,12 +32,7 @@ bool Component::CheckSelection()
 }
 
 void Component::Select() {
-	if (Selected == false) Selected = true;
-	else Selected = false;
-}
-void Component::DeleteGraphic()
-{
-	delete m_pGfxInfo;
+	Selected = true;
 }
 
 

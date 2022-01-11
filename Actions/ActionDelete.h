@@ -1,6 +1,7 @@
 #pragma once
 
 #include "action.h"
+
 #include "..\Components\connection.h"
 #include "..\ApplicationManager.h"
 
@@ -19,8 +20,6 @@ private:
 public:
 	ActionDelete(ApplicationManager* pApp);
 	virtual ~ActionDelete(void);
-
-	Component* CompInPlace(int xx, int yy) ;
 
 	//Execute action (code depends on action type)
 	virtual void Execute();

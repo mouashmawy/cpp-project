@@ -37,6 +37,8 @@ public:
 	
 	void UpdateInterface();	//Redraws all the drawing window
 
+
+
 	//Gets a pointer to UI Object
 	UI* GetUI();
 	/////////////////////////////////////////////
