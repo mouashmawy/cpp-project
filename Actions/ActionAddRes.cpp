@@ -9,9 +9,12 @@ ActionAddRes::ActionAddRes(ApplicationManager *pApp):Action(pApp)
 ActionAddRes::~ActionAddRes(void)
 {
 }
-
+/// <summary>
+/// ///////
+/// </summary>
 void ActionAddRes::Execute()
 {
+	
 	
 	//Get a Pointer to the user Interfaces
 	UI* pUI = pManager->GetUI();
@@ -31,7 +34,7 @@ void ActionAddRes::Execute()
 		int Sx=0, Sy=0;
 
 		
-
+	
 		pUI->GetPreviousClick(Sx, Sy);
 
 
@@ -41,8 +44,6 @@ void ActionAddRes::Execute()
 		y1 = Sy - compHeight / 2;
 		x2 = Sx + compWidth / 2;
 		y2 = Sy + compHeight / 2;
-
-
 		pGInfo->PointsList[0].x = x1;
 		pGInfo->PointsList[0].y = y1;
 		pGInfo->PointsList[1].x = x2;

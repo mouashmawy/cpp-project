@@ -26,6 +26,7 @@ void ActionDelete::Execute()
 	UI* pUI = pManager->GetUI();
 	pManager->DeleteAll();
 	pUI->PrintMsg("Deleted");
+	
 }
 
 void ActionDelete::Undo()

@@ -55,6 +55,7 @@ public:
 
 
 	void AddConnection(Connection* pConn);
+	bool chkOneGrd();
 	///////////////////////////////////// 
 	int ApplicationManager::getCmptid(Component* comp);
 	////////////////////////////////////

@@ -4,6 +4,16 @@
 #include<windows.h>
 #include <cmath>
 #include <cstdio>
+
+
+#include <chrono>
+#include <iostream>
+using std::cout; using std::endl;
+using std::chrono::duration_cast;
+using std::chrono::milliseconds;
+using std::chrono::system_clock;
+
+
 UI::UI()
 {
 	AppMode = DESIGN;	//Design Mode is the startup mode
@@ -35,7 +45,22 @@ UI::UI()
 
 
 
+bool UI::isInDrawingArea(const GraphicsInfo &p) {
 
+	if (
+		p.PointsList[0].x > 0 &&
+		p.PointsList[0].y < height - ToolBarHeight &&
+		p.PointsList[1].x < width - EditBarWidth &&
+		p.PointsList[1].y > ToolBarHeight
+		)
+		return 1;
+
+	return 0;
+
+		
+
+		
+}
 
 
 int UI::getCompWidth() const
@@ -63,15 +88,14 @@ void UI::GetPointClicked(int &x, int &y)
 
 }
 
-
+/// <summary>
+/// doesn't wait a mouse click 
+/// it gets the mouse click but dont wait
+/// </summary>
 void UI::GetPointClicked2(int& x, int& y)
 {
 	pWind->DontWaitMouseClick(x, y);	//Wait for mouse click
 
-	/*
-	x = round(x / 50) * 50;
-	y = round(y / 50) * 50;
-	*/
 
 }
 
@@ -90,7 +114,9 @@ void UI::Get(int& x, int& y)
 
 }
 
-
+/// <summary>
+/// Get the coordinate of the what you are pointing to now
+/// </summary>
 void UI::GetPreviousClick(int& x, int& y) {
 
 	//pWind->GetMouseClick(x, y);
@@ -137,7 +163,8 @@ string UI::GetSrting()
 
 //This function reads the position where the user clicks to determine the desired action
 ActionType UI::GetUserAction() const
-{	
+{
+	float time;
 	int x,y;
 	pWind->WaitMouseClick(x, y);	//Get the coordinates of the user click
 
@@ -191,9 +218,26 @@ ActionType UI::GetUserAction() const
 			}
 		}
 		else {
+			/// <summary>
+			/// Library to get the difference in time so that if it the diff is less than 400 ms it consider it MOVE
+			/// else SELECT
+			/// <returns></returns>
+			long long startTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+			long long endTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+			
+			while (endTime - startTime < 400) {
+				endTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+				
+				if (pWind->GetMouseClick(x,y))return MOVE;
+			}
+
+
+
+
 			return SELECT;
 		}
 	
+
 
 
 		/*
@@ -322,7 +366,7 @@ void UI::ClearDrawingArea() const
 {
 	pWind->SetPen(RED, 1);
 	pWind->SetBrush(WHITE);
-	pWind->DrawRectangle(0, ToolBarHeight, width, height - StatusBarHeight);
+	pWind->DrawRectangle(0, ToolBarHeight, width-EditBarWidth, height - StatusBarHeight);
 	
 }
 //////////////////////////////////////////////////////////////////////////////////////////

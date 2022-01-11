@@ -178,6 +178,9 @@ public:
   
 
 	UI();
+	//bool isInDrawingArea(GraphicsInfo& p);
+	
+	bool isInDrawingArea(const GraphicsInfo& p);
 	int getCompWidth() const;	//returns Component width
 	int getCompHeight() const;	//returns Component height
 	
