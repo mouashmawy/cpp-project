@@ -72,6 +72,8 @@ public:
 	
 	//Destructor must be virtual
 	virtual ~Component();
+	int t1_conn_c();
+	int t2_conn_c();
 };
 
 #endif

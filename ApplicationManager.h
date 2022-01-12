@@ -50,6 +50,12 @@ public:
 	void DeleteConnection(Connection* pConn);
 	void DeleteAll();
 
+	bool CheckifGround();
+
+	bool checkifFullyConnected();
+
+	bool checkifNoParallelBranches();
+
 	//////////////////////////////////////
 
 	//Adds a new component to the list of components

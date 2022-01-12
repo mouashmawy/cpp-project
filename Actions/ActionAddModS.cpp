@@ -1,16 +1,16 @@
-#include "ActionAddModule.h"
+#include "ActionAddModS.h"
 #include "..\ApplicationManager.h"
 #include <iostream>
 
-ActionAddModule::ActionAddModule(ApplicationManager *pApp):Action(pApp)
+ActionAddModS::ActionAddModS(ApplicationManager *pApp):Action(pApp)
 {
 }
 
-ActionAddModule::~ActionAddModule(void)
+ActionAddModS::~ActionAddModS(void)
 {
 }
 
-void ActionAddModule::Execute()
+void ActionAddModS::Execute()
 {
 	
 	//Get a Pointer to the user Interfaces
@@ -51,10 +51,10 @@ void ActionAddModule::Execute()
 
 
 		if (! pManager->isConflict(Sx, Sy, compWidth, compHeight)) {
-			pUI->DrawSpam(*pGInfo, ITM_MOD4);
+			pUI->DrawSpam(*pGInfo, ITM_RES);
 
 			
-			Sleep(30);
+			Sleep(10);
 			pUI->ClearSth(x1,y1,x2,y2);
 		}
 		pUI->GetPointClicked2(Cx, Cy);
@@ -76,7 +76,7 @@ void ActionAddModule::Execute()
 	pGInfo->PointsList[0].y = Cy - compHeight / 2;
 	pGInfo->PointsList[1].x = Cx + compWidth / 2;
 	pGInfo->PointsList[1].y = Cy + compHeight / 2;
-	pUI->DrawTemp(*pGInfo, ITM_MOD4);
+	pUI->DrawTemp(*pGInfo,ITM_RES);
 	pUI->ClearStatusBar();	
 
 
@@ -85,47 +85,37 @@ void ActionAddModule::Execute()
 	string text = pUI->GetSrting();
 	pUI->ClearStatusBar();
 	
-	string Arry_R[4];
-	double V[4];
-	for (int i = 0; i < 4; i++)
+	pUI->PrintMsg("Enter a VALUE (max 9999.9) OR just press enter");
+	string textV = pUI->GetSrting();
+
+	double V;
+	try
 	{
-
-
-		pUI->PrintMsg("Enter VALUE of RES " + to_string(i + 1) + " (max 9999.9) OR just press enter");
-
-	 Arry_R[i] = pUI->GetSrting();
-
-		
-		try
-		{
-			V[i] = stod(Arry_R[i]);
-			/*
-			if (V <= 9999.9);
-			else V = 9999.9;
-			*/
-		}
-		catch (invalid_argument const& e) { V[i] = 0; }
-		catch (out_of_range const& e) { V[i] = 9999.9; }
-
-
-
-		pUI->ClearStatusBar();
-
+		V = stod(textV);
+		/*
+		if (V <= 9999.9);
+		else V = 9999.9;
+		*/
 	}
-	double Eqe_V;
-	double R1, R2, R3, R4, R5;
-	R1 = V[0], R2 = V[1], R3 = V[2], R4 = V[3], R5 = V[4];
-	Eqe_V = 1 / ((1 / R1) + (1 / R2)) + 1 / R3 + 1 / ((1 / R4) + (1 / R5));
+	catch (invalid_argument const& e) { V = 0; }
+	catch (out_of_range const& e) { V = 9999.9; }
+
+
+
+	pUI->ClearStatusBar();
+	
+
+
 	 
-	Module* pR = new Module(pGInfo,text,Eqe_V);
+	Module* pR = new Module(pGInfo,text,V);
 	pManager->AddComponent(pR);
 
 	
 	}
 
-void ActionAddModule::Undo()
+void ActionAddModS::Undo()
 {}
 
-void ActionAddModule::Redo()
+void ActionAddModS::Redo()
 {}
 
