@@ -4,10 +4,8 @@
 #include<windows.h>
 #include <cmath>
 #include <cstdio>
-
-
 #include <chrono>
-#include <iostream>
+
 using std::cout; using std::endl;
 using std::chrono::duration_cast;
 using std::chrono::milliseconds;
@@ -29,7 +27,7 @@ UI::UI()
 	pWind = new window(width, height, wx, wy);	
 
 
-	ChangeTitle("Logic Simulator Project");
+	ChangeTitle("DESIGN MODE -----  CIE 202: Circuit Simulator Project T10 ");
 	
 	
 
@@ -41,6 +39,8 @@ UI::UI()
 	
 	//CreateGrid();
 }
+
+
 
 
 
@@ -252,6 +252,13 @@ ActionType UI::GetUserAction() const
 	}
 	else	//Application is in Simulation mode
 	{
+		
+		
+		
+		
+		
+		
+		
 		return SIM_MODE;	//This should be changed after creating the compelete simulation bar 
 	}
 
@@ -321,6 +328,7 @@ void UI::PrintMsgX(string msg, int xx, int yy) const
 
 
 //////////////////////////////////////////////////////////////////////////////////
+
 void UI::ClearStatusBar()const
 {
 	// Set the Message offset from the Status Bar
@@ -331,12 +339,10 @@ void UI::ClearStatusBar()const
 	pWind->SetPen(BkGrndColor);
 	pWind->SetBrush(BkGrndColor);
 	pWind->DrawRectangle(MsgX, height - MsgY, width, height);
+
 }
-//////////////////////////////////////////////////////////////////////////////////////////
-// 
-// 
-// 
-// 
+
+
 
 void UI::ClearLabel(int xx,int yy)const
 {
@@ -395,11 +401,9 @@ void UI::CreateDesignToolBar()
 
 	//Draw menu item one image at a time
 	for (int i = 0; i < ITM_DSN_CNT; i++) {
-		static int j = 0; //because there is ITM_SIMULATE that taked 3 places so having j instead of i is better
 		
-		if (i == ITM_SIMULATE) { pWind->DrawImage(MenuItemImages[i], i * ToolItemWidth, 0, ToolItemWidth * 3, ToolBarHeight); j += 2; }
-		else pWind->DrawImage(MenuItemImages[i], j * ToolItemWidth, 0, ToolItemWidth, ToolBarHeight);
-		j++;
+		pWind->DrawImage(MenuItemImages[i], i * ToolItemWidth, 0, ToolItemWidth, ToolBarHeight);
+		
 	}
 
 	//Draw a line under the toolbar
@@ -818,6 +822,75 @@ UI::~UI()
 }
 
 
+
+
+
+
+
+
+
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////
-//                                 Deleting Comps                                         //
+//                                 SIMULATION MODE                                         //
 ////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+void UI::CreateSimulationBar()
+{
+	AppMode = SIMULATION;	//Design Mode
+	//pWind->DrawRectangle(0, 0, width, height);
+
+	//You can draw the tool bar icons in any way you want.
+
+	//First prepare List of images for each menu item
+	string MenuItemImages[ITM_SIM_CNT];
+	MenuItemImages[AMMETER] = "images\\SIM\\Ammeter.jpg";
+	MenuItemImages[VOLTMETER] = "images\\SIM\\Voltmeter.jpg";
+
+
+	//TODO: Prepare image for each menu item and add it to the list
+
+	//Draw menu item one image at a time
+	for (int i = 0; i < ITM_SIM_CNT; i++) {
+		
+		pWind->DrawImage(MenuItemImages[i], ToolItemWidth*i, 0, ToolItemWidth, ToolBarHeight);
+		
+	}
+
+	//Draw a line under the toolbar
+	pWind->SetPen(RED, 3);
+	pWind->DrawLine(0, ToolBarHeight, width, ToolBarHeight );
+
+}
+
+
+
+void UI::SwitchToSimulate()
+{
+	AppMode = DESIGN;	//Design Mode is the startup mode
+
+	//Initilaize interface colorscd 
+	DrawColor = BLACK;
+	SelectColor = BLUE;
+	ConnColor = RED;
+	MsgColor = BLUE;
+	BkGrndColor = WHITE;
+
+	//Create the drawing window
+	delete pWind;
+	pWind = new window(width, height, wx, wy);
+
+
+	ChangeTitle("SIMULATION MODE -----  CIE 202: Circuit Simulator Project T10");
+
+
+
+
+	CreateSimulationBar();	//Create the desgin toolbar
+	CreateStatusBar();		//Create Status bar
+
+
+	//CreateGrid();
+}
