@@ -17,11 +17,19 @@ ActionSimulate::~ActionSimulate(void)
 void ActionSimulate::Execute()
 {
 	UI* pUI = pManager->GetUI();
-	GraphicsInfo* pGInfo = new GraphicsInfo(2); //Gfx info to be used to construct the Comp
-
-	cout << "lol";
+	GraphicsInfo* pGInfo = new GraphicsInfo(2); 
+	
+	if(1 || //just to check
+	pManager->checkifFullyConnected() &&
+	pManager->CheckifGround() &&
+	pManager->checkifNoParallelBranches()
+		)
 	pUI->SwitchToSimulate();
 			
+
+
+
+
 }
 
 void ActionSimulate::Undo()

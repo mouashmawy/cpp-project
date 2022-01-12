@@ -20,8 +20,9 @@
 #include "Actions\ActionPaste.h"
 #include "Actions\ActionDelete.h"
 #include "Actions\ActionSimulate.h"
-
-
+#include "Actions\ActionDesign.h"
+#include "Actions\ActionModDes.h"
+#include "Actions\ActionAddModS.h"
 
 
 ApplicationManager::ApplicationManager()
@@ -126,6 +127,7 @@ ActionType ApplicationManager::GetUserAction()
 
 void ApplicationManager::ExecuteAction(ActionType ActType)
 {
+	
 	Action* pAct = nullptr;
 	switch (ActType)
 	{
@@ -204,8 +206,24 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 
 
-		case SIMULATE:
+		case SIM_MODE:
 			pAct = new ActionSimulate(this);
+			break;
+
+		case DSN_MODE:
+			pAct = new ActionDesign(this);
+			break;
+
+		case MOD_DES_MODE:
+			pAct = new ActionModDes(this);
+			break;
+
+		case FROM_DES_MODE:
+			pAct = new ActionAddModS(this);
+			break;
+
+	
+
 
 		case EXIT:
 			///TODO: create ExitAction here
@@ -339,6 +357,7 @@ void ApplicationManager::LoadCircut(ifstream& file, string fileName) {
 	}*/
 }
 
+
 //////////////////////////////////////////////////////////////////////////////
 /// Getting the ID of the compnents
 
@@ -375,6 +394,84 @@ void ApplicationManager::DeleteAll() {
 			DeleteComponent(CompList[i]);
 		}
 	}
+
+}
+
+
+////////////////////////////////////////////////////////////////////////////
+void ApplicationManager::multiDeleteComp() {
+	ActionType ActType;
+	ApplicationManager AppManager;
+	do
+	{
+		//Read user action
+		ActType = AppManager.GetUserAction();
+
+		//Exexute the action
+		AppManager.ExecuteAction(DEL);
+
+		//Update the drawing window
+		AppManager.UpdateInterface();
+
+
+	} while (ActType != DEL);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+bool ApplicationManager::CheckifGround()
+{
+	int groundC = 1;
+
+	for (int i = 0; i < CompCount; i++)
+	{
+		Component* p = dynamic_cast<Ground*>(CompList[i]);
+		if (!p) 
+			groundC++;
+	}
+
+	if (groundC > 1)
+		return false;
+	else
+		return true;
+}
+
+//////////////////////////////////////////////////////////////////
+
+
+bool ApplicationManager::checkifFullyConnected()
+{
+	int c = 0;
+	for (int i = 0; i < CompCount; i++)     //loop on complist.
+	{
+		if (CompList[i]->t1_conn_c() >0 && CompList[i]->t2_conn_c() > 0)
+			c++;
+
+	}
+
+	if (c == CompCount)return true;
+	else return false;
+}
+
+
+
+
+
+
+//check circuit has no parallel branches.
+bool ApplicationManager::checkifNoParallelBranches()
+{
+	int c = 0;
+	for (int i = 0; i < CompCount; i++)     //loop on complist.
+	{
+		if (CompList[i]->t1_conn_c() < 2 && CompList[i]->t2_conn_c() < 2)
+			c++;
+			
+	}
+	if (c == CompCount)return true;
+	else return false;
 
 }
 

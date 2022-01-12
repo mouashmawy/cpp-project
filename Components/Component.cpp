@@ -65,3 +65,10 @@ void Component::setC(GraphicsInfo* c)
 Component::~Component()
 {}
 
+
+int Component::t1_conn_c() {
+	return term1_conn_count;
+}
+int Component::t2_conn_c() {
+	return term2_conn_count;
+}
