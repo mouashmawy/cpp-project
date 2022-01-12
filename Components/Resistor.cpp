@@ -44,3 +44,8 @@ void Resistor::Delete()
 {
 	delete m_pGfxInfo;
 }
+
+Point Resistor::getCPoint() const
+{
+	return m_pGfxInfo->PointsList[0];
+}

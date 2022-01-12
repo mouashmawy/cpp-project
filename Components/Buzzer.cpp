@@ -44,3 +44,8 @@ void Buzzer::Delete()
 {
 	delete m_pGfxInfo;
 }
+
+Point Buzzer::getCPoint() const
+{
+	return m_pGfxInfo->PointsList[0];
+}

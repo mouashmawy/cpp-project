@@ -44,3 +44,8 @@ void Battery::Delete()
 {
 	delete m_pGfxInfo;
 }
+
+Point Battery::getCPoint() const
+{
+	return m_pGfxInfo->PointsList[0];
+}
