@@ -27,7 +27,7 @@ private:
 public:	
 	ApplicationManager(); //constructor
 
-	bool isConflict(int xx, int yy, int ww, int hh) const;
+	bool isConflict(int xx, int yy, int ww, int hh, Component* c=nullptr) const;
 
 	//Reads the required action from the user and returns the corresponding action type
 	ActionType GetUserAction();
@@ -37,16 +37,24 @@ public:
 	
 	void UpdateInterface();	//Redraws all the drawing window
 
+
+
 	//Gets a pointer to UI Object
 	UI* GetUI();
 	/////////////////////////////////////////////
 
 	void SaveCircut(ofstream& file);
-	void LoadCircut(ifstream& file);
+	void LoadCircut(ifstream& file, string fileName);
 	///////////////////////////////////////
 	void DeleteComponent(Component* pComp);
+	void DeleteConnection(Connection* pConn);
 	void DeleteAll();
-	void multiDeleteComp();
+
+	bool CheckifGround();
+
+	bool checkifFullyConnected();
+
+	bool checkifNoParallelBranches();
 
 	//////////////////////////////////////
 
@@ -55,16 +63,19 @@ public:
 
 
 	void AddConnection(Connection* pConn);
+	bool chkOneGrd();
 	///////////////////////////////////// 
 	int ApplicationManager::getCmptid(Component* comp);
 	////////////////////////////////////
 	Component** getCompList();
+	Connection** getConnList();
 
 	void setCpdComp(Component* c);
 	Component* getCpdComp();
-
+	Component* getIdCmpt( int number);
 
 	int getCompCount() const;
+	int getConnCount() const;
 	//destructor
 	~ApplicationManager();
 };

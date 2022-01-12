@@ -55,14 +55,13 @@ public:
 	bool CheckSelection();
 
 	virtual void Save(ofstream& file) = 0;
-	virtual void Load(ifstream& file) = 0;
+	virtual void Load(int ID) = 0;
 
-	void DeleteGraphic();
-	void Select();
-
+	virtual Point getCPoint() const =0;
 
 	virtual void Delete() = 0;
-	
+	void Select();
+
 	//virtual int GetOutPinStatus()=0;	//returns status of outputpin if LED, return -1
 	//virtual int GetInputPinStatus(int n)=0;	//returns status of Inputpin # n if SWITCH, return -1
 
@@ -73,6 +72,8 @@ public:
 	
 	//Destructor must be virtual
 	virtual ~Component();
+	int t1_conn_c();
+	int t2_conn_c();
 };
 
 #endif

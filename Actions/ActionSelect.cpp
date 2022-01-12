@@ -12,7 +12,7 @@ ActionSelect::~ActionSelect(void)
 {
 }
 
-
+Connection* ConnSelct = nullptr;
 Component* ActionSelect::CompInPlace(int xx, int yy) 
 {
 
@@ -36,6 +36,7 @@ Component* ActionSelect::CompInPlace(int xx, int yy)
 
 
 
+
 void ActionSelect::Execute()
 {
 
@@ -46,7 +47,6 @@ void ActionSelect::Execute()
 	pUI->GetPreviousClick(x1, y1);
 
 	Component* compSel = CompInPlace(x1, y1);
-	
 	if (compSel == nullptr) {
 		return;
 	}
@@ -61,12 +61,21 @@ void ActionSelect::Execute()
 	pUI->GetPointClicked(x1, y1);
 
 	Component* compSel2 = CompInPlace(x1, y1);
-	if (compSel2 == nullptr) {
+	if (compSel2 == nullptr & x1 < 1100) {
 		compSel->Draw(pUI);
 		pUI->ClearStatusBar();
-
+		
 		return;
 	}
+	else if(x1>1100)
+	{//checking if it is in edit bar
+		pUI->PrintMsg("click another time");
+		ActionType ActType;
+		ActType = pManager->GetUserAction();
+		pManager->ExecuteAction(ActType);
+		pManager->UpdateInterface();
+	}
+	
 	else ActionSelect::Execute();
 										
 			

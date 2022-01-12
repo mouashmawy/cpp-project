@@ -13,8 +13,9 @@ public:
 	virtual void Draw(UI*,bool selected=false);	//Draws the Module
 	GraphicsInfo* getC();
 	void Save(ofstream& file);
-	void Load(ifstream& file);
+	void Load(int ID);
 	void Delete();
+	Point getCPoint() const;
 
 
 };

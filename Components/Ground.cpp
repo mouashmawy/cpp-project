@@ -2,8 +2,9 @@
 #include<iostream>
 #include <fstream>
 
-Ground::Ground(GraphicsInfo* r_GfxInfo , string name) :Component(r_GfxInfo)
+Ground::Ground(GraphicsInfo* r_GfxInfo , string name, double value) :Component(r_GfxInfo)
 {
+	this->value = value;
 	label = name;
 	Component_type = "GND";
 }
@@ -29,19 +30,21 @@ void Ground::Operate()
 void Ground::Save(ofstream &file)
 {
 	GraphicsInfo* List = getC();
-	file << Component_type << "  " << ID << "  " << label << "  " << "No Value" << "  " << List->PointsList[0].x << "  " << List->PointsList[0].y << endl;
+	file << Component_type << "  " << ID << "  " << label << "  " << value << "  " << List->PointsList[0].x << "  " << List->PointsList[0].y << endl;
 	ID++;
 }
 
-void Ground::Load(ifstream &file)
+void Ground::Load(int ID)
 {
-	char NAME_OF_COMPONENT, LABEL;
-	int ID, X, Y, Count, VALUE;
-	file >> Count >> ID >> NAME_OF_COMPONENT >> LABEL >> VALUE >> X >> Y;
-
+	this->ID = ID;
 }
 
 void Ground::Delete()
 {
 	delete m_pGfxInfo;
+}
+
+Point Ground::getCPoint() const
+{
+	return m_pGfxInfo->PointsList[0];
 }

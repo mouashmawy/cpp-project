@@ -104,7 +104,7 @@ void ActionAddLamp::Execute()
 
 
 
-	Lamp* pR = new Lamp(pGInfo, text);
+	Lamp* pR = new Lamp(pGInfo, text,0);
 	pManager->AddComponent(pR);
 }
 

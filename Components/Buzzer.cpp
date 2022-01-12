@@ -2,10 +2,11 @@
 #include<iostream>
 #include <fstream>
 
-Buzzer::Buzzer(GraphicsInfo *r_GfxInfo, string name) :Component(r_GfxInfo)
+Buzzer::Buzzer(GraphicsInfo *r_GfxInfo, string name, double value ) :Component(r_GfxInfo)
 {
 	label = name;
 	Component_type = "BUZ";
+	this->value = value;
 }
 
 void Buzzer::Draw(UI* pUI, bool selected)
@@ -30,19 +31,21 @@ void Buzzer::Operate()
 void Buzzer::Save(ofstream &file)
 {
 	GraphicsInfo* List = getC();
-	file << Component_type << "  " << ID << "  " << label << "  " << "No Value" << "  " << List->PointsList[0].x << "  " << List->PointsList[0].y << endl;
+	file << Component_type << "  " << ID << "  " << label << "  " << value << "  " << List->PointsList[0].x << "  " << List->PointsList[0].y << endl;
 	ID++;
 }
 
-void Buzzer::Load(ifstream &file)
+void Buzzer::Load(int ID)
 {
-	char NAME_OF_COMPONENT, LABEL;
-	int ID, X, Y, Count, VALUE;
-	file >> Count >> ID >> NAME_OF_COMPONENT >> LABEL >> VALUE >> X >> Y;
-	
+	this->ID = ID;
 }
 
 void Buzzer::Delete()
 {
 	delete m_pGfxInfo;
+}
+
+Point Buzzer::getCPoint() const
+{
+	return m_pGfxInfo->PointsList[0];
 }
