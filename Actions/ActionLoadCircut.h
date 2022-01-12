@@ -6,9 +6,11 @@
 class ActionLoadCircut : public Action
 {
 private:
+	
 public:
 	ActionLoadCircut(ApplicationManager* pApp);
 	virtual ~ActionLoadCircut(void);
+
 
 	//Execute action (code depends on action type)
 	virtual void Execute();

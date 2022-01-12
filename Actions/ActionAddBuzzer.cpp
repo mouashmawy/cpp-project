@@ -106,7 +106,7 @@ void ActionAddBuzzer::Execute()
 
 
 
-	Buzzer* pR = new Buzzer(pGInfo, text);
+	Buzzer* pR = new Buzzer(pGInfo, text,0);
 	pManager->AddComponent(pR);
 }
 

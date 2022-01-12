@@ -23,6 +23,7 @@
 
 
 
+
 ApplicationManager::ApplicationManager()
 {
 	CompCount = 0;
@@ -101,7 +102,9 @@ void ApplicationManager::DeleteComponent(Component* pComp)
 	for (int i = 0; i < CompCount; i++) {
 		if (CompList[i] == pComp)
 		{
-			for (int j = i; j < CompCount - 1; j++) CompList[j] = CompList[j + 1];
+			for (int j = i; j < CompCount - 1; j++) {
+				CompList[j] = CompList[j + 1]; 
+			}
 			CompCount--;
 		}
 	}
@@ -246,6 +249,7 @@ ApplicationManager::~ApplicationManager()
 
 void ApplicationManager::SaveCircut(ofstream& file) {
 
+	file << CompCount<<endl;
 	for (int i = 0; i < CompCount; i++) {
 		CompList[i]->Save(file);
 	}
@@ -259,28 +263,80 @@ void ApplicationManager::SaveCircut(ofstream& file) {
 
 /////////////////////////////////////////////////////////////////
 
-void ApplicationManager::LoadCircut(ifstream& file) {
-	for (int i = 0; i < getCompCount(); i++) {
-		CompList[i]->Load(file);
+void ApplicationManager::LoadCircut(ifstream& file, string fileName) {
+	cout << "Ayyad";
+	file.open(fileName);
+
+	string component_type, label;
+	int Count, ID;
+	double value, x, y;
+	
+	file >> Count;
+	for (int i = 0; i < Count; i++) {
 		
+		file >> component_type >> ID >> label >> value >> x >> y;
+		GraphicsInfo* pG = new GraphicsInfo(2);
+		pG->PointsList[0].x = x;
+		pG->PointsList[0].y = y;
+		pG->PointsList[1].x = x + pUI->getCompWidth();
+		pG->PointsList[1].y = y + pUI->getCompHeight();
 
-		Action* pAct = nullptr;
-		if (CompList[i]->Component_type == "RES") CompList[i]->Draw(pUI);
-
-		else if (CompList[i]->Component_type == "LMP") CompList[i]->Draw(pUI);
-
-		else if (CompList[i]->Component_type == "BAT") CompList[i]->Draw(pUI);
-
-		else if (CompList[i]->Component_type == "SWT") CompList[i]->Draw(pUI);
-
-		else if (CompList[i]->Component_type == "BUZ") CompList[i]->Draw(pUI);
-
-		else if (CompList[i]->Component_type == "FUS") CompList[i]->Draw(pUI);
-
-		else if (CompList[i]->Component_type == "GND")CompList[i]->Draw(pUI);
-
-		else if (CompList[i]->Component_type == "CON") CompList[i]->Draw(pUI);
+		if (component_type == "RES")
+		{
+			Resistor* pR = new Resistor(pG , label , value);
+			AddComponent(pR);
+			CompList[i]->Load(ID);
+		}
+		if (component_type == "LMP")
+		{
+			Lamp* pL = new Lamp(pG, label , value);
+			AddComponent(pL);
+			CompList[i]->Load(ID);
+		}
+		if (component_type == "SWT")
+		{
+			Switch* pS = new Switch(pG, label, value);
+			AddComponent(pS);
+			CompList[i]->Load(ID);
+		}
+		if (component_type == "GND")
+		{
+			Ground* pVG = new Ground(pG, label,value);
+			AddComponent(pVG);
+			CompList[i]->Load(ID);
+		}
+		if (component_type == "BAT")
+		{
+			Battery* pB = new Battery(pG, label, value);
+			AddComponent(pB);
+			CompList[i]->Load(ID);
+		}
+		if (component_type == "BUZ")
+		{
+			Buzzer* pZ = new Buzzer(pG, label, value);
+			AddComponent(pZ);
+			CompList[i]->Load(ID);
+		}
+		if (component_type == "FUS")
+		{
+			Fuse* pF = new Fuse(pG, label, value);
+			AddComponent(pF);
+			CompList[i]->Load(ID);
+		}
 	}
+	/*int connCount , ID1, ID2;
+	file >> connCount;
+	for (int i = 0; i < connCount; i++) {
+		file >> ID1 >> ID2;
+		Component* comp1 = getId(ID1);
+		Component* comp2 = getId(ID2);
+
+		GraphicsInfo* pGraphic = new GraphicsInfo(2);
+		
+		Connection* pConn = new Connection(pGraphic, comp1, comp2);
+
+		pConn->Load();
+	}*/
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -294,6 +350,20 @@ int ApplicationManager::getCmptid(Component* comp) {
 }
 
 /////////////////////////////////////////////////////////////////////////////
+/// it returns the components which has the same ID
+
+Component* ApplicationManager::getId(int number) {
+	
+	for (int i = 0; i < CompCount; i++) {
+		Component* pC = CompList[i];
+		if (getCmptid(pC) == number) {
+			return CompList[i];
+		}
+		delete pC;
+	}
+}
+
+////////////////////////////////////////////////////////////////////////////
 
 void ApplicationManager::DeleteAll() {
 	
@@ -306,24 +376,5 @@ void ApplicationManager::DeleteAll() {
 		}
 	}
 
-}
-
-////////////////////////////////////////////////////////////////////////////
-void ApplicationManager::multiDeleteComp() {
-	ActionType ActType;
-	ApplicationManager AppManager;
-	do
-	{
-		//Read user action
-		ActType = AppManager.GetUserAction();
-
-		//Exexute the action
-		AppManager.ExecuteAction(DEL);
-
-		//Update the drawing window
-		AppManager.UpdateInterface();
-
-
-	} while (ActType != DEL);
 }
 

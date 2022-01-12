@@ -2,10 +2,10 @@
 #include <iostream>
 #include <fstream>
 
-Resistor::Resistor(GraphicsInfo *r_GfxInfo, string name, double val):Component(r_GfxInfo)
+Resistor::Resistor(GraphicsInfo *r_GfxInfo, string name, double value):Component(r_GfxInfo)
 {
 	label = name;
-	value = val;
+	this->value = value;
 	Component_type = "RES";
 }
 
@@ -34,12 +34,9 @@ void Resistor::Save(ofstream &file)
 	ID++;
 }
 
-void Resistor::Load(ifstream &file)
+void Resistor::Load(int ID)
 {
-	char NAME_OF_COMPONENT, LABEL;
-	int ID, X, Y, Count, VALUE;
-	file >> Count >> ID >> NAME_OF_COMPONENT >> LABEL >> VALUE >> X >> Y;
-	
+	this->ID = ID;
 	
 }
 
