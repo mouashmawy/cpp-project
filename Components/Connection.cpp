@@ -33,9 +33,18 @@ void Connection::Save(ofstream& file, int Cmpt1, int Cmpt2)
 	file << Cmpt1 << "  " << Cmpt2 << endl;
 }
 
-void Connection::Load(ifstream& file)
-{
-
+void Connection::Load(UI* pUI)
+{/*
+	int x1 = Cmpnt1->getCoordinates().x;
+	int x2 = Cmpnt2->getCoordinates().x;
+	int y1 = Cmpnt1->getCoordinates().y;
+	int y2 = Cmpnt2->getCoordinates().y;
+	if (x2 > x1) {
+		pGfxInfo->PointsList[1].x = x2;
+		pGfxInfo->PointsList[1].y = y2 - pUI->getCompHeight() / 2;
+		pGfxInfo->PointsList[0].x = x1 + pUI->getCompWidth();
+		pGfxInfo->PointsList[0].y = y1;
+	}*/
 }
 
 void Connection::Delete()

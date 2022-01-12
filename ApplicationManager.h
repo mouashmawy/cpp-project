@@ -64,7 +64,7 @@ public:
 
 	void setCpdComp(Component* c);
 	Component* getCpdComp();
-
+	Component* getId( int number);
 
 	int getCompCount() const;
 	//destructor

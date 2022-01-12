@@ -22,7 +22,7 @@ public:
 
 	virtual void Draw(UI* );	//for connection to Draw itself
 	void Save(ofstream& file, int Cmpt1, int Cmpt2); //for saving the component
-	void Load(ifstream& file);
+	void Load(UI* pUI);
 	void Delete();
 
 };

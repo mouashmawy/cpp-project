@@ -277,7 +277,7 @@ void ApplicationManager::LoadCircut(ifstream& file, string fileName) {
 			AddComponent(pL);
 			CompList[i]->Load(ID);
 		}
-		if (component_type == "swt")
+		if (component_type == "SWT")
 		{
 			Switch* pS = new Switch(pG, label, value);
 			AddComponent(pS);
@@ -307,20 +307,20 @@ void ApplicationManager::LoadCircut(ifstream& file, string fileName) {
 			AddComponent(pF);
 			CompList[i]->Load(ID);
 		}
-		//else if (CompList[i]->Component_type == "LMP") CompList[i]->Draw(pUI);
-
-		//else if (CompList[i]->Component_type == "BAT") CompList[i]->Draw(pUI);
-
-		//else if (CompList[i]->Component_type == "SWT") CompList[i]->Draw(pUI);
-
-		//else if (CompList[i]->Component_type == "BUZ") CompList[i]->Draw(pUI);
-
-		//else if (CompList[i]->Component_type == "FUS") CompList[i]->Draw(pUI);
-
-		//else if (CompList[i]->Component_type == "GND")CompList[i]->Draw(pUI);
-
-		//else if (CompList[i]->Component_type == "CON") CompList[i]->Draw(pUI);
 	}
+	/*int connCount , ID1, ID2;
+	file >> connCount;
+	for (int i = 0; i < connCount; i++) {
+		file >> ID1 >> ID2;
+		Component* comp1 = getId(ID1);
+		Component* comp2 = getId(ID2);
+
+		GraphicsInfo* pGraphic = new GraphicsInfo(2);
+		
+		Connection* pConn = new Connection(pGraphic, comp1, comp2);
+
+		pConn->Load();
+	}*/
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -334,6 +334,20 @@ int ApplicationManager::getCmptid(Component* comp) {
 }
 
 /////////////////////////////////////////////////////////////////////////////
+/// it returns the components which has the same ID
+
+Component* ApplicationManager::getId(int number) {
+	
+	for (int i = 0; i < CompCount; i++) {
+		Component* pC = CompList[i];
+		if (getCmptid(pC) == number) {
+			return CompList[i];
+		}
+		delete pC;
+	}
+}
+
+////////////////////////////////////////////////////////////////////////////
 
 void ApplicationManager::DeleteAll() {
 	
