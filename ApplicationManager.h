@@ -44,11 +44,17 @@ public:
 	/////////////////////////////////////////////
 
 	void SaveCircut(ofstream& file);
-	void LoadCircut(ifstream& file);
+	void LoadCircut(ifstream& file, string fileName);
 	///////////////////////////////////////
 	void DeleteComponent(Component* pComp);
+	void DeleteConnection(Connection* pConn);
 	void DeleteAll();
-	void multiDeleteComp();
+
+	bool CheckifGround();
+
+	bool checkifFullyConnected();
+
+	bool checkifNoParallelBranches();
 
 	//////////////////////////////////////
 
@@ -62,12 +68,14 @@ public:
 	int ApplicationManager::getCmptid(Component* comp);
 	////////////////////////////////////
 	Component** getCompList();
+	Connection** getConnList();
 
 	void setCpdComp(Component* c);
 	Component* getCpdComp();
-
+	Component* getIdCmpt( int number);
 
 	int getCompCount() const;
+	int getConnCount() const;
 	//destructor
 	~ApplicationManager();
 };

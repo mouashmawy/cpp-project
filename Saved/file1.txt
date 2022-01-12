@@ -1,2 +1,6 @@
+2
+RES  2  gfgd  55  172  238
+RES  3  gff  6  538  228
 Connections
-0
+1
+1  2

@@ -105,7 +105,7 @@ void ActionAddGround::Execute()
 
 
 
-	Ground* pR = new Ground(pGInfo, text);
+	Ground* pR = new Ground(pGInfo, text,0);
 	pManager->AddComponent(pR);
 }
 

@@ -4,10 +4,8 @@
 #include<windows.h>
 #include <cmath>
 #include <cstdio>
-
-
 #include <chrono>
-#include <iostream>
+
 using std::cout; using std::endl;
 using std::chrono::duration_cast;
 using std::chrono::milliseconds;
@@ -29,9 +27,10 @@ UI::UI()
 	pWind = new window(width, height, wx, wy);	
 
 
-	ChangeTitle("Logic Simulator Project");
-	
-	
+	ChangeTitle("DESIGN MODE -----  CIE 202: Circuit Simulator Project T10 ");
+
+	string names = "Ashmawy - Ayyad - Tarek - Sehmawy";
+	//PrintMsgX(names, 700, 20, 28);
 
 
 	CreateDesignToolBar();	//Create the desgin toolbar
@@ -41,6 +40,8 @@ UI::UI()
 	
 	//CreateGrid();
 }
+
+
 
 
 
@@ -165,14 +166,14 @@ string UI::GetSrting()
 ActionType UI::GetUserAction() const
 {
 	float time;
-	int x,y;
+	int x, y;
 	pWind->WaitMouseClick(x, y);	//Get the coordinates of the user click
 
-	if(AppMode == DESIGN )	//application is in design mode
+	if (AppMode == DESIGN)	//application is in design mode
 	{
 		//[1] If user clicks on the Toolbar
-		if ( y >= 0 && y < ToolBarHeight)
-		{	
+		if (y >= 0 && y < ToolBarHeight)
+		{
 			//Check whick Menu item was clicked
 			//==> This assumes that menu items are lined up horizontally <==
 			int ClickedItemOrder = (x / ToolItemWidth);
@@ -190,17 +191,20 @@ ActionType UI::GetUserAction() const
 			case ITM_FUSE: return ADD_FUSE;
 			case ITM_GROUND: return ADD_GROUND;
 			case ITM_MOD4: return ADD_MODULE;
-			case ITM_SIMULATE: return SIMULATE;
-			
-			case ITM_EXIT:	return EXIT;	
-			
+			case ITM_SIMULATE: return SIM_MODE;
+
+			case ITM_FROM_DES_MODE: return FROM_DES_MODE;
+			case ITM_MOD_DES_MODE: return MOD_DES_MODE;
+
+			case ITM_EXIT:	return EXIT;
+
 			default: return DSN_TOOL;	//A click on empty place in desgin toolbar
 			}
-		
+
 		}
 		else if (y > ToolBarHeight && y > StatusBarHeight && x > width - ToolItemWidth - 7 && x < width)
 		{
-			int ClickedItemOrder = ((y-ToolBarHeight-2) / EditItemHeight);
+			int ClickedItemOrder = ((y - ToolBarHeight - 2) / EditItemHeight);
 			switch (ClickedItemOrder)
 			{
 			case ITM_EDIT_L:	return EDIT_L;
@@ -224,11 +228,11 @@ ActionType UI::GetUserAction() const
 			/// <returns></returns>
 			long long startTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
 			long long endTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
-			
+
 			while (endTime - startTime < 400) {
 				endTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
-				
-				if (pWind->GetMouseClick(x,y))return MOVE;
+
+				if (pWind->GetMouseClick(x, y))return MOVE;
 			}
 
 
@@ -236,7 +240,7 @@ ActionType UI::GetUserAction() const
 
 			return SELECT;
 		}
-	
+
 
 
 
@@ -250,9 +254,62 @@ ActionType UI::GetUserAction() const
 		//[3] User clicks on the status bar
 		return STATUS_BAR;
 	}
-	else	//Application is in Simulation mode
+	else if (AppMode == SIMULATION)	//Application is in Simulation mode
 	{
-		return SIM_MODE;	//This should be changed after creating the compelete simulation bar 
+
+
+		//[1] If user clicks on the Toolbar
+		if (y >= 0 && y < ToolBarHeight)
+		{
+			int ClickedItemOrder = (x / ToolItemWidth);
+
+			switch (ClickedItemOrder)
+			{
+			case BACKTODES:	return DSN_MODE;
+			case AMMETER:	return ADD_LAMP;
+			case VOLTMETER: return ADD_BATTERY;
+
+
+			default: return DSN_TOOL;	//A click on empty place in desgin toolbar
+			}
+
+		}
+
+
+
+
+		return SELECT;	//This should be changed after creating the compelete simulation bar 
+	}
+
+	else if (AppMode == MODULE_DESIGN) {
+
+		if (y >= 0 && y < ToolBarHeight)
+		{
+			//Check whick Menu item was clicked
+			//==> This assumes that menu items are lined up horizontally <==
+			int ClickedItemOrder = (x / ToolItemWidth);
+			//Divide x coord of the point clicked by the menu item width (int division)
+			//if division result is 0 ==> first item is clicked, if 1 ==> 2nd item and so on
+
+			switch (ClickedItemOrder)
+			{
+			case ITMm_BACK: return DSN_MODE;
+			case ITMm_RES:	return ADD_RESISTOR;
+			case ITMm_LAMP:	return ADD_LAMP;
+			case ITMm_BATTERY: return ADD_BATTERY;
+			case ITMm_SWITCH: return ADD_SWITCH;
+			case ITMm_BUZZER: return ADD_BUZZER;
+			case ITMm_CONN:	return ADD_CONNECTION;
+			case ITMm_FUSE: return ADD_FUSE;
+			case ITMm_GROUND: return ADD_GROUND;
+			case ITMm_SAVE_MOD: return SAVE_MODULE;
+
+			default: return DSN_TOOL;	//A click on empty place in desgin toolbar
+			}
+
+
+
+		}
 	}
 
 }
@@ -318,9 +375,18 @@ void UI::PrintMsgX(string msg, int xx, int yy) const
 	pWind->DrawString(xx, yy, msg);
 }
 
+void UI::PrintMsgX(string msg, int xx, int yy,int font) const
+{
+
+	// Print the Message
+	pWind->SetFont(font, BOLD | ITALICIZED, BY_NAME, "Arial");
+	pWind->SetPen(RED);
+	pWind->DrawString(xx, yy, msg);
+}
 
 
 //////////////////////////////////////////////////////////////////////////////////
+
 void UI::ClearStatusBar()const
 {
 	// Set the Message offset from the Status Bar
@@ -331,12 +397,10 @@ void UI::ClearStatusBar()const
 	pWind->SetPen(BkGrndColor);
 	pWind->SetBrush(BkGrndColor);
 	pWind->DrawRectangle(MsgX, height - MsgY, width, height);
+
 }
-//////////////////////////////////////////////////////////////////////////////////////////
-// 
-// 
-// 
-// 
+
+
 
 void UI::ClearLabel(int xx,int yy)const
 {
@@ -389,17 +453,21 @@ void UI::CreateDesignToolBar()
 	MenuItemImages[ITM_CONN] = "images\\Menu\\Menu_Conn.jpg";
 	MenuItemImages[ITM_MOD4] = "images\\Menu\\Module4.jpg";
 	MenuItemImages[ITM_SIMULATE] = "images\\Menu\\Menu_Simulate.jpg";
+
+	
+
+	MenuItemImages[ITM_MOD_DES_MODE] = "images\\Menu\\mod_mode.jpg";
+	MenuItemImages[ITM_FROM_DES_MODE] = "images\\Menu\\mod_itself.jpg";
+
 	MenuItemImages[ITM_EXIT] = "images\\Menu\\Menu_Exit.jpg";
 	
 	//TODO: Prepare image for each menu item and add it to the list
 
 	//Draw menu item one image at a time
 	for (int i = 0; i < ITM_DSN_CNT; i++) {
-		static int j = 0; //because there is ITM_SIMULATE that taked 3 places so having j instead of i is better
 		
-		if (i == ITM_SIMULATE) { pWind->DrawImage(MenuItemImages[i], i * ToolItemWidth, 0, ToolItemWidth * 3, ToolBarHeight); j += 2; }
-		else pWind->DrawImage(MenuItemImages[i], j * ToolItemWidth, 0, ToolItemWidth, ToolBarHeight);
-		j++;
+		pWind->DrawImage(MenuItemImages[i], i * ToolItemWidth, 0, ToolItemWidth, ToolBarHeight);
+		
 	}
 
 	//Draw a line under the toolbar
@@ -454,18 +522,6 @@ void UI::CreateEditToolBar()
 
 
 
-
-
-//////////////////////////////////////////////////////////////////////////////////////////
-//Draws the menu (toolbar) in the simulation mode
-void UI::CreateSimulationToolBar()
-{
-	AppMode = SIMULATION;	//Simulation Mode
-
-	//TODO: Write code to draw the simualtion toolbar (similar to that of design toolbar drawing)
-
-
-}
 
 
 
@@ -818,6 +874,172 @@ UI::~UI()
 }
 
 
+
+
+
+
+
+
+
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////
-//                                 Deleting Comps                                         //
+//                                 SIMULATION MODE                                         //
 ////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+void UI::CreateSimulationBar()
+{
+	AppMode = SIMULATION;	//Design Mode
+	//pWind->DrawRectangle(0, 0, width, height);
+
+	//You can draw the tool bar icons in any way you want.
+
+	//First prepare List of images for each menu item
+	string MenuItemImages[ITM_SIM_CNT];
+	MenuItemImages[BACKTODES] = "images\\SIM\\design.jpg";
+	MenuItemImages[AMMETER] = "images\\SIM\\Ammeter.jpg";
+	MenuItemImages[VOLTMETER] = "images\\SIM\\Voltmeter.jpg";
+
+
+
+	//Draw menu item one image at a time
+	for (int i = 0; i < ITM_SIM_CNT; i++) {
+		
+		pWind->DrawImage(MenuItemImages[i], ToolItemWidth*i, 0, ToolItemWidth, ToolBarHeight);
+		
+	}
+
+	//Draw a line under the toolbar
+	pWind->SetPen(RED, 3);
+	pWind->DrawLine(0, ToolBarHeight, width, ToolBarHeight );
+
+}
+
+
+
+void UI::SwitchToSimulate()
+{
+	cout << "mmmmmmm";
+	AppMode = SIMULATION;	//Design Mode is the startup mode
+
+	//Initilaize interface colorscd 
+	DrawColor = BLACK;
+	SelectColor = BLUE;
+	ConnColor = RED;
+	MsgColor = BLUE;
+	BkGrndColor = WHITE;
+
+	delete pWind;
+	pWind = new window(width, height, wx, wy);
+
+
+	ChangeTitle("SIM MODE -----  CIE 202: Circuit Simulator Project T10");
+
+
+
+
+	CreateSimulationBar();	//Create the desgin toolbar
+	CreateStatusBar();		//Create Status bar
+
+
+	//CreateGrid();
+}
+
+
+void UI::BackToDesign()
+{
+	AppMode = DESIGN;	//Design Mode is the startup mode
+
+	//Initilaize interface colorscd 
+	DrawColor = BLACK;
+	SelectColor = BLUE;
+	ConnColor = RED;
+	MsgColor = BLUE;
+	BkGrndColor = WHITE;
+
+	//Create the drawing window
+	delete pWind;
+	pWind = new window(width, height, wx, wy);
+
+
+	ChangeTitle("DESIGN MODE -----  CIE 202: Circuit Simulator Project T10");
+
+
+
+
+	CreateDesignToolBar();	//Create the desgin toolbar
+	CreateEditToolBar();
+	CreateStatusBar();		//Create Status bar
+
+	//CreateGrid();
+}
+
+
+
+void UI::CreateModuleBar()
+{
+	AppMode = MODULE_DESIGN;	//Design Mode
+
+	//You can draw the tool bar icons in any way you want.
+
+	//First prepare List of images for each menu item
+	string MenuItemImages[ITMm_DSN_CNT];
+	MenuItemImages[ITMm_BACK] = "images\\Menu\\backInMod.jpg";
+	MenuItemImages[ITMm_RES] = "images\\Menu\\Menu_Resistor.jpg";
+	MenuItemImages[ITMm_BATTERY] = "images\\Menu\\Menu_Battery.jpg";
+	MenuItemImages[ITMm_SWITCH] = "images\\Menu\\Menu_Switch.jpg";
+	MenuItemImages[ITMm_LAMP] = "images\\Menu\\Menu_Lamp.jpg";
+	MenuItemImages[ITMm_BUZZER] = "images\\Menu\\Menu_Buzzer.jpg";
+	MenuItemImages[ITMm_FUSE] = "images\\Menu\\Menu_Fuse.jpg";
+	MenuItemImages[ITMm_GROUND] = "images\\Menu\\Menu_Ground.jpg";
+	MenuItemImages[ITMm_CONN] = "images\\Menu\\Menu_Conn.jpg";
+	MenuItemImages[ITMm_SAVE_MOD] = "images\\Menu\\Save_mod.jpg";
+
+
+
+	//TODO: Prepare image for each menu item and add it to the list
+
+	//Draw menu item one image at a time
+	for (int i = 0; i < ITMm_DSN_CNT; i++) {
+
+		pWind->DrawImage(MenuItemImages[i], i * ToolItemWidth, 0, ToolItemWidth, ToolBarHeight);
+
+	}
+
+	//Draw a line under the toolbar
+	pWind->SetPen(RED, 3);
+	pWind->DrawLine(0, ToolBarHeight, width, ToolBarHeight);
+
+}
+
+
+
+void UI::SwitchToModDes()
+{
+	cout << "mmmmmmm";
+	AppMode = MODULE_DESIGN;	//Design Mode is the startup mode
+
+	//Initilaize interface colorscd 
+	DrawColor = BLACK;
+	SelectColor = BLUE;
+	ConnColor = RED;
+	MsgColor = BLUE;
+	BkGrndColor = WHITE;
+
+	delete pWind;
+	pWind = new window(width, height, wx, wy);
+
+
+	ChangeTitle("MODULE DESIGN MODE -----  CIE 202: Circuit Simulator Project T10");
+
+
+
+
+	CreateModuleBar();	//Create the desgin toolbar
+	CreateStatusBar();		//Create Status bar
+
+
+	//CreateGrid();
+}

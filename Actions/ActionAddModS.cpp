@@ -1,35 +1,36 @@
-#include "ActionAddFuse.h"
+#include "ActionAddModS.h"
 #include "..\ApplicationManager.h"
-#include<iostream>
+#include <iostream>
 
-ActionAddFuse::ActionAddFuse(ApplicationManager* pApp) :Action(pApp)
+ActionAddModS::ActionAddModS(ApplicationManager *pApp):Action(pApp)
 {
 }
 
-ActionAddFuse::~ActionAddFuse(void)
+ActionAddModS::~ActionAddModS(void)
 {
 }
 
-void ActionAddFuse::Execute()
+void ActionAddModS::Execute()
 {
-
+	
 	//Get a Pointer to the user Interfaces
 	UI* pUI = pManager->GetUI();
 
 	//Calculate the rectangle Corners
 	int compWidth = pUI->getCompWidth();
 	int compHeight = pUI->getCompHeight();
-
+	//pUI->Get();
 	//Print Action Message
-	pUI->PrintMsg("Adding a new Fuse: Click anywhere to add");
+	pUI->PrintMsg("Adding a new Module: Click anywhere to add");
+
 	int i = 0;
 
 	int x1 = 0, y1 = 0, x2 = 0, y2 = 0;
 	GraphicsInfo* pGInfo = new GraphicsInfo(2);
 	while (1) { //you can ignore this now!!!!!!!!!!!!!!!!!!!!!!!
-		int Sx = 0, Sy = 0;
+		int Sx=0, Sy=0;
 
-
+		
 
 		pUI->GetPreviousClick(Sx, Sy);
 
@@ -49,16 +50,16 @@ void ActionAddFuse::Execute()
 
 
 
-		if (!pManager->isConflict(Sx, Sy, compWidth, compHeight)) {
-			pUI->DrawSpam(*pGInfo, ITM_FUSE);
+		if (! pManager->isConflict(Sx, Sy, compWidth, compHeight)) {
+			pUI->DrawSpam(*pGInfo, ITM_RES);
 
-
+			
 			Sleep(10);
-			pUI->ClearSth(x1, y1, x2, y2);
+			pUI->ClearSth(x1,y1,x2,y2);
 		}
 		pUI->GetPointClicked2(Cx, Cy);
-
-
+		
+		
 		if (Cx != 0 || Cy != 0) { //means you clicked the mouse
 			if (pManager->isConflict(Sx, Sy, compWidth, compHeight)) {
 				pUI->ClearStatusBar();
@@ -75,41 +76,46 @@ void ActionAddFuse::Execute()
 	pGInfo->PointsList[0].y = Cy - compHeight / 2;
 	pGInfo->PointsList[1].x = Cx + compWidth / 2;
 	pGInfo->PointsList[1].y = Cy + compHeight / 2;
-	pUI->DrawTemp(*pGInfo, ITM_FUSE);
-	pUI->ClearStatusBar();
+	pUI->DrawTemp(*pGInfo,ITM_RES);
+	pUI->ClearStatusBar();	
 
 
 	//Print Action Message
 	pUI->PrintMsg("Enter a LABEL (max 5 chars) OR just press enter");
 	string text = pUI->GetSrting();
 	pUI->ClearStatusBar();
+	
+	pUI->PrintMsg("Enter a VALUE (max 9999.9) OR just press enter");
+	string textV = pUI->GetSrting();
 
-	//pUI->PrintMsg("Enter a VALUE (max 9999.9) OR just press enter");
-	//string textV = pUI->GetSrting();
-
-	//double V = 9999.9;
-	//try
-	//{
-	//	V = stod(textV);
-	//	if (V <= 9999.9) V = V;
-	//	else V = 9999.9;
-	//}
-	//catch (invalid_argument const& e) { V = 0; }
-	//catch (out_of_range const& e) {}
+	double V;
+	try
+	{
+		V = stod(textV);
+		/*
+		if (V <= 9999.9);
+		else V = 9999.9;
+		*/
+	}
+	catch (invalid_argument const& e) { V = 0; }
+	catch (out_of_range const& e) { V = 9999.9; }
 
 
 
 	pUI->ClearStatusBar();
+	
 
 
-
-
-	Fuse* pR = new Fuse(pGInfo, text,0);
+	 
+	Module* pR = new Module(pGInfo,text,V);
 	pManager->AddComponent(pR);
-}
 
-void ActionAddFuse::Undo()
+	
+	}
+
+void ActionAddModS::Undo()
 {}
 
-void ActionAddFuse::Redo()
+void ActionAddModS::Redo()
 {}
+

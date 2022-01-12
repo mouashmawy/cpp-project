@@ -50,6 +50,10 @@ class UI
 		ITM_MOD4,
 		ITM_CONN,		
 		ITM_SIMULATE,
+
+		ITM_MOD_DES_MODE,
+		ITM_FROM_DES_MODE,
+
 		ITM_EXIT,
 		
 	
@@ -58,7 +62,6 @@ class UI
 		ITM_DSN_CNT		//no. of design menu items ==> This should be the last line in this enum
 	
 	};
-
 
 	enum DsgnMenuItem2 {
 		ITM_EDIT_L,
@@ -82,21 +85,42 @@ class UI
 
 	};
 
+	enum SimMenuItem {
+		BACKTODES,
+		AMMETER,
+		VOLTMETER,
+
+		ITM_SIM_CNT
 
 
-
-
-
-	enum SimMenuItem //The items of the simulation menu (you should add more items)
-	{
-		//Note: Items are ordered here as they appear in menu
-		ITM_CIRC_SIM,	//Circuit Simulate menu item
-	
-		//TODO:Add more items names here
-	
-		ITM_SIM_CNT		//no. of simulation menu items ==> This should be the last line in this enum
-	
 	};
+
+
+
+
+
+	enum ModDesItem //The items of the design menu (you should add more items)
+	{
+		//Note: Items are ordered here as they appear in the menu
+		//If you want to change the menu items order, just change the order here
+		
+		ITMm_BACK,
+		ITMm_RES,		//Resistor item in menu
+		ITMm_LAMP,		//Lamp
+		ITMm_BATTERY,
+		ITMm_FUSE,
+		ITMm_GROUND,
+		ITMm_SWITCH,
+		ITMm_BUZZER,
+		ITMm_CONN,
+		ITMm_SAVE_MOD,
+
+		ITMm_DSN_CNT		//no. of design menu items ==> This should be the last line in this enum
+
+	};
+
+
+
 
 	enum ConnectCases {
 
@@ -210,6 +234,8 @@ public:
 
 	void PrintMsgX(string msg, int xx, int yy) const;
 
+	void PrintMsgX(string msg, int xx, int yy, int font) const;
+
 	void ClearStatusBar() const;
 	void ClearLabel(int xx, int yy) const;
 	void ClearSth(int x1, int y1, int x2, int y2) ;
@@ -255,6 +281,11 @@ public:
 	void DrawTemp(const GraphicsInfo& r_GfxInfo, int type) const;
 
 	~UI();
+	void CreateSimulationBar();
+	void SwitchToSimulate();
+	void BackToDesign();
+	void CreateModuleBar();
+	void SwitchToModDes();
 };
 
 #endif

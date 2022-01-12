@@ -2,10 +2,11 @@
 #include<iostream>
 #include <fstream>
 
-Lamp::Lamp(GraphicsInfo *r_GfxInfo, string name) :Component(r_GfxInfo)
+Lamp::Lamp(GraphicsInfo *r_GfxInfo, string name ,double value) :Component(r_GfxInfo)
 {
 	label = name;
 	Component_type = "LMP";
+	this->value = 0;
 }
 
 void Lamp::Draw(UI* pUI, bool selected)
@@ -30,20 +31,22 @@ void Lamp::Operate()
 void Lamp::Save(ofstream &file)
 {
 	GraphicsInfo* List = getC();
-	file << Component_type << "  " << ID << "  " << label << "  " << "No Value" << "  " << List->PointsList[0].x << "  " << List->PointsList[0].y << endl;
+	file << Component_type << "  " << ID << "  " << label << "  " << value << "  " << List->PointsList[0].x << "  " << List->PointsList[0].y << endl;
 	ID++;
 }
 
-void Lamp::Load(ifstream &file)
+void Lamp::Load(int ID)
 {
-	char NAME_OF_COMPONENT, LABEL;
-	int ID, X, Y, Count, VALUE;
-	file >> Count >> ID >> NAME_OF_COMPONENT >> LABEL >> VALUE >> X >> Y;
-
+	this->ID = ID;
 }
 
 void Lamp::Delete()
 {
 	delete m_pGfxInfo;
 
+}
+
+Point Lamp::getCPoint() const
+{
+	return m_pGfxInfo->PointsList[0];
 }

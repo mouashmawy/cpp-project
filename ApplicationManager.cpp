@@ -19,6 +19,11 @@
 #include "Actions\ActionCopy.h"
 #include "Actions\ActionPaste.h"
 #include "Actions\ActionDelete.h"
+#include "Actions\ActionSimulate.h"
+#include "Actions\ActionDesign.h"
+#include "Actions\ActionModDes.h"
+#include "Actions\ActionAddModS.h"
+
 
 ApplicationManager::ApplicationManager()
 {
@@ -81,6 +86,11 @@ Component** ApplicationManager::getCompList()
 {
 	return CompList;
 }
+
+Connection** ApplicationManager::getConnList()
+{
+	return ConnList;
+}
 void ApplicationManager::setCpdComp(Component* c)
 {
 	pCpdComp = c;
@@ -93,22 +103,44 @@ int ApplicationManager::getCompCount() const
 {
 	return CompCount;
 }
+
+int ApplicationManager::getConnCount() const
+{
+	return ConnCount;
+}
+
+
 void ApplicationManager::DeleteComponent(Component* pComp)
 {
 	for (int i = 0; i < CompCount; i++) {
 		if (CompList[i] == pComp)
 		{
-			for (int j = i; j < CompCount - 1; j++) CompList[j] = CompList[j + 1];
+			for (int j = i; j < CompCount - 1; j++) {
+				CompList[j] = CompList[j + 1]; 
+			}
 			CompCount--;
 		}
 	}
 	pUI->ClearDrawingArea();
 	UpdateInterface();
+	for (int i = 0; i < CompCount; i++) {
+		delete CompList[i];
+		CompList[i] = nullptr;
+	}
+	
 }
 
 ////////////////////////////////////////////////////////////////////
 
+void ApplicationManager::DeleteConnection(Connection* pConn) {
+	for (int i = 0; i < ConnCount; i++) {
+		if (ConnList[i] == pConn) {
+			
+			ConnCount--;
+		}
 
+	}
+}
 
 ///////////////////////////////////////////////////////////////////
 ActionType ApplicationManager::GetUserAction()
@@ -120,6 +152,7 @@ ActionType ApplicationManager::GetUserAction()
 
 void ApplicationManager::ExecuteAction(ActionType ActType)
 {
+	
 	Action* pAct = nullptr;
 	switch (ActType)
 	{
@@ -198,6 +231,25 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 
 
+		case SIM_MODE:
+			pAct = new ActionSimulate(this);
+			break;
+
+		case DSN_MODE:
+			pAct = new ActionDesign(this);
+			break;
+
+		case MOD_DES_MODE:
+			pAct = new ActionModDes(this);
+			break;
+
+		case FROM_DES_MODE:
+			pAct = new ActionAddModS(this);
+			break;
+
+	
+
+
 		case EXIT:
 			///TODO: create ExitAction here
 			break;
@@ -215,6 +267,7 @@ void ApplicationManager::UpdateInterface()
 {
 		for(int i=0; i<CompCount; i++)
 			CompList[i]->Draw(pUI);
+
 		for (int i = 0; i < ConnCount; i++)
 			ConnList[i]->Draw(pUI);
 
@@ -239,6 +292,7 @@ ApplicationManager::~ApplicationManager()
 
 void ApplicationManager::SaveCircut(ofstream& file) {
 
+	file << CompCount<<endl;
 	for (int i = 0; i < CompCount; i++) {
 		CompList[i]->Save(file);
 	}
@@ -252,29 +306,80 @@ void ApplicationManager::SaveCircut(ofstream& file) {
 
 /////////////////////////////////////////////////////////////////
 
-void ApplicationManager::LoadCircut(ifstream& file) {
-	for (int i = 0; i < getCompCount(); i++) {
-		CompList[i]->Load(file);
+void ApplicationManager::LoadCircut(ifstream& file, string fileName) {
+	cout << "Ayyad";
+	file.open(fileName);
+
+	string component_type, label;
+	int Count, ID;
+	double value, x, y;
+	
+	file >> Count;
+	for (int i = 0; i < Count; i++) {
 		
+		file >> component_type >> ID >> label >> value >> x >> y;
+		GraphicsInfo* pG = new GraphicsInfo(2);
+		pG->PointsList[0].x = x;
+		pG->PointsList[0].y = y;
+		pG->PointsList[1].x = x + pUI->getCompWidth();
+		pG->PointsList[1].y = y + pUI->getCompHeight();
 
-		Action* pAct = nullptr;
-		if (CompList[i]->Component_type == "RES") CompList[i]->Draw(pUI);
-
-		else if (CompList[i]->Component_type == "LMP") CompList[i]->Draw(pUI);
-
-		else if (CompList[i]->Component_type == "BAT") CompList[i]->Draw(pUI);
-
-		else if (CompList[i]->Component_type == "SWT") CompList[i]->Draw(pUI);
-
-		else if (CompList[i]->Component_type == "BUZ") CompList[i]->Draw(pUI);
-
-		else if (CompList[i]->Component_type == "FUS") CompList[i]->Draw(pUI);
-
-		else if (CompList[i]->Component_type == "GND")CompList[i]->Draw(pUI);
-
-		else if (CompList[i]->Component_type == "CON") CompList[i]->Draw(pUI);
+		if (component_type == "RES")
+		{
+			Resistor* pR = new Resistor(pG , label , value);
+			AddComponent(pR);
+			CompList[i]->Load(ID);
+		}
+		if (component_type == "LMP")
+		{
+			Lamp* pL = new Lamp(pG, label , value);
+			AddComponent(pL);
+			CompList[i]->Load(ID);
+		}
+		if (component_type == "SWT")
+		{
+			Switch* pS = new Switch(pG, label, value);
+			AddComponent(pS);
+			CompList[i]->Load(ID);
+		}
+		if (component_type == "GND")
+		{
+			Ground* pVG = new Ground(pG, label,value);
+			AddComponent(pVG);
+			CompList[i]->Load(ID);
+		}
+		if (component_type == "BAT")
+		{
+			Battery* pB = new Battery(pG, label, value);
+			AddComponent(pB);
+			CompList[i]->Load(ID);
+		}
+		if (component_type == "BUZ")
+		{
+			Buzzer* pZ = new Buzzer(pG, label, value);
+			AddComponent(pZ);
+			CompList[i]->Load(ID);
+		}
+		if (component_type == "FUS")
+		{
+			Fuse* pF = new Fuse(pG, label, value);
+			AddComponent(pF);
+			CompList[i]->Load(ID);
+		}
 	}
+	int connCount , ID1, ID2;
+	file >> connCount;
+	/*for (int i = 0; i < connCount; i++) {
+		file >> ID1 >> ID2;
+		GraphicsInfo* pGInfo = new GraphicsInfo(2);
+		Component* Comp1 = getIdCmpt(ID1);
+		Component* Comp2 = getIdCmpt(ID2);
+		Connection* pc = new Connection(pGInfo," ", Comp1, Comp2);
+		pc->Load(pUI);
+		AddConnection(pc);*/
+//	}
 }
+
 
 //////////////////////////////////////////////////////////////////////////////
 /// Getting the ID of the compnents
@@ -287,6 +392,20 @@ int ApplicationManager::getCmptid(Component* comp) {
 }
 
 /////////////////////////////////////////////////////////////////////////////
+/// it returns the components which has the same ID
+
+Component* ApplicationManager::getIdCmpt(int number) {
+	
+	for (int i = 0; i < CompCount; i++) {
+		Component* pC = CompList[i];
+		if (getCmptid(pC) == number) {
+			return CompList[i];
+		}
+		delete pC;
+	}
+}
+
+////////////////////////////////////////////////////////////////////////////
 
 void ApplicationManager::DeleteAll() {
 	
@@ -300,6 +419,7 @@ void ApplicationManager::DeleteAll() {
 	}
 
 }
+
 
 ////////////////////////////////////////////////////////////////////////////
 void ApplicationManager::multiDeleteComp() {
@@ -318,5 +438,63 @@ void ApplicationManager::multiDeleteComp() {
 
 
 	} while (ActType != DEL);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+bool ApplicationManager::CheckifGround()
+{
+	int groundC = 1;
+
+	for (int i = 0; i < CompCount; i++)
+	{
+		Component* p = dynamic_cast<Ground*>(CompList[i]);
+		if (!p) 
+			groundC++;
+	}
+
+	if (groundC > 1)
+		return false;
+	else
+		return true;
+}
+
+//////////////////////////////////////////////////////////////////
+
+
+bool ApplicationManager::checkifFullyConnected()
+{
+	int c = 0;
+	for (int i = 0; i < CompCount; i++)     //loop on complist.
+	{
+		if (CompList[i]->t1_conn_c() >0 && CompList[i]->t2_conn_c() > 0)
+			c++;
+
+	}
+
+	if (c == CompCount)return true;
+	else return false;
+}
+
+
+
+
+
+
+//check circuit has no parallel branches.
+bool ApplicationManager::checkifNoParallelBranches()
+{
+	int c = 0;
+	for (int i = 0; i < CompCount; i++)     //loop on complist.
+	{
+		if (CompList[i]->t1_conn_c() < 2 && CompList[i]->t2_conn_c() < 2)
+			c++;
+			
+	}
+	if (c == CompCount)return true;
+	else return false;
+
 }
 
