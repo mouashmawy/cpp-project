@@ -247,13 +247,17 @@ void ApplicationManager::SaveCircut(ofstream& file) {
 
 /////////////////////////////////////////////////////////////////
 
-void ApplicationManager::LoadCircut(ifstream& file) {
-	int componentCount{}, ID;
-	double value, x, y;
+void ApplicationManager::LoadCircut(ifstream& file, string fileName) {
+	cout << "Ayyad";
+	file.open(fileName);
+
 	string component_type, label;
-	file >> value;
-	cout << componentCount;
-	for (int i = 0; i < componentCount; i++) {
+	int Count, ID;
+	double value, x, y;
+	
+	file >> Count;
+	for (int i = 0; i < Count; i++) {
+		
 		file >> component_type >> ID >> label >> value >> x >> y;
 		GraphicsInfo* pG = new GraphicsInfo(2);
 		pG->PointsList[0].x = x;

@@ -44,7 +44,7 @@ public:
 	/////////////////////////////////////////////
 
 	void SaveCircut(ofstream& file);
-	void LoadCircut(ifstream& file);
+	void LoadCircut(ifstream& file, string fileName);
 	///////////////////////////////////////
 	void DeleteComponent(Component* pComp);
 	void DeleteAll();
