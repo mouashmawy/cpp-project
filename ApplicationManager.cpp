@@ -11,6 +11,7 @@
 #include "Actions\ActionAddModule.h"
 #include "Actions\ActionConnect.h"
 #include "Actions\ActionSelect.h"
+#include "Actions\ActionMove.h"
 #include "Actions\ActionEditL.h"
 #include "Actions\ActionEditV.h"
 #include "Actions\ActionSaveCircut.h"
@@ -18,6 +19,9 @@
 #include "Actions\ActionCopy.h"
 #include "Actions\ActionPaste.h"
 #include "Actions\ActionDelete.h"
+#include "Actions\ActionSimulate.h"
+
+
 
 
 ApplicationManager::ApplicationManager()
@@ -35,9 +39,8 @@ ApplicationManager::ApplicationManager()
 	pUI = new UI;
 }
 /////////////////////////////////////////////////////////////////////
-bool ApplicationManager::isConflict(int xx, int yy, int ww, int hh) const
+bool ApplicationManager::isConflict(int xx, int yy, int ww, int hh, Component* c) const
 {
-
 
 	if (yy > pUI->gB().height - pUI->gB().StatusBarHeight - hh / 2 -1 ||
 		yy < pUI->gB().ToolBarHeight + hh ||
@@ -52,7 +55,12 @@ bool ApplicationManager::isConflict(int xx, int yy, int ww, int hh) const
 				yy >= CompList[i]->getC()->PointsList[0].y - hh &&
 				xx <= CompList[i]->getC()->PointsList[1].x + ww / 2 &&
 				yy <= CompList[i]->getC()->PointsList[1].y + hh)
-			)	return true;
+
+			) {
+			if (CompList[i] == c) return false;
+			else return true;
+		}
+			
 
 	}
 
@@ -158,6 +166,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct = new ActionSelect(this);
 			break;
 
+		case MOVE:
+			pAct = new ActionMove(this);
+			break;
+
 		case EDIT_L:
 			pAct = new ActionEditL(this);
 			break;
@@ -192,6 +204,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 
 
+		case SIMULATE:
+			pAct = new ActionSimulate(this);
+
 		case EXIT:
 			///TODO: create ExitAction here
 			break;
@@ -209,6 +224,7 @@ void ApplicationManager::UpdateInterface()
 {
 		for(int i=0; i<CompCount; i++)
 			CompList[i]->Draw(pUI);
+
 		for (int i = 0; i < ConnCount; i++)
 			ConnList[i]->Draw(pUI);
 
