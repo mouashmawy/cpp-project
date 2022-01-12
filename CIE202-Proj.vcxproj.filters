@@ -172,6 +172,7 @@
     <ClCompile Include="Actions\ActionDesign.cpp" />
     <ClCompile Include="Actions\ActionModDes.cpp" />
     <ClCompile Include="Actions\ActionAddModS.cpp" />
+    <ClCompile Include="Actions\ActionBuzzer_Sound.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\Component.h">
@@ -284,6 +285,7 @@
     <ClInclude Include="Actions\ActionDesign.h" />
     <ClInclude Include="Actions\ActionModDes.h" />
     <ClInclude Include="Actions\ActionAddModS.h" />
+    <ClInclude Include="Actions\ActionBuzzer_Sound.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="CMUgraphicsLib\Manual.txt">
@@ -367,5 +369,10 @@
   <ItemGroup>
     <None Include="README.md" />
     <None Include="Images\Menu\Menu_Resistor.psd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Actions\Buzzer_Sound.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
   </ItemGroup>
 </Project>

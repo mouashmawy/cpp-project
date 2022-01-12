@@ -51,10 +51,10 @@ void ActionAddModule::Execute()
 
 
 		if (! pManager->isConflict(Sx, Sy, compWidth, compHeight)) {
-			pUI->DrawSpam(*pGInfo, ITM_RES);
+			pUI->DrawSpam(*pGInfo, ITM_MOD4);
 
 			
-			Sleep(10);
+			Sleep(30);
 			pUI->ClearSth(x1,y1,x2,y2);
 		}
 		pUI->GetPointClicked2(Cx, Cy);
@@ -76,7 +76,7 @@ void ActionAddModule::Execute()
 	pGInfo->PointsList[0].y = Cy - compHeight / 2;
 	pGInfo->PointsList[1].x = Cx + compWidth / 2;
 	pGInfo->PointsList[1].y = Cy + compHeight / 2;
-	pUI->DrawTemp(*pGInfo,ITM_RES);
+	pUI->DrawTemp(*pGInfo, ITM_MOD4);
 	pUI->ClearStatusBar();	
 
 
@@ -85,29 +85,39 @@ void ActionAddModule::Execute()
 	string text = pUI->GetSrting();
 	pUI->ClearStatusBar();
 	
-	pUI->PrintMsg("Enter a VALUE (max 9999.9) OR just press enter");
-	string textV = pUI->GetSrting();
-
-	double V;
-	try
+	string Arry_R[4];
+	double V[4];
+	for (int i = 0; i < 4; i++)
 	{
-		V = stod(textV);
-		/*
-		if (V <= 9999.9);
-		else V = 9999.9;
-		*/
+
+
+		pUI->PrintMsg("Enter VALUE of RES " + to_string(i + 1) + " (max 9999.9) OR just press enter");
+
+	 Arry_R[i] = pUI->GetSrting();
+
+		
+		try
+		{
+			V[i] = stod(Arry_R[i]);
+			/*
+			if (V <= 9999.9);
+			else V = 9999.9;
+			*/
+		}
+		catch (invalid_argument const& e) { V[i] = 0; }
+		catch (out_of_range const& e) { V[i] = 9999.9; }
+
+
+
+		pUI->ClearStatusBar();
+
 	}
-	catch (invalid_argument const& e) { V = 0; }
-	catch (out_of_range const& e) { V = 9999.9; }
-
-
-
-	pUI->ClearStatusBar();
-	
-
-
+	double Eqe_V;
+	double R1, R2, R3, R4, R5;
+	R1 = V[0], R2 = V[1], R3 = V[2], R4 = V[3], R5 = V[4];
+	Eqe_V = 1 / ((1 / R1) + (1 / R2)) + 1 / R3 + 1 / ((1 / R4) + (1 / R5));
 	 
-	Module* pR = new Module(pGInfo,text,V);
+	Module* pR = new Module(pGInfo,text,Eqe_V);
 	pManager->AddComponent(pR);
 
 	
