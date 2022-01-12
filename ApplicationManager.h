@@ -47,8 +47,8 @@ public:
 	void LoadCircut(ifstream& file, string fileName);
 	///////////////////////////////////////
 	void DeleteComponent(Component* pComp);
+	void DeleteConnection(Connection* pConn);
 	void DeleteAll();
-	void multiDeleteComp();
 
 	bool CheckifGround();
 
@@ -68,12 +68,14 @@ public:
 	int ApplicationManager::getCmptid(Component* comp);
 	////////////////////////////////////
 	Component** getCompList();
+	Connection** getConnList();
 
 	void setCpdComp(Component* c);
 	Component* getCpdComp();
-	Component* getId( int number);
+	Component* getIdCmpt( int number);
 
 	int getCompCount() const;
+	int getConnCount() const;
 	//destructor
 	~ApplicationManager();
 };

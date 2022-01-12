@@ -45,3 +45,8 @@ void Lamp::Delete()
 	delete m_pGfxInfo;
 
 }
+
+Point Lamp::getCPoint() const
+{
+	return m_pGfxInfo->PointsList[0];
+}

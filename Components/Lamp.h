@@ -15,4 +15,5 @@ public:
 	void Save(ofstream& file);
 	void Load(int ID);
 	void Delete();
+	Point getCPoint() const;
 };

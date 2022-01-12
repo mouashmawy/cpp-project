@@ -41,3 +41,8 @@ void Switch::Delete()
 {
 	delete m_pGfxInfo;
 }
+
+Point Switch::getCPoint() const
+{
+	return m_pGfxInfo->PointsList[0];
+}

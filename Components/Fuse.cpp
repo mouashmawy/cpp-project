@@ -44,3 +44,8 @@ void Fuse::Delete()
 	delete m_pGfxInfo;
 
 }
+
+Point Fuse::getCPoint() const
+{
+	return m_pGfxInfo->PointsList[0];
+}

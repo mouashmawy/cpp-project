@@ -1,20 +1,17 @@
 #include "Connection.h"
 #include <fstream>
 #include <iostream>
+#include "Component.h"
 
 
 Connection::Connection(GraphicsInfo *r_GfxInfo, string text,Component *cmp1, Component *cmp2)
 {
-	cout << 6;
 	pGfxInfo = r_GfxInfo;
 	Cmpnt1 = cmp1;
 	Cmpnt2 = cmp2;
-	ConnLabel = text;
-	std::cout << "constr";
 }
 void Connection::Draw(UI* pUI)
 {
-	cout << "draw";
 	pUI->DrawConnection(*pGfxInfo, ConnLabel);
 }
 
@@ -28,23 +25,47 @@ Component* Connection::getCmpt(int order) {
 	else return nullptr;
 }
 
-void Connection::Save(ofstream& file, int Cmpt1, int Cmpt2)
+void Connection::Save(ofstream& file, int CmptID, int CmptID2)
 {
-	file << Cmpt1 << "  " << Cmpt2 << endl;
+	file << CmptID << "  " << CmptID2 << endl;
+}
+
+Component* Connection::getCmpnt1() {
+	return Cmpnt1;
+}
+
+
+Component* Connection::getCmpnt2() {
+
+	return Cmpnt2;
+}
+
+GraphicsInfo* Connection::getGFX() {
+	return pGfxInfo;
+}
+void Connection::Select(bool selected) {
+	this->selected = selected;
+}
+bool Connection::checkSelection() {
+	return selected;
 }
 
 void Connection::Load(UI* pUI)
-{/*
-	int x1 = Cmpnt1->getCoordinates().x;
-	int x2 = Cmpnt2->getCoordinates().x;
-	int y1 = Cmpnt1->getCoordinates().y;
-	int y2 = Cmpnt2->getCoordinates().y;
-	if (x2 > x1) {
-		pGfxInfo->PointsList[1].x = x2;
-		pGfxInfo->PointsList[1].y = y2 - pUI->getCompHeight() / 2;
-		pGfxInfo->PointsList[0].x = x1 + pUI->getCompWidth();
-		pGfxInfo->PointsList[0].y = y1;
-	}*/
+{
+}
+
+bool Connection::isConnected(int x, int y) {
+	int x1 = pGfxInfo->PointsList[0].x;
+	int x2 = pGfxInfo->PointsList[1].x;
+	int y1 = pGfxInfo->PointsList[0].y;
+	int y2 = pGfxInfo->PointsList[1].y;
+	if ((x >= x1) && (x <= x2) && (y >= y1) && (y <= y2)) {
+		return true;
+	}
+	else {
+		return false;
+	}
+
 }
 
 void Connection::Delete()

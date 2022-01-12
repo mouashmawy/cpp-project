@@ -43,3 +43,8 @@ void Ground::Delete()
 {
 	delete m_pGfxInfo;
 }
+
+Point Ground::getCPoint() const
+{
+	return m_pGfxInfo->PointsList[0];
+}
