@@ -12,7 +12,7 @@ ActionSelect::~ActionSelect(void)
 {
 }
 
-
+Connection* ConnSelct = nullptr;
 Component* ActionSelect::CompInPlace(int xx, int yy) 
 {
 
@@ -35,6 +35,8 @@ Component* ActionSelect::CompInPlace(int xx, int yy)
 }
 
 
+
+
 void ActionSelect::Execute()
 {
 
@@ -45,7 +47,6 @@ void ActionSelect::Execute()
 	pUI->GetPreviousClick(x1, y1);
 
 	Component* compSel = CompInPlace(x1, y1);
-	
 	if (compSel == nullptr) {
 		return;
 	}

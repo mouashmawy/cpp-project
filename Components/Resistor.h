@@ -14,6 +14,7 @@ public:
 	virtual void Save(ofstream& file);
 	virtual void Load(int ID);
 	virtual void Delete();
+	Point getCPoint() const;
 
 
 };

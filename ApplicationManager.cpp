@@ -85,6 +85,11 @@ Component** ApplicationManager::getCompList()
 {
 	return CompList;
 }
+
+Connection** ApplicationManager::getConnList()
+{
+	return ConnList;
+}
 void ApplicationManager::setCpdComp(Component* c)
 {
 	pCpdComp = c;
@@ -97,6 +102,13 @@ int ApplicationManager::getCompCount() const
 {
 	return CompCount;
 }
+
+int ApplicationManager::getConnCount() const
+{
+	return ConnCount;
+}
+
+
 void ApplicationManager::DeleteComponent(Component* pComp)
 {
 	for (int i = 0; i < CompCount; i++) {
@@ -110,11 +122,24 @@ void ApplicationManager::DeleteComponent(Component* pComp)
 	}
 	pUI->ClearDrawingArea();
 	UpdateInterface();
+	for (int i = 0; i < CompCount; i++) {
+		delete CompList[i];
+		CompList[i] = nullptr;
+	}
+	
 }
 
 ////////////////////////////////////////////////////////////////////
 
+void ApplicationManager::DeleteConnection(Connection* pConn) {
+	for (int i = 0; i < ConnCount; i++) {
+		if (ConnList[i] == pConn) {
+			
+			ConnCount--;
+		}
 
+	}
+}
 
 ///////////////////////////////////////////////////////////////////
 ActionType ApplicationManager::GetUserAction()
@@ -324,19 +349,17 @@ void ApplicationManager::LoadCircut(ifstream& file, string fileName) {
 			CompList[i]->Load(ID);
 		}
 	}
-	/*int connCount , ID1, ID2;
+	int connCount , ID1, ID2;
 	file >> connCount;
-	for (int i = 0; i < connCount; i++) {
+	/*for (int i = 0; i < connCount; i++) {
 		file >> ID1 >> ID2;
-		Component* comp1 = getId(ID1);
-		Component* comp2 = getId(ID2);
-
-		GraphicsInfo* pGraphic = new GraphicsInfo(2);
-		
-		Connection* pConn = new Connection(pGraphic, comp1, comp2);
-
-		pConn->Load();
-	}*/
+		GraphicsInfo* pGInfo = new GraphicsInfo(2);
+		Component* Comp1 = getIdCmpt(ID1);
+		Component* Comp2 = getIdCmpt(ID2);
+		Connection* pc = new Connection(pGInfo," ", Comp1, Comp2);
+		pc->Load(pUI);
+		AddConnection(pc);*/
+//	}
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -352,7 +375,7 @@ int ApplicationManager::getCmptid(Component* comp) {
 /////////////////////////////////////////////////////////////////////////////
 /// it returns the components which has the same ID
 
-Component* ApplicationManager::getId(int number) {
+Component* ApplicationManager::getIdCmpt(int number) {
 	
 	for (int i = 0; i < CompCount; i++) {
 		Component* pC = CompList[i];

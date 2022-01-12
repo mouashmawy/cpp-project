@@ -57,6 +57,8 @@ public:
 	virtual void Save(ofstream& file) = 0;
 	virtual void Load(int ID) = 0;
 
+	virtual Point getCPoint() const =0;
+
 	virtual void Delete() = 0;
 	void Select();
 
