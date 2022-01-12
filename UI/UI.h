@@ -82,21 +82,20 @@ class UI
 
 	};
 
+	enum SimMenuItem {
+		
+		AMMETER,
+		VOLTMETER,
+
+		ITM_SIM_CNT
 
 
-
-
-
-	enum SimMenuItem //The items of the simulation menu (you should add more items)
-	{
-		//Note: Items are ordered here as they appear in menu
-		ITM_CIRC_SIM,	//Circuit Simulate menu item
-	
-		//TODO:Add more items names here
-	
-		ITM_SIM_CNT		//no. of simulation menu items ==> This should be the last line in this enum
-	
 	};
+
+
+
+
+
 
 	enum ConnectCases {
 
@@ -255,6 +254,8 @@ public:
 	void DrawTemp(const GraphicsInfo& r_GfxInfo, int type) const;
 
 	~UI();
+	void CreateSimulationBar();
+	void SwitchToSimulate();
 };
 
 #endif
