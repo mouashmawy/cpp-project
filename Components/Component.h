@@ -55,7 +55,7 @@ public:
 	bool CheckSelection();
 
 	virtual void Save(ofstream& file) = 0;
-	virtual void Load(ifstream& file) = 0;
+	virtual void Load(int ID) = 0;
 
 	virtual void Delete() = 0;
 	void Select();

@@ -1,9 +1,9 @@
 #include "Switch.h"
 #include<iostream>
 #include <fstream>
-Switch::Switch(GraphicsInfo* r_GfxInfo, string name) :Component(r_GfxInfo)
+Switch::Switch(GraphicsInfo* r_GfxInfo, string name, double value) :Component(r_GfxInfo)
 {
-
+	this->value = 0;
 	label = name;
 	Component_type = "SWT";
 }
@@ -28,17 +28,13 @@ void Switch::Operate()
 void Switch::Save(ofstream &file)
 {
 	GraphicsInfo* List = getC();
-	file << Component_type << "  " << ID << "  "<< label << "  " << "No Value" << "  " << List->PointsList[0].x << "  " << List->PointsList[0].y << endl;
+	file << Component_type << "  " << ID << "  "<< label << "  " << value << "  " << List->PointsList[0].x << "  " << List->PointsList[0].y << endl;
 	ID++;
 }
 
-void Switch::Load(ifstream &file)
+void Switch::Load(int ID)
 {
-	string NAME_OF_COMPONENT, LABEL, VALUE;
-	int ID, X, Y;
-	while (!file.eof()) {
-		file >> ID >> NAME_OF_COMPONENT >> LABEL >> VALUE >> X >> Y;
-	}
+	this->ID = ID;
 }
 
 void Switch::Delete()
