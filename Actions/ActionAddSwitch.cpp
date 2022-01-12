@@ -1,6 +1,5 @@
 #include "ActionAddSwitch.h"
 #include "..\ApplicationManager.h"
-#include "..\Components\Switch.h"
 #include<iostream>
 
 ActionAddSwitch::ActionAddSwitch(ApplicationManager* pApp) : Action(pApp)
@@ -106,7 +105,7 @@ void ActionAddSwitch::Execute()
 
 
 
-	Switch* pR = new Switch(pGInfo, text);
+	Switch* pR = new Switch(pGInfo, text,0);
 	pManager->AddComponent(pR);
 
 }

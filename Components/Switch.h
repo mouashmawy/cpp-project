@@ -8,7 +8,7 @@ class Switch :public Component
 	bool state_Closed;
 
 public:
-	Switch(GraphicsInfo* r_GfxInfo, string name);
+	Switch(GraphicsInfo* r_GfxInfo, string name, double value);
 	virtual void Operate();	//Calculates the volt on both terminals
 	virtual void Draw(UI*, bool selected = false);	//Draws the resistor
 	GraphicsInfo* getC();

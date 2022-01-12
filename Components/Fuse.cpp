@@ -2,10 +2,11 @@
 #include<iostream>
 #include <fstream>
 
-Fuse::Fuse(GraphicsInfo* r_GfxInfo, string name) :Component(r_GfxInfo)
+Fuse::Fuse(GraphicsInfo* r_GfxInfo, string name, double value) :Component(r_GfxInfo)
 {
-	label = name;
+	this->label = name;
 	Component_type = "FUS";
+	this->value = value;
 }
 
 void Fuse::Draw(UI* pUI, bool selected)
@@ -29,7 +30,7 @@ void Fuse::Operate()
 void Fuse::Save(ofstream &file)
 {
 	GraphicsInfo* List = getC();
-	file << Component_type << "  " << ID << "  " << label << "  " << "No Value" << "  " << List->PointsList[0].x << "  " << List->PointsList[0].y << endl;
+	file << Component_type << "  " << ID << "  " << label << "  " << value << "  " << List->PointsList[0].x << "  " << List->PointsList[0].y << endl;
 	ID++;
 }
 

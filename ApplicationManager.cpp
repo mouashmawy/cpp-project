@@ -233,6 +233,7 @@ ApplicationManager::~ApplicationManager()
 
 void ApplicationManager::SaveCircut(ofstream& file) {
 
+	file << CompCount<<endl;
 	for (int i = 0; i < CompCount; i++) {
 		CompList[i]->Save(file);
 	}
@@ -247,10 +248,11 @@ void ApplicationManager::SaveCircut(ofstream& file) {
 /////////////////////////////////////////////////////////////////
 
 void ApplicationManager::LoadCircut(ifstream& file) {
-	int componentCount, ID;
+	int componentCount{}, ID;
 	double value, x, y;
 	string component_type, label;
-	file >> componentCount;
+	file >> value;
+	cout << componentCount;
 	for (int i = 0; i < componentCount; i++) {
 		file >> component_type >> ID >> label >> value >> x >> y;
 		GraphicsInfo* pG = new GraphicsInfo(2);
@@ -263,35 +265,57 @@ void ApplicationManager::LoadCircut(ifstream& file) {
 		{
 			Resistor* pR = new Resistor(pG , label , value);
 			AddComponent(pR);
+			CompList[i]->Load(ID);
 		}
 		if (component_type == "LMP")
 		{
-			Lamp* pL = new Lamp(pG, label);
+			Lamp* pL = new Lamp(pG, label , value);
 			AddComponent(pL);
+			CompList[i]->Load(ID);
 		}
 		if (component_type == "swt")
 		{
-			Switch* pS = new Switch(pG, label);
+			Switch* pS = new Switch(pG, label, value);
 			AddComponent(pS);
+			CompList[i]->Load(ID);
 		}
 		if (component_type == "GND")
 		{
-			Ground* pB = new Ground(pG, label);
-			AddComponent(pB);
+			Ground* pVG = new Ground(pG, label,value);
+			AddComponent(pVG);
+			CompList[i]->Load(ID);
 		}
-		else if (CompList[i]->Component_type == "LMP") CompList[i]->Draw(pUI);
+		if (component_type == "BAT")
+		{
+			Battery* pB = new Battery(pG, label, value);
+			AddComponent(pB);
+			CompList[i]->Load(ID);
+		}
+		if (component_type == "BUZ")
+		{
+			Buzzer* pZ = new Buzzer(pG, label, value);
+			AddComponent(pZ);
+			CompList[i]->Load(ID);
+		}
+		if (component_type == "FUS")
+		{
+			Fuse* pF = new Fuse(pG, label, value);
+			AddComponent(pF);
+			CompList[i]->Load(ID);
+		}
+		//else if (CompList[i]->Component_type == "LMP") CompList[i]->Draw(pUI);
 
-		else if (CompList[i]->Component_type == "BAT") CompList[i]->Draw(pUI);
+		//else if (CompList[i]->Component_type == "BAT") CompList[i]->Draw(pUI);
 
-		else if (CompList[i]->Component_type == "SWT") CompList[i]->Draw(pUI);
+		//else if (CompList[i]->Component_type == "SWT") CompList[i]->Draw(pUI);
 
-		else if (CompList[i]->Component_type == "BUZ") CompList[i]->Draw(pUI);
+		//else if (CompList[i]->Component_type == "BUZ") CompList[i]->Draw(pUI);
 
-		else if (CompList[i]->Component_type == "FUS") CompList[i]->Draw(pUI);
+		//else if (CompList[i]->Component_type == "FUS") CompList[i]->Draw(pUI);
 
-		else if (CompList[i]->Component_type == "GND")CompList[i]->Draw(pUI);
+		//else if (CompList[i]->Component_type == "GND")CompList[i]->Draw(pUI);
 
-		else if (CompList[i]->Component_type == "CON") CompList[i]->Draw(pUI);
+		//else if (CompList[i]->Component_type == "CON") CompList[i]->Draw(pUI);
 	}
 }
 

@@ -104,7 +104,7 @@ void ActionAddFuse::Execute()
 
 
 
-	Fuse* pR = new Fuse(pGInfo, text);
+	Fuse* pR = new Fuse(pGInfo, text,0);
 	pManager->AddComponent(pR);
 }
 

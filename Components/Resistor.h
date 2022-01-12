@@ -7,7 +7,7 @@ class Resistor:public Component
 
 
 public:
-	Resistor(GraphicsInfo *r_GfxInfo,string name,double val=0);
+	Resistor(GraphicsInfo *r_GfxInfo,string name,double value);
 	virtual void Operate();	//Calculates the volt on both terminals
 	virtual void Draw(UI*,bool selected=false);	//Draws the resistor
 	GraphicsInfo* getC();

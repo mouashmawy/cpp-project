@@ -2,10 +2,10 @@
 #include <iostream>
 #include <fstream>
 
-Resistor::Resistor(GraphicsInfo *r_GfxInfo, string name, double val):Component(r_GfxInfo)
+Resistor::Resistor(GraphicsInfo *r_GfxInfo, string name, double value):Component(r_GfxInfo)
 {
 	label = name;
-	value = val;
+	this->value = value;
 	Component_type = "RES";
 }
 
