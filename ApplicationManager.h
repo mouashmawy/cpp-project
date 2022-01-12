@@ -50,6 +50,12 @@ public:
 	void DeleteAll();
 	void multiDeleteComp();
 
+	bool CheckifGround();
+
+	bool checkifFullyConnected();
+
+	bool checkifNoParallelBranches();
+
 	//////////////////////////////////////
 
 	//Adds a new component to the list of components

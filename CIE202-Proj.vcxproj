@@ -116,6 +116,7 @@
     <ClCompile Include="Actions\ActionAddFuse.cpp" />
     <ClCompile Include="Actions\ActionAddGround.cpp" />
     <ClCompile Include="Actions\ActionAddLamp.cpp" />
+    <ClCompile Include="Actions\ActionAddModS.cpp" />
     <ClCompile Include="Actions\ActionAddModule.cpp" />
     <ClCompile Include="Actions\ActionAddRes.cpp" />
     <ClCompile Include="Actions\ActionAddSwitch.cpp" />
@@ -124,9 +125,11 @@
     <ClCompile Include="Actions\ActionCopyCutPaste.cpp" />
     <ClCompile Include="Actions\ActionCut.cpp" />
     <ClCompile Include="Actions\ActionDelete.cpp" />
+    <ClCompile Include="Actions\ActionDesign.cpp" />
     <ClCompile Include="Actions\ActionEditL.cpp" />
     <ClCompile Include="Actions\ActionEditV.cpp" />
     <ClCompile Include="Actions\ActionLoadCircut.cpp" />
+    <ClCompile Include="Actions\ActionModDes.cpp" />
     <ClCompile Include="Actions\ActionMove.cpp" />
     <ClCompile Include="Actions\ActionPaste.cpp" />
     <ClCompile Include="Actions\ActionSaveCircut.cpp" />
@@ -188,6 +191,7 @@
     <ClInclude Include="Actions\ActionAddFuse.h" />
     <ClInclude Include="Actions\ActionAddGround.h" />
     <ClInclude Include="Actions\ActionAddLamp.h" />
+    <ClInclude Include="Actions\ActionAddModS.h" />
     <ClInclude Include="Actions\ActionAddModule.h" />
     <ClInclude Include="Actions\ActionAddRes.h" />
     <ClInclude Include="Actions\ActionAddSwitch.h" />
@@ -196,10 +200,12 @@
     <ClInclude Include="Actions\ActionCopyCutPaste.h" />
     <ClInclude Include="Actions\ActionCut.h" />
     <ClInclude Include="Actions\ActionDelete.h" />
+    <ClInclude Include="Actions\ActionDesign.h" />
     <ClInclude Include="Actions\ActionEditK.h" />
     <ClInclude Include="Actions\ActionEditL.h" />
     <ClInclude Include="Actions\ActionEditV.h" />
     <ClInclude Include="Actions\ActionLoadCircut.h" />
+    <ClInclude Include="Actions\ActionModDes.h" />
     <ClInclude Include="Actions\ActionMove.h" />
     <ClInclude Include="Actions\ActionPaste.h" />
     <ClInclude Include="Actions\ActionSaveCircut.h" />
