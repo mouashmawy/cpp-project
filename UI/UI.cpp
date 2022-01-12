@@ -50,9 +50,9 @@ bool UI::isInDrawingArea(const GraphicsInfo &p) {
 
 	if (
 		p.PointsList[0].x > 0 &&
-		p.PointsList[0].y < height - ToolBarHeight &&
-		p.PointsList[1].x < width - EditBarWidth &&
-		p.PointsList[1].y > ToolBarHeight
+		p.PointsList[0].y < height - ToolBarHeight - getCompHeight() &&
+		p.PointsList[1].x < width - EditBarWidth -getCompWidth() &&
+		p.PointsList[1].y > ToolBarHeight +getCompHeight()*2
 		)
 		return 1;
 
@@ -177,8 +177,6 @@ ActionType UI::GetUserAction() const
 			//Check whick Menu item was clicked
 			//==> This assumes that menu items are lined up horizontally <==
 			int ClickedItemOrder = (x / ToolItemWidth);
-			//Divide x coord of the point clicked by the menu item width (int division)
-			//if division result is 0 ==> first item is clicked, if 1 ==> 2nd item and so on
 
 			switch (ClickedItemOrder)
 			{
@@ -266,8 +264,8 @@ ActionType UI::GetUserAction() const
 			switch (ClickedItemOrder)
 			{
 			case BACKTODES:	return DSN_MODE;
-			case AMMETER:	return ADD_LAMP;
-			case VOLTMETER: return ADD_BATTERY;
+			case AMMETER:	return CHECKVOLT;
+			case VOLTMETER: return CHECKVOLT;
 
 
 			default: return DSN_TOOL;	//A click on empty place in desgin toolbar
@@ -430,7 +428,7 @@ void UI::ClearDrawingArea() const
 {
 	pWind->SetPen(RED, 1);
 	pWind->SetBrush(WHITE);
-	pWind->DrawRectangle(0, ToolBarHeight, width-EditBarWidth, height - StatusBarHeight);
+	pWind->DrawRectangle(0, ToolBarHeight, width-EditBarWidth-14, height - StatusBarHeight);
 	
 }
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -716,9 +714,9 @@ void UI::DrawModule(const GraphicsInfo& r_GfxInfo, string my_label, double val, 
 	string valS = to_string(val);
 
 	if (selected)
-		GroundImage = "Images\\Comp\\Module.jpg";	//use image of highlighted resistor
+		GroundImage = "Images\\Comp\\Module_HI.jpg";	//use image of highlighted resistor
 	else
-		GroundImage = "Images\\Comp\\Module_HI.jpg";	//use image of the normal resistor
+		GroundImage = "Images\\Comp\\Module.jpg";	//use image of the normal resistor
 
 
 	int xc = r_GfxInfo.PointsList[0].x;
@@ -833,8 +831,12 @@ string UI::SwitchImage(int type) const
 		Image = "Images\\Comp\\Switch.jpg";
 		break;
 
+	case (ITM_MOD4):
+		Image = "Images\\Comp\\module.jpg";
+		break;
+
 	default:
-		Image = "Images\\Comp\\Resistor.jpg";
+		Image = "Images\\Comp\\amp.jpg";
 		break;
 	}
 	return Image;

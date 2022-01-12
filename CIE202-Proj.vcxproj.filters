@@ -173,6 +173,7 @@
     <ClCompile Include="Actions\ActionModDes.cpp" />
     <ClCompile Include="Actions\ActionAddModS.cpp" />
     <ClCompile Include="Actions\ActionBuzzer_Sound.cpp" />
+    <ClCompile Include="Actions\ActionCheckVolt.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\Component.h">
@@ -286,6 +287,7 @@
     <ClInclude Include="Actions\ActionModDes.h" />
     <ClInclude Include="Actions\ActionAddModS.h" />
     <ClInclude Include="Actions\ActionBuzzer_Sound.h" />
+    <ClInclude Include="Actions\ActionCheckVolt.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="CMUgraphicsLib\Manual.txt">
