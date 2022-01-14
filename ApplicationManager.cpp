@@ -23,6 +23,7 @@
 #include "Actions\ActionDesign.h"
 #include "Actions\ActionModDes.h"
 #include "Actions\ActionAddModS.h"
+#include "Actions\ActionExit.h"
 
 
 ApplicationManager::ApplicationManager()
@@ -149,7 +150,6 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case ADD_SWITCH:
 			pAct = new ActionAddSwitch(this);
 			break;
-			///////////////////555555555555555555555555555555555555555
 		case ADD_BUZZER:
 			pAct = new ActionAddBuzzer(this);
 			break;
@@ -225,11 +225,8 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct = new ActionAddModS(this);
 			break;
 
-	
-
-
 		case EXIT:
-			///TODO: create ExitAction here
+			pAct = new ActionExit(this);
 			break;
 	}
 	if(pAct)
