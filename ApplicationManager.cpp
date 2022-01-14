@@ -110,28 +110,6 @@ int ApplicationManager::getConnCount() const
 }
 
 
-void ApplicationManager::DeleteComponent(Component* pComp)
-{
-	for (int i = 0; i < CompCount; i++) {
-		if (CompList[i] == pComp)
-		{
-			for (int j = i; j < CompCount - 1; j++) {
-				CompList[j] = CompList[j + 1]; 
-			}
-			CompCount--;
-		}
-	}
-	pUI->ClearDrawingArea();
-	UpdateInterface();
-	for (int i = 0; i < CompCount; i++) {
-		delete CompList[i];
-		CompList[i] = nullptr;
-	}
-	
-}
-
-////////////////////////////////////////////////////////////////////
-
 void ApplicationManager::DeleteConnection(Connection* pConn) {
 	for (int i = 0; i < ConnCount; i++) {
 		if (ConnList[i] == pConn) {
@@ -407,41 +385,46 @@ Component* ApplicationManager::getIdCmpt(int number) {
 
 ////////////////////////////////////////////////////////////////////////////
 
+void ApplicationManager::DeleteComponent(Component* pComp)
+{
+	for (int i = 0; i < CompCount; i++) { 
+		if (pComp == CompList[i]){
+			CompList[i] = CompList[i + 1];
+			CompCount--;
+		}
+			
+	}
+	pUI->ClearDrawingArea();
+
+}
+
+////////////////////////////////////////////////////////////////////
+/// Deleting and rearranging the CompList///
+
 void ApplicationManager::DeleteAll() {
 	
-	for (int i = 0; i <= CompCount; i++) {
-		cout << "count:" << CompCount << endl;
-		cout << "enter: "<<CompList[i]->CheckSelection()<<endl;
+	Component* tempList[MaxCompCount];
+	int counter = 0;
+
+	for (int i = 0; i <= CompCount;i++ ) {
 		if (CompList[i]->CheckSelection()){
-			cout << "Ayyad: " << i<< endl;
 			DeleteComponent(CompList[i]);
-		}
+		}	
 	}
 
+	for (int i = 0; i < CompCount; i++)
+		if (CompList[i] != nullptr) {
+			tempList[counter] = CompList[i];
+			counter++;
+		}
+	for (int i = 0; i < CompCount; i++) {
+		CompList[i] = tempList[i];
+		tempList[i] = nullptr;
+
+	}
+	CompCount = counter;
+	counter = 0;
 }
-
-
-////////////////////////////////////////////////////////////////////////////
-void ApplicationManager::multiDeleteComp() {
-	ActionType ActType;
-	ApplicationManager AppManager;
-	do
-	{
-		//Read user action
-		ActType = AppManager.GetUserAction();
-
-		//Exexute the action
-		AppManager.ExecuteAction(DEL);
-
-		//Update the drawing window
-		AppManager.UpdateInterface();
-
-
-	} while (ActType != DEL);
-}
-
-/////////////////////////////////////////////////////////////////////////////
-
 
 
 bool ApplicationManager::CheckifGround()

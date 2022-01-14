@@ -12,6 +12,7 @@ class Component
 private:
 	string m_Label;
 protected:
+	
 	string label;
 	double value;
 	//Each component has two ending terminals (term1, term2)
@@ -68,7 +69,9 @@ public:
 	//virtual void setInputPinStatus(int n, STATUS s)=0;	//set status of Inputpin # n, to be used by connection class.
 
 	
-	Component();	
+	Component();
+	bool isHere(int x, int y);
+
 	
 	//Destructor must be virtual
 	virtual ~Component();

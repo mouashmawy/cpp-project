@@ -68,6 +68,8 @@ bool Connection::isConnected(int x, int y) {
 
 }
 
+
+
 void Connection::Delete()
 {
 

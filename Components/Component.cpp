@@ -35,7 +35,6 @@ void Component::Select() {
 	Selected = true;
 }
 
-
 Component::Component(GraphicsInfo *r_GfxInfo)
 {
 	m_pGfxInfo = r_GfxInfo;	
@@ -49,7 +48,13 @@ Component::Component()
 
 }
 
- 
+bool Component::isHere(int x, int y) {
+	if (x >= m_pGfxInfo->PointsList[0].x && x <= m_pGfxInfo->PointsList[1].x && y >= m_pGfxInfo->PointsList[0].y && y <= m_pGfxInfo->PointsList[1].y) {
+		return true;
+	}
+	else return false;
+}
+
 GraphicsInfo* Component::getC()
 {
 	return m_pGfxInfo;
