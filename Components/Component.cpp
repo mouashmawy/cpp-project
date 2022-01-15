@@ -35,6 +35,16 @@ void Component::Select() {
 	Selected = true;
 }
 
+Connection**  Component::getTerm1()
+{
+	return term1_connections;
+}
+
+Connection** Component::getTerm2()
+{
+	return term2_connections;
+}
+
 Component::Component(GraphicsInfo *r_GfxInfo)
 {
 	m_pGfxInfo = r_GfxInfo;	

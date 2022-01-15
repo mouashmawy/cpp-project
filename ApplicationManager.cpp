@@ -17,6 +17,7 @@
 #include "Actions\ActionSaveCircut.h"
 #include "Actions\ActionLoadCircut.h"
 #include "Actions\ActionCopy.h"
+#include "Actions\ActionCut.h"
 #include "Actions\ActionPaste.h"
 #include "Actions\ActionDelete.h"
 #include "Actions\ActionSimulate.h"
@@ -111,16 +112,6 @@ int ApplicationManager::getConnCount() const
 }
 
 
-void ApplicationManager::DeleteConnection(Connection* pConn) {
-	for (int i = 0; i < ConnCount; i++) {
-		if (ConnList[i] == pConn) {
-			
-			ConnCount--;
-		}
-
-	}
-}
-
 ///////////////////////////////////////////////////////////////////
 ActionType ApplicationManager::GetUserAction()
 {
@@ -196,7 +187,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 
 		case CUT:
-			pAct = new ActionCopy(this);
+			pAct = new ActionCut(this);
 			break;
 
 		case PASTE:
@@ -344,15 +335,15 @@ void ApplicationManager::LoadCircut(ifstream& file, string fileName) {
 	}
 	int connCount , ID1, ID2;
 	file >> connCount;
-	/*for (int i = 0; i < connCount; i++) {
+	for (int i = 0; i < connCount; i++) {
 		file >> ID1 >> ID2;
 		GraphicsInfo* pGInfo = new GraphicsInfo(2);
 		Component* Comp1 = getIdCmpt(ID1);
 		Component* Comp2 = getIdCmpt(ID2);
 		Connection* pc = new Connection(pGInfo," ", Comp1, Comp2);
-		pc->Load(pUI);
-		AddConnection(pc);*/
-//	}
+		pc->Load(pUI, Comp1, Comp2);
+		AddConnection(pc);
+	}
 }
 
 
@@ -395,32 +386,62 @@ void ApplicationManager::DeleteComponent(Component* pComp)
 
 }
 
+/////////////////////////////////////////////////////////////////////////
+void ApplicationManager::DeleteConnection(Connection* pConn) {
+	for (int i = 0; i < ConnCount; i++) {
+		if (ConnList[i] == pConn) {
+			ConnList[i] = ConnList[i + 1];
+			ConnCount--;
+		}
+	}
+	pUI->ClearDrawingArea();
+}
 ////////////////////////////////////////////////////////////////////
 /// Deleting and rearranging the CompList///
 
 void ApplicationManager::DeleteAll() {
 	
-	Component* tempList[MaxCompCount];
-	int counter = 0;
+	Component* ComptempList[MaxCompCount];
+	Connection* ConntempList[MaxCompCount];
+	int compCounter = 0;
 
 	for (int i = 0; i <= CompCount;i++ ) {
 		if (CompList[i]->CheckSelection()){
+			Connection** Conn1 = CompList[i]->getTerm1();
+			Connection** Conn2 = CompList[i]->getTerm2();
+			for (int i = 0; i < CompList[i]->t1_conn_c(); i++) {
+				DeleteConnection(Conn1[i]);
+			}
+			for (int i = 0; i < CompList[i]->t2_conn_c(); i++) {
+				DeleteConnection(Conn2[i]);
+			}
 			DeleteComponent(CompList[i]);
 		}	
 	}
 
 	for (int i = 0; i < CompCount; i++)
 		if (CompList[i] != nullptr) {
-			tempList[counter] = CompList[i];
-			counter++;
+			ComptempList[compCounter] = CompList[i];
+			compCounter++;
 		}
 	for (int i = 0; i < CompCount; i++) {
-		CompList[i] = tempList[i];
-		tempList[i] = nullptr;
+		CompList[i] = ComptempList[i];
+		ComptempList[i] = nullptr;
 
 	}
-	CompCount = counter;
-	counter = 0;
+	CompCount = compCounter;
+	int connCounter = 0;
+
+	for (int i = 0; i < ConnCount; i++)
+		if (CompList[i] != nullptr) {
+			ConntempList[connCounter] = ConnList[i];
+			connCounter++;
+		}
+	for (int i = 0; i < ConnCount; i++) {
+		ConnList[i] = ConntempList[i];
+		ConntempList[i] = nullptr;
+	}
+	ConnCount = connCounter;
 }
 
 

@@ -56,11 +56,10 @@ void ActionCut::Execute()
 	}
 	compSel->Draw(pUI,true);
 	pManager->setCpdComp(compSel);
-	/// <here we must make Delete section >
-	/// //////////////////////////////////
-	/// </from Ayyad>
+	pManager->DeleteAll();
 	pUI->PrintMsg("Comp "+compSel->getType() + " " + compSel->getLabel() + " cut successfully");
 	pUI->GetPointClicked(x1, y1);
+	pManager->UpdateInterface();
 	pUI->ClearStatusBar();
 	compSel->Draw(pUI);
 

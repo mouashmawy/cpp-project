@@ -1,5 +1,4 @@
-2
-RES  1  dfsg  55  145  126
-RES  2  fdg  0  701  441
+1
+RES  1  fdg  55  581  295
 Connections
 0
