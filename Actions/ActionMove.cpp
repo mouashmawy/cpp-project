@@ -109,9 +109,10 @@ void ActionMove::Execute()
 
 	
 	pUI->PrintMsg(compSel->getType()+"::      "+compSel->getLabel()	+
-		"  moved successfully");
-										
-			
+	"  moved successfully");
+
+	pUI->GetPointClicked(Cx, Cy);
+	pUI->ClearStatusBar();
 
 
 }

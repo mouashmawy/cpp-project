@@ -50,6 +50,8 @@ public:
 	void DeleteConnection(Connection* pConn);
 	void DeleteAll();
 
+	void multiDeleteComp();
+
 	bool CheckifGround();
 
 	bool checkifFullyConnected();

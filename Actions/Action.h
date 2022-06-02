@@ -42,6 +42,9 @@ enum DsgnMenuItem //The items of the design menu (you should add more items)
 	ITM_MOD4,
 	ITM_CONN,		//to draw connections
 
+	A,
+	V,
+
 	ITM_EXIT,		//Exit item
 	//TODO: Add more items names here
 

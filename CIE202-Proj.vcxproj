@@ -121,6 +121,7 @@
     <ClCompile Include="Actions\ActionAddRes.cpp" />
     <ClCompile Include="Actions\ActionAddSwitch.cpp" />
     <ClCompile Include="Actions\ActionBuzzer_Sound.cpp" />
+    <ClCompile Include="Actions\ActionCheckVolt.cpp" />
     <ClCompile Include="Actions\ActionConnect.cpp" />
     <ClCompile Include="Actions\ActionCopy.cpp" />
     <ClCompile Include="Actions\ActionCopyCutPaste.cpp" />
@@ -198,6 +199,7 @@
     <ClInclude Include="Actions\ActionAddRes.h" />
     <ClInclude Include="Actions\ActionAddSwitch.h" />
     <ClInclude Include="Actions\ActionBuzzer_Sound.h" />
+    <ClInclude Include="Actions\ActionCheckVolt.h" />
     <ClInclude Include="Actions\ActionConnect.h" />
     <ClInclude Include="Actions\ActionCopy.h" />
     <ClInclude Include="Actions\ActionCopyCutPaste.h" />
