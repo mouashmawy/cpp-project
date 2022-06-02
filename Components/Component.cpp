@@ -35,6 +35,15 @@ void Component::Select() {
 	Selected = true;
 }
 
+Connection**  Component::getTerm1()
+{
+	return term1_connections;
+}
+
+Connection** Component::getTerm2()
+{
+	return term2_connections;
+}
 
 Component::Component(GraphicsInfo *r_GfxInfo)
 {
@@ -49,7 +58,13 @@ Component::Component()
 
 }
 
- 
+bool Component::isHere(int x, int y) {
+	if (x >= m_pGfxInfo->PointsList[0].x && x <= m_pGfxInfo->PointsList[1].x && y >= m_pGfxInfo->PointsList[0].y && y <= m_pGfxInfo->PointsList[1].y) {
+		return true;
+	}
+	else return false;
+}
+
 GraphicsInfo* Component::getC()
 {
 	return m_pGfxInfo;

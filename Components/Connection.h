@@ -26,10 +26,11 @@ public:
 
 	virtual void Draw(UI* );	//for connection to Draw itself
 	void Save(ofstream& file, int CmptID1, int CmptID2); //for saving the component
-	void Load(UI* pUI);
 	void Delete();
 	void Select(bool selected);
 	bool checkSelection();
+
+	void Load(UI* pUI, Component* pComp1, Component* pComp2);
 
 	bool isConnected(int x, int y); // to check if it is connected or not 
 

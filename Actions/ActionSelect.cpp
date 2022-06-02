@@ -12,7 +12,6 @@ ActionSelect::~ActionSelect(void)
 {
 }
 
-Connection* ConnSelct = nullptr;
 Component* ActionSelect::CompInPlace(int xx, int yy) 
 {
 
@@ -50,12 +49,13 @@ void ActionSelect::Execute()
 	if (compSel == nullptr) {
 		return;
 	}
-	compSel->Draw(pUI,true);
-	compSel->Select();
-	pUI->PrintMsg(compSel->getType()+"::      "+
-		"Label: "+compSel->getLabel()	+
-		"   ---   Value: " + to_string(compSel->getValue())  );
-	
+	else {
+		compSel->Draw(pUI, true);
+		compSel->Select();
+		pUI->PrintMsg(compSel->getType() + "::      " +
+			"Label: " + compSel->getLabel() +
+			"   ---   Value: " + to_string(compSel->getValue()));
+		}
 	
 	
 	pUI->GetPointClicked(x1, y1);

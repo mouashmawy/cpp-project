@@ -18,6 +18,7 @@ private:
 
 
 public:
+	int x, y;
 	ActionDelete(ApplicationManager* pApp);
 	virtual ~ActionDelete(void);
 

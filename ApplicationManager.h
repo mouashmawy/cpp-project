@@ -76,6 +76,7 @@ public:
 	Component* getCpdComp();
 	Component* getIdCmpt( int number);
 
+
 	int getCompCount() const;
 	int getConnCount() const;
 	//destructor

@@ -130,6 +130,7 @@
     <ClCompile Include="Actions\ActionDesign.cpp" />
     <ClCompile Include="Actions\ActionEditL.cpp" />
     <ClCompile Include="Actions\ActionEditV.cpp" />
+    <ClCompile Include="Actions\ActionExit.cpp" />
     <ClCompile Include="Actions\ActionLoadCircut.cpp" />
     <ClCompile Include="Actions\ActionModDes.cpp" />
     <ClCompile Include="Actions\ActionMove.cpp" />
@@ -208,6 +209,7 @@
     <ClInclude Include="Actions\ActionEditK.h" />
     <ClInclude Include="Actions\ActionEditL.h" />
     <ClInclude Include="Actions\ActionEditV.h" />
+    <ClInclude Include="Actions\ActionExit.h" />
     <ClInclude Include="Actions\ActionLoadCircut.h" />
     <ClInclude Include="Actions\ActionModDes.h" />
     <ClInclude Include="Actions\ActionMove.h" />
