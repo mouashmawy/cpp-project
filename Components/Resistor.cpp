@@ -11,6 +11,9 @@ Resistor::Resistor(GraphicsInfo *r_GfxInfo, string name, double value):Component
 
 void Resistor::Draw(UI* pUI,bool selected)
 {
+	if (pUI == nullptr) {
+
+	}
 	//Call output class and pass resistor drawing info to it.
 	pUI->DrawResistor(*m_pGfxInfo,label,value, selected); //update to draw resistor
 	

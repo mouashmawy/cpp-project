@@ -17,12 +17,14 @@
 #include "Actions\ActionSaveCircut.h"
 #include "Actions\ActionLoadCircut.h"
 #include "Actions\ActionCopy.h"
+#include "Actions\ActionCut.h"
 #include "Actions\ActionPaste.h"
 #include "Actions\ActionDelete.h"
 #include "Actions\ActionSimulate.h"
 #include "Actions\ActionDesign.h"
 #include "Actions\ActionModDes.h"
 #include "Actions\ActionAddModS.h"
+#include "Actions\ActionExit.h"
 
 
 ApplicationManager::ApplicationManager()
@@ -110,38 +112,6 @@ int ApplicationManager::getConnCount() const
 }
 
 
-void ApplicationManager::DeleteComponent(Component* pComp)
-{
-	for (int i = 0; i < CompCount; i++) {
-		if (CompList[i] == pComp)
-		{
-			for (int j = i; j < CompCount - 1; j++) {
-				CompList[j] = CompList[j + 1]; 
-			}
-			CompCount--;
-		}
-	}
-	pUI->ClearDrawingArea();
-	UpdateInterface();
-	for (int i = 0; i < CompCount; i++) {
-		delete CompList[i];
-		CompList[i] = nullptr;
-	}
-	
-}
-
-////////////////////////////////////////////////////////////////////
-
-void ApplicationManager::DeleteConnection(Connection* pConn) {
-	for (int i = 0; i < ConnCount; i++) {
-		if (ConnList[i] == pConn) {
-			
-			ConnCount--;
-		}
-
-	}
-}
-
 ///////////////////////////////////////////////////////////////////
 ActionType ApplicationManager::GetUserAction()
 {
@@ -171,7 +141,6 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case ADD_SWITCH:
 			pAct = new ActionAddSwitch(this);
 			break;
-			///////////////////555555555555555555555555555555555555555
 		case ADD_BUZZER:
 			pAct = new ActionAddBuzzer(this);
 			break;
@@ -218,7 +187,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 
 		case CUT:
-			pAct = new ActionCopy(this);
+			pAct = new ActionCut(this);
 			break;
 
 		case PASTE:
@@ -247,11 +216,8 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct = new ActionAddModS(this);
 			break;
 
-	
-
-
 		case EXIT:
-			///TODO: create ExitAction here
+			pAct = new ActionExit(this);
 			break;
 	}
 	if(pAct)
@@ -369,15 +335,15 @@ void ApplicationManager::LoadCircut(ifstream& file, string fileName) {
 	}
 	int connCount , ID1, ID2;
 	file >> connCount;
-	/*for (int i = 0; i < connCount; i++) {
+	for (int i = 0; i < connCount; i++) {
 		file >> ID1 >> ID2;
 		GraphicsInfo* pGInfo = new GraphicsInfo(2);
 		Component* Comp1 = getIdCmpt(ID1);
 		Component* Comp2 = getIdCmpt(ID2);
 		Connection* pc = new Connection(pGInfo," ", Comp1, Comp2);
-		pc->Load(pUI);
-		AddConnection(pc);*/
-//	}
+		pc->Load(pUI, Comp1, Comp2);
+		AddConnection(pc);
+	}
 }
 
 
@@ -407,41 +373,76 @@ Component* ApplicationManager::getIdCmpt(int number) {
 
 ////////////////////////////////////////////////////////////////////////////
 
-void ApplicationManager::DeleteAll() {
-	
-	for (int i = 0; i <= CompCount; i++) {
-		cout << "count:" << CompCount << endl;
-		cout << "enter: "<<CompList[i]->CheckSelection()<<endl;
-		if (CompList[i]->CheckSelection()){
-			cout << "Ayyad: " << i<< endl;
-			DeleteComponent(CompList[i]);
+void ApplicationManager::DeleteComponent(Component* pComp)
+{
+	for (int i = 0; i < CompCount; i++) { 
+		if (pComp == CompList[i]){
+			CompList[i] = CompList[i + 1];
+			CompCount--;
+		}
+			
+	}
+	pUI->ClearDrawingArea();
+
+}
+
+/////////////////////////////////////////////////////////////////////////
+void ApplicationManager::DeleteConnection(Connection* pConn) {
+	for (int i = 0; i < ConnCount; i++) {
+		if (ConnList[i] == pConn) {
+			ConnList[i] = ConnList[i + 1];
+			ConnCount--;
 		}
 	}
-
+	pUI->ClearDrawingArea();
 }
+////////////////////////////////////////////////////////////////////
+/// Deleting and rearranging the CompList///
 
+void ApplicationManager::DeleteAll() {
+	
+	Component* ComptempList[MaxCompCount];
+	Connection* ConntempList[MaxCompCount];
+	int compCounter = 0;
 
-////////////////////////////////////////////////////////////////////////////
-void ApplicationManager::multiDeleteComp() {
-	ActionType ActType;
-	ApplicationManager AppManager;
-	do
-	{
-		//Read user action
-		ActType = AppManager.GetUserAction();
+	for (int i = 0; i <= CompCount;i++ ) {
+		if (CompList[i]->CheckSelection()){
+			Connection** Conn1 = CompList[i]->getTerm1();
+			Connection** Conn2 = CompList[i]->getTerm2();
+			for (int i = 0; i < CompList[i]->t1_conn_c(); i++) {
+				DeleteConnection(Conn1[i]);
+			}
+			for (int i = 0; i < CompList[i]->t2_conn_c(); i++) {
+				DeleteConnection(Conn2[i]);
+			}
+			DeleteComponent(CompList[i]);
+		}	
+	}
 
-		//Exexute the action
-		AppManager.ExecuteAction(DEL);
+	for (int i = 0; i < CompCount; i++)
+		if (CompList[i] != nullptr) {
+			ComptempList[compCounter] = CompList[i];
+			compCounter++;
+		}
+	for (int i = 0; i < CompCount; i++) {
+		CompList[i] = ComptempList[i];
+		ComptempList[i] = nullptr;
 
-		//Update the drawing window
-		AppManager.UpdateInterface();
+	}
+	CompCount = compCounter;
+	int connCounter = 0;
 
-
-	} while (ActType != DEL);
+	for (int i = 0; i < ConnCount; i++)
+		if (CompList[i] != nullptr) {
+			ConntempList[connCounter] = ConnList[i];
+			connCounter++;
+		}
+	for (int i = 0; i < ConnCount; i++) {
+		ConnList[i] = ConntempList[i];
+		ConntempList[i] = nullptr;
+	}
+	ConnCount = connCounter;
 }
-
-/////////////////////////////////////////////////////////////////////////////
-
 
 
 bool ApplicationManager::CheckifGround()

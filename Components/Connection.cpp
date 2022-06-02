@@ -50,8 +50,20 @@ bool Connection::checkSelection() {
 	return selected;
 }
 
-void Connection::Load(UI* pUI)
+void Connection::Load(UI* pUI,Component* pComp1, Component* pComp2)
 {
+	pComp1 = Cmpnt1;
+	pComp2 = Cmpnt2;
+	side lr1, lr2;
+	int compWidth = pUI->getCompWidth();
+	int compHeight = pUI->getCompHeight();
+	
+	pGfxInfo->PointsList[0].x = Cmpnt1->getC()->PointsList[0].x;
+	pGfxInfo->PointsList[0].y = Cmpnt1->getC()->PointsList[0].y + compHeight / 2;
+	
+	pGfxInfo->PointsList[0].x = Cmpnt1->getC()->PointsList[1].x;
+	pGfxInfo->PointsList[0].y = Cmpnt1->getC()->PointsList[1].y - compHeight / 2;
+	
 }
 
 bool Connection::isConnected(int x, int y) {
@@ -67,6 +79,8 @@ bool Connection::isConnected(int x, int y) {
 	}
 
 }
+
+
 
 void Connection::Delete()
 {
